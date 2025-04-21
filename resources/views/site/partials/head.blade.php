@@ -189,9 +189,10 @@
     <link rel="alternate" type="application/json+oembed" href="https://dfyne.com/products/dfyne-motion-mulberry-sports-bras-240402.oembed">
     <script async="async" src="/site/js/preloads.js?locale=en-US"></script>
     <link rel="preconnect" href="https://shop.app" crossorigin="anonymous">
-    <script async="async" src="https://shop.app/site/js/preloads.js?locale=en-US&shop_id=30041240" crossorigin="anonymous"></script>
+{{--    <script async="async" src="https://shop.app/site/js/preloads.js?locale=en-US&shop_id=30041240" crossorigin="anonymous"></script>--}}
     <script id="apple-pay-shop-capabilities" type="application/json">{"shopId":30041240,"countryCode":"GB","currencyCode":"USD","merchantCapabilities":["supports3DS"],"merchantId":"gid:\/\/shopify\/Shop\/30041240","merchantName":"DFYNE","requiredBillingContactFields":["postalAddress","email"],"requiredShippingContactFields":["postalAddress","email"],"shippingType":"shipping","supportedNetworks":["visa","maestro","masterCard","amex","discover","elo"],"total":{"type":"pending","label":"DFYNE","amount":"1.00"},"shopifyPaymentsEnabled":true,"supportsSubscriptions":false}</script>
-    <script id="shopify-features" type="application/json">{"accessToken":"42de33b748c47bcdb6417beaa3fe6264","betas":["rich-media-storefront-analytics"],"domain":"dfyne.com","predictiveSearch":true,"shopId":30041240,"smart_payment_buttons_url":"https:\/\/dfyne.com\/cdn\/shopifycloud\/payment-sheet\/assets\/latest\/spb.en.js","dynamic_checkout_cart_url":"https:\/\/dfyne.com\/cdn\/shopifycloud\/payment-sheet\/assets\/latest\/dynamic-checkout-cart.en.js","locale":"en"}</script>
+    <script id="shopify-features" type="application/json">{"accessToken":"42de33b748c47bcdb6417beaa3fe6264","betas":["rich-media-storefront-analytics"],"domain":"dfyne.com","predictiveSearch":true,"shopId":30041240,"smart_payment_buttons_url":"https:\/\/dfyne.com\/cdn\/shopifycloud\/payment-sheet\/assets\/latest\/spb.en.js","dynamic_checkout_cart_url":"https:\/\/dfyne.com\/cdn\/shopifycloud\/payment-sheet\/assets\/latest\/dynamic-checkout-cart.en.js","locale":"en"}
+    </script>
     <script>var Shopify = Shopify || {};
         Shopify.shop = "pythonperformanceus.myshopify.com";
         Shopify.locale = "en";

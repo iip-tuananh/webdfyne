@@ -15,8 +15,8 @@ class AddAboutDataSeeder extends Seeder
 
         $about = new \App\Model\Admin\About();
         $about->body = 'body';
-        $about->created_at = 1;
-        $about->updated_at = 1;
+        $about->created_by = 1;
+        $about->updated_by = 1;
         $about->save();
     }
 }

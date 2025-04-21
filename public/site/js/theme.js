@@ -1627,7 +1627,6 @@ window.theme = window.theme || {}, window.Shopify = window.Shopify || {}, theme.
                 }.bind(this)));
 
                 function avoidReflow(el2) {
-                    console.log(12)
                     if (el2.id) {
                         for (var firstChild = el2.firstChild; firstChild != null && firstChild.nodeType == 3;) firstChild = firstChild.nextSibling;
                         var style = document.createElement("style");
@@ -1635,7 +1634,6 @@ window.theme = window.theme || {}, window.Shopify = window.Shopify || {}, theme.
                     }
                 }
             }
-
 
             return slideshow.prototype = Object.assign({}, slideshow.prototype, {
                 init: function(el) {

@@ -85,6 +85,8 @@
                     <div class="page-width">
                         <div class="grid">
                             <div class="grid__item medium-up--one-half product-single__sticky">
+
+
                                 <div
                                     data-product-images
                                     data-zoom="true"
@@ -113,7 +115,7 @@
                                                        })->implode(', ');
                                                         @endphp
                                                         <div
-                                                            class="product-main-slide starting-slide"
+                                                            class="product-main-slide {{ $loop->first ? 'starting-slide' : 'secondary-slide' }}"
                                                             data-index="{{ $key }}">
 
                                                             <div data-product-image-main class="product-image-main">
@@ -130,7 +132,7 @@
                                                                              data-photoswipe-src="{{ @$gallery->image->path ?? '' }}?width=1080"
                                                                              data-photoswipe-width="2000"
                                                                              data-photoswipe-height="2000"
-                                                                             data-index="1"
+                                                                             data-index="{{ $key + 1 }}"
                                                                              sizes="(min-width: 769px) 50vw, 100vw"
                                                                         >
                                                                     </image-element>
@@ -180,8 +182,8 @@
                                                                 href="{{ @$gallery->image->path ?? '' }}"
                                                                 data-product-thumb
                                                                 class="product__thumb"
-                                                                data-index="0"
-                                                                data-id="28131263971421">
+                                                                data-index="{{$key}}"
+                                                                data-id="{{$productVariant->id}}">
                                                                 <div class="image-wrap image-wrap__thumbnail" style="height: 0; padding-bottom: 100.0%;">
                                                                     <image-element data-aos="image-fade-in" data-aos-offset="150">
                                                                         <img src="{{ @$gallery->image->path ?? '' }}?width=720"
@@ -201,6 +203,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <script type="application/json" id="ModelJson-template--18121751003229__main">
                                     []
                                 </script>
@@ -545,15 +549,35 @@
         ></div>
 
 
-    </div><div id="shopify-block-AVFIySTFEaVpmWUFPS__144831480468751239" class="shopify-block shopify-app-block"><!-- BEGIN app snippet: vite-tag -->
+    </div>
+    <div id="shopify-block-AVFIySTFEaVpmWUFPS__144831480468751239" class="shopify-block shopify-app-block"><!-- BEGIN app snippet: vite-tag -->
 
 
         <script src="/site/js/app-embed-C2qg5SV6.js" type="module" crossorigin="anonymous"></script>
-        <link rel="modulepreload" href="https://cdn.shopify.com/extensions/9c652dcc-fd78-477d-9e73-b38f552f64b9/essential-upsell-136/assets/stylex-K6Pfmy25.js" crossorigin="anonymous">
+        <link rel="modulepreload" href="https://cdn.shopify.com/extensions/9c652dcc-fd78-477d-9e73-b38f552f64b9/essential-upsell-136/assets/stylex-K6Pfmy25.js"
+              crossorigin="anonymous">
         <link href="/site/css/stylex-DFEZgduC.css" rel="stylesheet" type="text/css" media="all" />
+
+        <essential-upsell-app-embed
+                upsell-app-data="{&quot;funnels&quot;:[{&quot;id&quot;:&quot;02ccd4be-24a1-4591-a4ec-3547c0942e81&quot;,&quot;content&quot;:{&quot;offerType&quot;:&quot;CROSS_SELL&quot;,&quot;titleText&quot;:&quot;You may also like&quot;,&quot;buttonText&quot;:&quot;Add&quot;},&quot;upsell&quot;:{&quot;productsType&quot;:&quot;SPECIFIC&quot;,&quot;discountType&quot;:&quot;NONE&quot;,&quot;discountValue&quot;:null,&quot;specificProducts&quot;:[{&quot;shopifyId&quot;:&quot;gid://shopify/Product/7237855379549&quot;,&quot;shopifyHandle&quot;:&quot;dfyne-accessories-pink-apparel-accessories-240112&quot;},{&quot;shopifyId&quot;:&quot;gid://shopify/Product/7237855445085&quot;,&quot;shopifyHandle&quot;:&quot;dfyne-accessories-black-apparel-accessories-240112&quot;},{&quot;shopifyId&quot;:&quot;gid://shopify/Product/7551498616925&quot;,&quot;shopifyHandle&quot;:&quot;dfyne-accessories-black-apparel-accessories-240303&quot;},{&quot;shopifyId&quot;:&quot;gid://shopify/Product/7691208654941&quot;,&quot;shopifyHandle&quot;:&quot;dfyne-accessories-midnight-black-apparel-accessories-240403&quot;},{&quot;shopifyId&quot;:&quot;gid://shopify/Product/7691208687709&quot;,&quot;shopifyHandle&quot;:&quot;dfyne-accessories-pistachio-apparel-accessories-240403&quot;},{&quot;shopifyId&quot;:&quot;gid://shopify/Product/7691208720477&quot;,&quot;shopifyHandle&quot;:&quot;dfyne-accessories-ice-blue-apparel-accessories-240403&quot;},{&quot;shopifyId&quot;:&quot;gid://shopify/Product/7691208753245&quot;,&quot;shopifyHandle&quot;:&quot;dfyne-accessories-light-rose-pink-apparel-accessories-240403&quot;},{&quot;shopifyId&quot;:&quot;gid://shopify/Product/7551498584157&quot;,&quot;shopifyHandle&quot;:&quot;dfyne-accessories-black-apparel-accessories-240302&quot;},{&quot;shopifyId&quot;:&quot;gid://shopify/Product/7551498551389&quot;,&quot;shopifyHandle&quot;:&quot;dfyne-accessories-black-apparel-accessories-240301&quot;}]},&quot;design&quot;:{&quot;layoutType&quot;:&quot;STACKED&quot;,&quot;stackedProductsCount&quot;:1,&quot;backgroundType&quot;:&quot;MONOCHROME&quot;,&quot;monochromeBackgroundColor&quot;:&quot;#ffffff&quot;,&quot;gradientBackgroundStartColor&quot;:null,&quot;gradientBackgroundEndColor&quot;:null,&quot;gradientBackgroundAngle&quot;:null,&quot;borderRadius&quot;:8,&quot;borderSize&quot;:1,&quot;borderColor&quot;:&quot;#c5c8d1&quot;,&quot;insideTopSpacing&quot;:10,&quot;insideBottomSpacing&quot;:10,&quot;outsideTopSpacing&quot;:20,&quot;outsideBottomSpacing&quot;:20,&quot;font&quot;:&quot;INHERIT&quot;,&quot;titleSize&quot;:16,&quot;titleColor&quot;:&quot;#202223&quot;,&quot;productTitleSize&quot;:14,&quot;productTitleColor&quot;:&quot;#202223&quot;,&quot;productVariantSize&quot;:14,&quot;productVariantColor&quot;:&quot;#96a4b6&quot;,&quot;productPriceSize&quot;:14,&quot;productPriceColor&quot;:&quot;#96a4b6&quot;,&quot;discountedPriceSize&quot;:14,&quot;discountedPriceColor&quot;:&quot;#fa493d&quot;,&quot;buttonBackgroundColor&quot;:&quot;#202223&quot;,&quot;buttonTextSize&quot;:14,&quot;buttonTextColor&quot;:&quot;#fafafa&quot;,&quot;buttonBorderRadius&quot;:4,&quot;navigationIconColor&quot;:&quot;#333333&quot;,&quot;checkboxIconColor&quot;:null,&quot;checkboxBackgroundColor&quot;:null,&quot;checkboxBorderColor&quot;:null},&quot;placement&quot;:{&quot;type&quot;:&quot;CART_PAGE&quot;,&quot;triggerType&quot;:&quot;ALL&quot;,&quot;cartPagePositionType&quot;:&quot;BOTTOM_OF_THE_CART&quot;,&quot;specificProducts&quot;:[],&quot;specificCollections&quot;:[]}}]}"
+                product-page-product="{&quot;id&quot;:7651869524061,&quot;title&quot;:&quot;Motion Square Neck Bra&quot;,&quot;handle&quot;:&quot;dfyne-motion-mulberry-sports-bras-240402&quot;,&quot;description&quot;:&quot;\u003cp\u003eMotion Collection\u003c\/p\u003e&quot;,&quot;published_at&quot;:&quot;2025-04-10T16:00:17+01:00&quot;,&quot;created_at&quot;:&quot;2024-07-24T16:01:40+01:00&quot;,&quot;vendor&quot;:&quot;Mulberry&quot;,&quot;type&quot;:&quot;Sports Bras&quot;,&quot;tags&quot;:[&quot;_label_NEW&quot;,&quot;JMR::Motion Square Neck Bra&quot;,&quot;Motion&quot;,&quot;Mulberry&quot;,&quot;New Releases&quot;,&quot;Pink&quot;,&quot;Purple&quot;,&quot;restock recent&quot;,&quot;SAPG::Motion Square Neck Bra::Mulberry&quot;,&quot;Seamless&quot;,&quot;Sports Bras&quot;,&quot;Womens&quot;,&quot;Womenswear&quot;],&quot;price&quot;:3750,&quot;price_min&quot;:3750,&quot;price_max&quot;:3750,&quot;available&quot;:false,&quot;price_varies&quot;:false,&quot;compare_at_price&quot;:null,&quot;compare_at_price_min&quot;:0,&quot;compare_at_price_max&quot;:0,&quot;compare_at_price_varies&quot;:false,&quot;variants&quot;:[{&quot;id&quot;:42511309209693,&quot;title&quot;:&quot;XS&quot;,&quot;option1&quot;:&quot;XS&quot;,&quot;option2&quot;:null,&quot;option3&quot;:null,&quot;sku&quot;:&quot;240402-29-7-19-13&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:null,&quot;available&quot;:false,&quot;name&quot;:&quot;Motion Square Neck Bra - XS&quot;,&quot;public_title&quot;:&quot;XS&quot;,&quot;options&quot;:[&quot;XS&quot;],&quot;price&quot;:3750,&quot;weight&quot;:150,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:null,&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:42511309242461,&quot;title&quot;:&quot;S&quot;,&quot;option1&quot;:&quot;S&quot;,&quot;option2&quot;:null,&quot;option3&quot;:null,&quot;sku&quot;:&quot;240402-29-7-19-14&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:null,&quot;available&quot;:false,&quot;name&quot;:&quot;Motion Square Neck Bra - S&quot;,&quot;public_title&quot;:&quot;S&quot;,&quot;options&quot;:[&quot;S&quot;],&quot;price&quot;:3750,&quot;weight&quot;:150,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:null,&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:42511309275229,&quot;title&quot;:&quot;M&quot;,&quot;option1&quot;:&quot;M&quot;,&quot;option2&quot;:null,&quot;option3&quot;:null,&quot;sku&quot;:&quot;240402-29-7-19-15&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:null,&quot;available&quot;:false,&quot;name&quot;:&quot;Motion Square Neck Bra - M&quot;,&quot;public_title&quot;:&quot;M&quot;,&quot;options&quot;:[&quot;M&quot;],&quot;price&quot;:3750,&quot;weight&quot;:150,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:null,&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:42511309307997,&quot;title&quot;:&quot;L&quot;,&quot;option1&quot;:&quot;L&quot;,&quot;option2&quot;:null,&quot;option3&quot;:null,&quot;sku&quot;:&quot;240402-29-7-19-16&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:null,&quot;available&quot;:false,&quot;name&quot;:&quot;Motion Square Neck Bra - L&quot;,&quot;public_title&quot;:&quot;L&quot;,&quot;options&quot;:[&quot;L&quot;],&quot;price&quot;:3750,&quot;weight&quot;:150,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:null,&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}},{&quot;id&quot;:42511309340765,&quot;title&quot;:&quot;XL&quot;,&quot;option1&quot;:&quot;XL&quot;,&quot;option2&quot;:null,&quot;option3&quot;:null,&quot;sku&quot;:&quot;240402-29-7-19-17&quot;,&quot;requires_shipping&quot;:true,&quot;taxable&quot;:true,&quot;featured_image&quot;:null,&quot;available&quot;:false,&quot;name&quot;:&quot;Motion Square Neck Bra - XL&quot;,&quot;public_title&quot;:&quot;XL&quot;,&quot;options&quot;:[&quot;XL&quot;],&quot;price&quot;:3750,&quot;weight&quot;:150,&quot;compare_at_price&quot;:null,&quot;inventory_management&quot;:&quot;shopify&quot;,&quot;barcode&quot;:null,&quot;requires_selling_plan&quot;:false,&quot;selling_plan_allocations&quot;:[],&quot;quantity_rule&quot;:{&quot;min&quot;:1,&quot;max&quot;:null,&quot;increment&quot;:1}}],&quot;images&quot;:[&quot;\/\/dfyne.com\/cdn\/shop\/files\/IMG_0888_2-Edit-2_e3ad4b91-dc47-4ad8-ad26-8c8cf91bb768.jpg?v=1744383182&quot;,&quot;\/\/dfyne.com\/cdn\/shop\/files\/IMG_0877_2-Edit-2_06af9f5e-9577-4ed3-ae4d-0110ef0a780a.jpg?v=1744383182&quot;,&quot;\/\/dfyne.com\/cdn\/shop\/files\/IMG_0866_2-Edit-2_ac2fb21a-dce6-4089-bffb-cc6325bba940.jpg?v=1744383182&quot;,&quot;\/\/dfyne.com\/cdn\/shop\/files\/IMG_0882_2-Edit-2_1be8eb28-e531-4910-9d9b-b8b500dfe71e.jpg?v=1744383182&quot;],&quot;featured_image&quot;:&quot;\/\/dfyne.com\/cdn\/shop\/files\/IMG_0888_2-Edit-2_e3ad4b91-dc47-4ad8-ad26-8c8cf91bb768.jpg?v=1744383182&quot;,&quot;options&quot;:[&quot;Size&quot;],&quot;media&quot;:[{&quot;alt&quot;:null,&quot;id&quot;:29414124453981,&quot;position&quot;:1,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:1.0,&quot;height&quot;:2000,&quot;width&quot;:2000,&quot;src&quot;:&quot;\/\/dfyne.com\/cdn\/shop\/files\/IMG_0888_2-Edit-2_e3ad4b91-dc47-4ad8-ad26-8c8cf91bb768.jpg?v=1744383182&quot;},&quot;aspect_ratio&quot;:1.0,&quot;height&quot;:2000,&quot;media_type&quot;:&quot;image&quot;,&quot;src&quot;:&quot;\/\/dfyne.com\/cdn\/shop\/files\/IMG_0888_2-Edit-2_e3ad4b91-dc47-4ad8-ad26-8c8cf91bb768.jpg?v=1744383182&quot;,&quot;width&quot;:2000},{&quot;alt&quot;:null,&quot;id&quot;:29400808259677,&quot;position&quot;:2,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:1.0,&quot;height&quot;:2000,&quot;width&quot;:2000,&quot;src&quot;:&quot;\/\/dfyne.com\/cdn\/shop\/files\/IMG_0877_2-Edit-2_06af9f5e-9577-4ed3-ae4d-0110ef0a780a.jpg?v=1744383182&quot;},&quot;aspect_ratio&quot;:1.0,&quot;height&quot;:2000,&quot;media_type&quot;:&quot;image&quot;,&quot;src&quot;:&quot;\/\/dfyne.com\/cdn\/shop\/files\/IMG_0877_2-Edit-2_06af9f5e-9577-4ed3-ae4d-0110ef0a780a.jpg?v=1744383182&quot;,&quot;width&quot;:2000},{&quot;alt&quot;:null,&quot;id&quot;:29414124421213,&quot;position&quot;:3,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:1.0,&quot;height&quot;:2000,&quot;width&quot;:2000,&quot;src&quot;:&quot;\/\/dfyne.com\/cdn\/shop\/files\/IMG_0866_2-Edit-2_ac2fb21a-dce6-4089-bffb-cc6325bba940.jpg?v=1744383182&quot;},&quot;aspect_ratio&quot;:1.0,&quot;height&quot;:2000,&quot;media_type&quot;:&quot;image&quot;,&quot;src&quot;:&quot;\/\/dfyne.com\/cdn\/shop\/files\/IMG_0866_2-Edit-2_ac2fb21a-dce6-4089-bffb-cc6325bba940.jpg?v=1744383182&quot;,&quot;width&quot;:2000},{&quot;alt&quot;:null,&quot;id&quot;:29400808292445,&quot;position&quot;:4,&quot;preview_image&quot;:{&quot;aspect_ratio&quot;:1.0,&quot;height&quot;:2000,&quot;width&quot;:2000,&quot;src&quot;:&quot;\/\/dfyne.com\/cdn\/shop\/files\/IMG_0882_2-Edit-2_1be8eb28-e531-4910-9d9b-b8b500dfe71e.jpg?v=1744383182&quot;},&quot;aspect_ratio&quot;:1.0,&quot;height&quot;:2000,&quot;media_type&quot;:&quot;image&quot;,&quot;src&quot;:&quot;\/\/dfyne.com\/cdn\/shop\/files\/IMG_0882_2-Edit-2_1be8eb28-e531-4910-9d9b-b8b500dfe71e.jpg?v=1744383182&quot;,&quot;width&quot;:2000}],&quot;requires_selling_plan&quot;:false,&quot;selling_plan_groups&quot;:[],&quot;content&quot;:&quot;\u003cp\u003eMotion Collection\u003c\/p\u003e&quot;}"
+                product-page-collection-ids="[174280540253, 264714453085, 299266343005, 173823656029, 289019002973, 261053349981, 173823688797]"
+                cart-product-ids="[]"
+                first-shop-product-id="7237855248477"
+                shop-money-format="&lt;span class=money&gt;$@{{amount}}&lt;/span&gt;"
+                cart-items='
+[]'
+        ></essential-upsell-app-embed>
+
+    </div>
+    <div id="shopify-block-AYkpjcWFINkF3RWlJV__1513253815146976218" class="shopify-block shopify-app-block">
+    </div>
 @endsection
 
 @push('scripts')
+            <script>
+
+            </script>
             <script src="https://cdn.tutorialjinni.com/jquery-toast-plugin/1.3.2/jquery.toast.js"></script>
             <script src="https://cdn.tutorialjinni.com/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
       <script>
