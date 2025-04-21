@@ -1581,7 +1581,7 @@ window.theme = window.theme || {}, window.Shopify = window.Shopify || {}, theme.
                     arrow: ".product__thumb-arrow"
                 },
                 defaults = {
-                    adaptiveHeight: true,
+                    adaptiveHeight: !1,
                     autoPlay: !1,
                     avoidReflow: !1,
                     childNav: null,
@@ -1609,6 +1609,7 @@ window.theme = window.theme || {}, window.Shopify = window.Shopify || {}, theme.
                 this.args.childNav && (this.childNavEls = this.args.childNav.querySelectorAll(productSelectors.thumb),
                     this.childNavLinks = this.args.childNav.querySelectorAll(productSelectors.links),
                     this.arrows = this.args.childNav.querySelectorAll(productSelectors.arrow), this.childNavLinks.length && this.initChildNav()),
+
                 this.args.avoidReflow
                 && avoidReflow(el)
                     ,
