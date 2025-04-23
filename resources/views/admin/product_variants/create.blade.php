@@ -82,6 +82,14 @@
                     }
                 });
             }
+
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('product-id');
+
+            $scope.form.product_id = productId;
+
+            $scope.getProductDetail($scope.form.product_id);
+
         });
     </script>
 @endsection

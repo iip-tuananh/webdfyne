@@ -106,62 +106,21 @@ Quản lý sizes
         $('#table-list').on('click', '.remove', function () {
             var self = this;
             event.preventDefault();
-            $scope.data = datatable.row($(this).parents('tr')).data();
-            $.ajax({
-                type: 'GET',
-                url: "/admin/sizes/" + $scope.data.id + "/getDataForEdit",
-                headers: {
-                    'X-CSRF-TOKEN': CSRF_TOKEN
-                },
-                data: $scope.data.id,
 
-                success: function(response) {
-                    if (response.success) {
-                        if(response.data.products.length > 0 || response.data.posts.length > 0) {
-                            swal({
-                                title: "Xác nhận!",
-                                text: `Size này đã được gán cho sản phẩm hoặc bài viết. Đồng ý xóa?`,
-                                type: "warning",
-                                showCancelButton: true,
-                                confirmButtonClass: "btn-danger",
-                                confirmButtonText: "Xác nhận",
-                                cancelButtonText: "Hủy",
-                                closeOnConfirm: true
-                            }, function(isConfirm) {
-                                if (isConfirm) {
-                                    window.location.href = $(self).attr("href");
-                                }
-                            })
-                        } else {
-                            swal({
-                                title: "Xác nhận xóa!",
-                                text: "Bạn chắc chắn muốn xóa loại size này?",
-                                type: "warning",
-                                showCancelButton: true,
-                                confirmButtonClass: "btn-danger",
-                                confirmButtonText: "Xác nhận",
-                                cancelButtonText: "Hủy",
-                                closeOnConfirm: false
-                            }, function(isConfirm) {
-                                if (isConfirm) {
-                                    window.location.href = $(self).attr("href");
-                                }
-                            })
-                        }
-                    } else {
-                        toastr.warning(response.message);
-                        $scope.errors = response.errors;
-                    }
-                },
-                error: function(e) {
-                    toastr.error('Đã có lỗi xảy ra');
-                },
-                complete: function() {
-                    $scope.loading.submit = false;
-                    $scope.$applyAsync();
+            swal({
+                title: "Xác nhận xóa!",
+                text: "Bạn chắc chắn muốn xóa loại size và đồng thời xóa các bản ghi liên quan?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Xác nhận",
+                cancelButtonText: "Hủy",
+                closeOnConfirm: false
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    window.location.href = $(self).attr("href");
                 }
-            });
-
+            })
         });
 
     })

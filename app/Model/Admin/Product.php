@@ -177,7 +177,13 @@ class Product extends BaseModel
         }
 
         if (!empty($request->cate_id)) {
-            $result = $result->where('cate_id', $request->cate_id);
+            $category = Category::query()->with(['childs'])->find($request->cate_id);
+            $cateIds = [$category->id];
+            if(! $category->parent_id) {
+                $cateIds = $category->childs()->pluck('id')->toArray();
+            }
+
+            $result = $result->whereIn('cate_id', $cateIds);
         }
 
         if (!empty($request->cate_special_id)) {
@@ -186,6 +192,14 @@ class Product extends BaseModel
                 $q->where('category_special_id', $cate_special_id);
             });
         }
+
+        if (!empty($request->cate_collection_id)) {
+            $cate_collection_id = $request->cate_collection_id;
+            $result = $result->whereHas('collections', function ($q) use ($cate_collection_id) {
+                $q->where('category_id', $cate_collection_id);
+            });
+        }
+
 
         if ($request->status === 0 || $request->status === '0' || !empty($request->status)) {
             $result = $result->where('status', $request->status);
@@ -515,5 +529,20 @@ class Product extends BaseModel
         }
 
         return $query;
+    }
+
+    public function remove()
+    {
+        foreach ($this->variants as $variant) {
+            $variant->sizesStock()->delete();
+        }
+        $this->variants()->delete();
+
+        ProductSize::query()->where('product_id', $this->id)->delete();
+
+        ProductCategorySpecial::query()->where('product_id', $this->id)->delete();
+        ProductCollection::query()->where('product_id', $this->id)->delete();
+
+        $this->delete();
     }
 }

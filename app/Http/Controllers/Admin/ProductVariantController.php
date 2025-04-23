@@ -57,6 +57,17 @@ class ProductVariantController extends Controller
             ->addColumn('color', function ($object) {
                 return $object->color->hex_code;
             })
+            ->addColumn('sizes', function ($object) {
+                return $object->sizes
+                    ->map(function($size) {
+                        // mỗi badge hiển thị: TênSize (stock)
+                        return '<span class="badge badge-pill badge-secondary mr-2 badge-xl">'
+                            .  e($size->name)
+                            .  ' (<strong>' . $size->pivot->stock . '</strong>)'
+                            .  '</span>';
+                    })
+                    ->implode('');  // nối liền, không cách ','
+            })
             ->editColumn('created_at', function ($object) {
                 return Carbon::parse($object->created_at)->format("d/m/Y");
             })
@@ -91,7 +102,7 @@ class ProductVariantController extends Controller
                 return $result;
             })
             ->addIndexColumn()
-            ->rawColumns(['action'])
+            ->rawColumns(['action', 'sizes'])
             ->make(true);
     }
 
@@ -239,7 +250,10 @@ class ProductVariantController extends Controller
             if($object->image_back) {
                 FileHelper::deleteFileFromCloudflare($object->image_back, $object->id, ThisModel::class, 'image_back');
             }
+
+            $object->sizesStock()->delete();
             $object->delete();
+
             $message = array(
                 "message" => "Thao tác thành công!",
                 "alert-type" => "success"

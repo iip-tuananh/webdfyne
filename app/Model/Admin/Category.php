@@ -125,7 +125,7 @@ class Category extends BaseModel
 
     public function canDelete()
     {
-        return Auth::user()->id == $this->created_by && $this->products->count() == 0 && $this->getChilds()->isEmpty();
+        return Auth::user()->id == $this->created_by && $this->getChilds()->isEmpty();
     }
 
     public static function getAll()
@@ -156,6 +156,19 @@ class Category extends BaseModel
             return $value;
         }, $all);
         return $result;
+    }
+
+    public static function getCategoryCollection()
+    {
+        return self::query()->from('categories as cate_')
+            ->leftJoin('categories', 'cate_.parent_id', '=', 'categories.id')
+            ->select([
+                'cate_.id',
+                DB::raw("CONCAT(cate_.name, ' – ', categories.name) as name")
+            ])
+            ->where('cate_.type', 'collection')
+            ->orderBy('cate_.name', 'ASC')
+            ->get();
     }
 
     public static function getForSelect2()

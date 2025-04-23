@@ -22,7 +22,7 @@ $(document).on('click', 'a.confirm', function($event, confirm) {
     $event.preventDefault();
     swal({
         title: "Xác nhận!",
-        text: "Bạn chắc chắn muốn thực hiện hành động này?",
+        text: "Bạn chắc chắn muốn thực hiện hành động này. Xóa bản ghi đồng thời sẽ xóa các bản ghi khác liên quan?",
         type: "warning",
         showCancelButton: true,
         confirmButtonClass: "btn-danger",

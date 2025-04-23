@@ -532,10 +532,16 @@
                                         <a href="/search" class="site-nav__link site-nav__link--icon js-search-header">
                                             <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 64 64"><title>icon-search</title><path d="M47.16 28.58A18.58 18.58 0 1 1 28.58 10a18.58 18.58 0 0 1 18.58 18.58ZM54 54 41.94 42"/></svg>
                                             <span class="icon__fallback-text">Search</span>
-                                        </a><a href="/cart" class="site-nav__link site-nav__link--icon js-drawer-open-cart" aria-controls="CartDrawer" data-icon="bag-minimal">
-      <span class="cart-link"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-bag-minimal" viewBox="0 0 64 64"><title>icon-bag-minimal</title><path stroke="null" fill-opacity="null" stroke-opacity="null" fill="null" d="M11.375 17.863h41.25v36.75h-41.25z"/><path stroke="null" d="M22.25 18c0-7.105 4.35-9 9.75-9s9.75 1.895 9.75 9"/></svg><span class="icon__fallback-text">Cart</span>
-        <span class="cart-link__bubble"></span>
-      </span>
+                                        </a>
+                                        <a href="#" class="site-nav__link site-nav__link--icon js-drawer-open-cart" aria-controls="CartDrawer"
+                                           data-icon="bag-minimal">
+                                              <span class="cart-link">
+                                                  <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-bag-minimal" viewBox="0 0 64 64"><title>icon-bag-minimal</title><path stroke="null" fill-opacity="null" stroke-opacity="null" fill="null" d="M11.375 17.863h41.25v36.75h-41.25z"/><path stroke="null" d="M22.25 18c0-7.105 4.35-9 9.75-9s9.75 1.895 9.75 9"/></svg><span class="icon__fallback-text">Cart</span>
+                                                <span class="cart-link__bubble">
+
+                                                </span>
+                                                  <span class="cart-link__bubble cart-link__bubble--visible" ng-if="cart.count"></span>
+                                              </span>
                                         </a>
                                     </div>
                                 </div>

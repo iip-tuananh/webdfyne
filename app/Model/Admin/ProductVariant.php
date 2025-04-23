@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Model\Common\File;
 use DB;
 use App\Model\Common\Notification;
+use Illuminate\Support\Facades\Log;
 
 class ProductVariant extends BaseModel
 {
@@ -44,7 +45,7 @@ class ProductVariant extends BaseModel
 
     public function sizes()
     {
-        return $this->belongsToMany(Size::class, 'variant_sizes', 'variant_id', 'size_id');
+        return $this->belongsToMany(Size::class, 'variant_sizes', 'variant_id', 'size_id')->withPivot('stock');
     }
 
     public function color() {
@@ -66,9 +67,14 @@ class ProductVariant extends BaseModel
         $result = self::with([
             'user',
             'color',
-            'baseProduct'
+            'baseProduct',
+            'sizes'
 
         ]);
+
+        if($request->product_id) {
+            $result = $result->where('product_id', $request->product_id);
+        }
 
         if (!empty($request->name)) {
             $result = $result->where('name', 'like', '%' . $request->name . '%');

@@ -6,6 +6,8 @@ use App\Model\Admin\Category;
 use App\Model\Admin\CategorySpecial;
 use App\Model\Admin\PostCategorySpecial;
 use App\Model\Admin\ProductCategorySpecial;
+use App\Model\Admin\ProductSize;
+use App\Model\Admin\VariantSize;
 use Illuminate\Http\Request;
 use App\Model\Admin\Size as ThisModel;
 use Illuminate\Support\Facades\Response;
@@ -158,6 +160,9 @@ class SizeController extends Controller
                 "alert-type" => "warning"
             );
         } else {
+            ProductSize::query()->where('size_id', $object->id)->delete();
+            VariantSize::query()->where('size_id', $object->id)->delete();
+
             $object->delete();
 
             $message = array(

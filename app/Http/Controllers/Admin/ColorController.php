@@ -6,6 +6,8 @@ use App\Model\Admin\Category;
 use App\Model\Admin\CategorySpecial;
 use App\Model\Admin\PostCategorySpecial;
 use App\Model\Admin\ProductCategorySpecial;
+use App\Model\Admin\ProductVariant;
+use App\Model\Admin\VariantSize;
 use Illuminate\Http\Request;
 use App\Model\Admin\Color as ThisModel;
 use Illuminate\Support\Facades\Response;
@@ -178,14 +180,17 @@ class ColorController extends Controller
                 "alert-type" => "warning"
             );
         } else {
+            $productVariants = ProductVariant::query()->where('color_id', $object->id);
+            VariantSize::query()->whereIn('variant_id', $productVariants->pluck('id')->toArray())->delete();
+            $productVariants->delete();
+
             $object->delete();
 
             $message = array(
-                "message" => "Thao tác thành công!",
+                "message" => "Thao tác thành công",
                 "alert-type" => "success"
             );
         }
-
 
         return redirect()->route($this->route . '.index')->with($message);
     }

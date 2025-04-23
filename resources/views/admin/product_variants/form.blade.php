@@ -80,7 +80,7 @@
                     <div class="form-group">
                         <label class="form-label required-label">Danh mục sản phẩm</label>
                         <select class="form-control" select2 ng-model="form.product_id"
-                                ng-change="getProductDetail(form.product_id)" required>
+                                ng-change="getProductDetail(form.product_id)" required disabled>
                             <option value="">Chọn sản phẩm</option>
                             <option ng-repeat="p in form.all_products" ng-value="p.id" ng-selected="form.product_id == p.id">
                                 <% p.name %>
@@ -192,7 +192,7 @@
             Lưu
         </button>
 
-        <a href="{{ route('Category.index') }}" class="btn btn-danger">
+        <a href="{{ route('product_variants.index') }}?product-id=<% form.product_id %>" class="btn btn-danger">
             <i class="fa fa-times"></i> Hủy
         </a>
     </div>

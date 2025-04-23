@@ -34,6 +34,39 @@
                 </a>
             </li>
 
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+
+                <li class="nav-item has-treeview
+                    {{ Request::is('colors*') || Request::is('sizes*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link
+                        {{ Request::is('colors*') || Request::is('sizes*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tags"></i>
+                        <p>
+                            Quản lý thuộc tính
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        {{-- Danh sách màu sắc --}}
+                        <li class="nav-item">
+                            <a href="{{ route('colors.index') }}"
+                               class="nav-link {{ Request::routeIs('colors.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon text-info"></i>
+                                <p>Danh sách màu sắc</p>
+                            </a>
+                        </li>
+                        {{-- Danh sách loại size --}}
+                        <li class="nav-item">
+                            <a href="{{ route('sizes.index') }}"
+                               class="nav-link {{ Request::routeIs('sizes.*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon text-success"></i>
+                                <p>Danh sách loại size</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
             <li class="nav-item has-treeview  {{ request()->is('common/products') || request()->is('uptek/products*') || request()->is('admin/categories') || request()->is('admin/categories*') ? 'menu-open' : '' }} ">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fab fa-dropbox"></i>
@@ -56,18 +89,6 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('colors.index') }}" class="nav-link {{ Request::routeIs('colors.create') ? 'active' : '' }}">
-                            <i class="far fas  fa-angle-right nav-icon"></i>
-                            <p>Danh sách màu sắc</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('sizes.index') }}" class="nav-link {{ Request::routeIs('sizes.create') ? 'active' : '' }}">
-                            <i class="far fas  fa-angle-right nav-icon"></i>
-                            <p>Danh sách loại size</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="{{ route('Product.index') }}" class="nav-link {{ Request::routeIs('Product.create') ? 'active' : '' }}">
                             <i class="far fas  fa-angle-right nav-icon"></i>
                             <p>Danh sách hàng hóa</p>
@@ -79,35 +100,10 @@
                             <p>Thêm mới hàng hóa</p>
                         </a>
                     </li>
-
-
-                    <li class="nav-item">
-                        <a href="{{ route('product_variants.index') }}" class="nav-link {{ Request::routeIs('Product.create') ? 'active' : '' }}">
-                            <i class="far fas  fa-angle-right nav-icon"></i>
-                            <p>Danh sách biến thể</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('product_variants.create') }}" class="nav-link {{ Request::routeIs('Product.create') ? 'active' : '' }}">
-                            <i class="far fas  fa-angle-right nav-icon"></i>
-                            <p>Thêm mới biến thể</p>
-                        </a>
-                    </li>
-
-{{--                    <li class="nav-item">--}}
-{{--                        <a href="{{ route('attributes.index') }}" class="nav-link {{ Request::routeIs('attributes.index') ? 'active' : '' }}">--}}
-{{--                            <i class="far fas  fa-angle-right nav-icon"></i>--}}
-{{--                            <p>Danh mục thuộc tính hàng hóa</p>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-                    {{-- <li class="nav-item">
-                        <a href="{{ route('product_rates.index') }}" class="nav-link {{ Request::routeIs('product_rates.index') ? 'active' : '' }}">
-                            <i class="far fas  fa-angle-right nav-icon"></i>
-                            <p>Đánh giá sản phẩm</p>
-                        </a>
-                    </li> --}}
                 </ul>
             </li>
+
+
 
             {{-- <li class="nav-item has-treeview">
                 <a href="{{route('vouchers.index')}}" class="nav-link">

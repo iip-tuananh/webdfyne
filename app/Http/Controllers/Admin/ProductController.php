@@ -9,6 +9,8 @@ use App\Model\Admin\Manufacturer;
 use App\Model\Admin\Post;
 use App\Model\Admin\Product;
 use App\Model\Admin\ProductCategorySpecial;
+use App\Model\Admin\ProductCollection;
+use App\Model\Admin\ProductSize;
 use App\Model\Admin\ProductVideo;
 use App\Model\Admin\Tag;
 use Cassandra\Exception\ProtocolException;
@@ -43,11 +45,16 @@ class ProductController extends Controller
     public function searchData(Request $request)
     {
 		$objects = ThisModel::searchByFilter($request);
+        $badgeClasses = [
+            'badge-primary', 'badge-secondary', 'badge-success',
+            'badge-danger', 'badge-warning', 'badge-info',
+            'badge-light', 'badge-dark'
+        ];
+
         return Datatables::of($objects)
 			->addColumn('name', function ($object) {
 				return $object->name;
 			})
-
 			->editColumn('price', function ($object) {
 				return formatCurrent($object->price);
 			})
@@ -63,8 +70,37 @@ class ProductController extends Controller
 			->editColumn('cate_id', function ($object) {
 					return $object->category ? $object->category->name : '';
 			})
-            ->addColumn('category_special', function ($object) {
-                return $object->category_specials->implode('name', ', ');
+
+            ->addColumn('count_variants', function ($object) {
+                $count = $object->variants()->count();
+                $url = route('product_variants.index').'?product-id='.$object->id;
+
+                return '<a href="' . $url . '"'
+                    .  ' class="badge badge-info square-badge"'
+                    .  ' target="_blank"'
+                    .  ' title="Xem ' . $count . ' biến thể">'
+                    .  $count
+                    .  '</a>';
+            })
+            ->addColumn('category_special', function ($object) use ($badgeClasses) {
+                return $object->category_specials
+                    ->map(function($special) use ($badgeClasses) {
+                        $cls = $badgeClasses[array_rand($badgeClasses)];
+                        return '<span class="badge '. $cls .' badge-pill px-3 py-2 mr-1" style="font-size: 0.7rem;">'
+                            . e($special->name) .
+                            '</span>';
+                    })
+                    ->implode('');
+            })
+            ->addColumn('category_collection', function ($object) use ($badgeClasses) {
+                return $object->collections
+                    ->map(function($col) use ($badgeClasses) {
+                        $cls = $badgeClasses[array_rand($badgeClasses)];
+                        return '<span class="badge '. $cls .' badge-pill px-3 py-2 mr-1" style="font-size: 0.7rem;">'
+                            . e($col->name) .
+                            '</span>';
+                    })
+                    ->implode('');
             })
 			->addColumn('action', function ($object) {
                 $result = '<div class="btn-group btn-action">
@@ -78,15 +114,15 @@ class ProductController extends Controller
                 }
                 if ($object->canDelete()) {
                     $result = $result . ' <a href="' . route($this->route.'.delete', $object->id) . '" title="xóa" class="dropdown-item confirm"><i class="fa fa-angle-right"></i>Xóa</a>';
-
                 }
 
-                $result = $result . ' <a href="" title="thêm vào danh mục đặc biệt" class="dropdown-item add-category-special"><i class="fa fa-angle-right"></i>Thêm vào danh mục đặc biệt</a>';
+                $result = $result . ' <a href="' . route('product_variants.index').'?product-id='.$object->id . '" title="Quản lý biến thể" class="dropdown-item"><i class="fa fa-angle-right"></i>Quản lý biến thể</a>';
+
                 $result = $result . '</div></div>';
                 return $result;
 			})
 			->addIndexColumn()
-			->rawColumns(['action'])
+			->rawColumns(['action', 'category_collection', 'category_special', 'count_variants'])
 			->make(true);
     }
 
@@ -210,21 +246,18 @@ class ProductController extends Controller
 				"alert-type" => "warning"
 			);
 		} else {
-            if($object->galleries->count() > 0) {
-                foreach ($object->galleries as $gallery) {
-                    if ($gallery->image) {
-                        FileHelper::deleteFileFromCloudflare($gallery->image, $gallery->id, ProductGallery::class);
-                    }
-                    $gallery->removeFromDB();
-                }
+            foreach ($object->variants as $variant) {
+                $variant->sizesStock()->delete();
             }
-            if($object->image) {
-                FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
-            }
-            if($object->image_back) {
-                FileHelper::deleteFileFromCloudflare($object->image_back, $object->id, ThisModel::class, 'image_back');
-            }
+            $object->variants()->delete();
+
+            ProductSize::query()->where('product_id', $object->id)->delete();
+
+            ProductCategorySpecial::query()->where('product_id', $object->id)->delete();
+            ProductCollection::query()->where('product_id', $object->id)->delete();
+
 			$object->delete();
+
 			$message = array(
 				"message" => "Thao tác thành công!",
 				"alert-type" => "success"

@@ -346,11 +346,15 @@
                                                        <span data-add-to-cart-text data-default-text="Add to cart">Hết hàng</span>
                                                 </button>
 
-                                                <button type="submit" name="add" ng-if="sizeVariantSelected.stock > 0"
-                                                        ng-click="addToCart({{ $product->id }},  $event)"
-                                                        class="btn btn--full add-to-cart">
-                                                    <span data-add-to-cart-text="" data-default-text="Add to cart">Thêm vào giỏ hàng</span>
-                                                </button>
+                                                <a href="#" class="js-drawer-open-cart" aria-controls="CartDrawer">
+                                                    <button type="submit" name="add" ng-if="sizeVariantSelected.stock > 0"
+                                                            ng-click="addToCart({{ $product->id }},  $event)"
+                                                            class="btn btn--full add-to-cart">
+                                                        <span data-add-to-cart-text="" data-default-text="Add to cart">Thêm vào giỏ hàng</span>
+                                                    </button>
+                                                </a>
+
+
                                             </div>
 
 
@@ -620,14 +624,14 @@
                                         $scope.showCartNotification = false;
                                     }, 3000);
 
-                                    jQuery.toast({
-                                        heading: 'Đặt hàng thành công',
-                                        text: 'Sản phẩm đã được thêm vào giỏ hàng. Click giỏ hàng để thanh toán!',
-                                        showHideTransition: 'fade',
-                                        icon: 'success',
-                                        position: 'bottom-right',
-
-                                    })
+                                    // jQuery.toast({
+                                    //     heading: 'Đặt hàng thành công',
+                                    //     text: 'Sản phẩm đã được thêm vào giỏ hàng. Click giỏ hàng để thanh toán!',
+                                    //     showHideTransition: 'fade',
+                                    //     icon: 'success',
+                                    //     position: 'bottom-right',
+                                    //
+                                    // })
                                     // $scope.product = product;
                                     $rootScope.promise = $interval(function () {
                                         cartItemSync.items = response.items;

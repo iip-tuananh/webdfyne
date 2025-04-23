@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Model\Common\File;
 use DB;
 use App\Model\Common\Notification;
+use Illuminate\Support\Facades\Log;
 
 class CategorySpecial extends BaseModel
 {
@@ -64,9 +65,13 @@ class CategorySpecial extends BaseModel
 
     public static function getForSelectForProduct()
     {
-        return self::select(['id', 'name', 'code', 'slug'])
-            ->where(['type' => 10, 'show_home_page' => 1])
-            ->orderBy('name', 'ASC')
+        return self::query()
+            ->leftJoin('categories', 'category_special.category_parent_id', '=', 'categories.id')
+            ->select([
+                'category_special.id',
+                DB::raw("CONCAT(category_special.name, ' – ', categories.name) as name")
+            ])
+            ->orderBy('category_special.name', 'ASC')
             ->get();
     }
 

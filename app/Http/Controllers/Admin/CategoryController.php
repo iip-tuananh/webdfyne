@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Admin\Category;
 use App\Model\Admin\CategorySpecial;
+use App\Model\Admin\Product;
 use Illuminate\Http\Request;
 use App\Model\Admin\Category as ThisModel;
 use Yajra\DataTables\DataTables;
@@ -293,7 +294,16 @@ class CategoryController extends Controller
 			if($object->banner) {
 				FileHelper::deleteFileFromCloudflare($object->banner, $object->id, ThisModel::class, 'banner');
 			}
+
+            $products = Product::query()->where('cate_id', $object->id)->get();
+            foreach ($products as $product) {
+                $product->remove();
+            }
+
+            CategorySpecial::query()->where('category_parent_id', $object->id)->delete();
+
 			$object->delete();
+
 			$message = array(
 				"message" => "Thao tác thành công!",
 				"alert-type" => "success"

@@ -42,7 +42,7 @@
                     success: function (response) {
                         if (response.success) {
                             toastr.success(response.message);
-                            window.location.href = "{{ route('product_variants.index') }}";
+                            window.location.href = "{{ route('product_variants.index') }}?product-id={{ $object->product_id }}";
                         } else {
                             toastr.warning(response.message);
                             $scope.errors = response.errors;

@@ -15,8 +15,12 @@
 
 @section('buttons')
     @if(Auth::user()->type == App\Model\Common\User::QUAN_TRI_VIEN || Auth::user()->type == App\Model\Common\User::SUPER_ADMIN)
-        <a href="{{ route('product_variants.create') }}" class="btn btn-outline-success btn-sm" class="btn btn-info"><i
-                class="fa fa-plus"></i> Thêm mới</a>
+        <a
+            href="{{ route('product_variants.create') }}?product-id={{ request()->get('product-id') }}"
+            class="btn btn-outline-success btn-sm"
+        >
+            <i class="fa fa-plus"></i> Thêm mới
+        </a>
         {{-- <a href="javascript:void(0)" target="_blank" data-href="{{ route('Product.exportExcel') }}" class="btn btn-info export-button btn-sm"><i class="fas fa-file-excel"></i> Xuất file excel</a>
         <a href="javascript:void(0)" target="_blank" data-href="{{ route('Product.exportPDF') }}" class="btn btn-warning export-button btn-sm"><i class="far fa-file-pdf"></i> Xuất file pdf</a> --}}
     @endif
@@ -39,6 +43,12 @@
         </div>
     </div>
 
+    <style>
+        .badge-xl {
+            font-size: 0.7rem;      /* chữ to hơn */
+            padding: 0.5em 1em;     /* padding dày hơn */
+        }
+    </style>
 
     @include('common.units.createUnit')
 @endsection
@@ -49,21 +59,23 @@
 
     @include('admin.products.Product')
     <script>
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('product-id');
+
         let datatable = new DATATABLE('table-list', {
             ajax: {
                 url: '/admin/product-variants/searchData',
                 data: function (d, context) {
                     DATATABLE.mergeSearch(d, context);
+                    d.product_id = productId;
                 }
             },
             columns: [
                 {data: 'DT_RowIndex', orderable: false, title: "STT", className: "text-center"},
                 {data: 'name', title: 'Sản phẩm'},
-                {data: 'cate_id', title: 'Danh mục'},
-                {data: 'price', title: "Đơn giá bán"},
                 {
                     data: 'color',
-                    title: 'Màu',
+                    title: 'Màu sắc',
                     orderable: false,
                     className: "text-center",
                     render: function(data, type, row, meta) {
@@ -74,17 +86,17 @@
                         return '';
                     }
                 },
+                {data: 'sizes', title: 'Size'},
+                {data: 'cate_id', title: 'Danh mục'},
+                {data: 'price', title: "Đơn giá bán", className: "text-right",},
+
 
                 {data: 'action', orderable: false, title: "Hành động"}
             ],
             search_columns: [
-                {data: 'name', search_type: "text", placeholder: "Tên sản phẩm"},
-                {
-                    data: 'cate_id', search_type: "select", placeholder: "Danh mục",
-                    column_data: @json(App\Model\Admin\Category::getForSelect())
-                },
+
             ],
-            act: true,
+            act: false,
         }).datatable;
 
         app.controller('Product', function ($scope, $rootScope, $http) {
@@ -93,6 +105,7 @@
             $scope.categorieSpeicals = @json(\App\Model\Admin\CategorySpecial::getForSelectForProduct());
             $scope.loading = {};
             $scope.arrayInclude = arrayInclude;
+            $scope.productId = params.get('product-id');
 
             $rootScope.$on("createdProductCategory", function (event, data) {
                 $scope.formEdit.all_categories.push(data);

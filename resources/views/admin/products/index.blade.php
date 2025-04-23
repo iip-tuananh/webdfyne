@@ -87,7 +87,16 @@
         </div>
     </div>
 
-
+    <style>
+        .square-badge {
+            display: inline-block;
+            width: 2rem;           /* điều chỉnh kích thước ô vuông */
+            height: 2rem;
+            line-height: 2rem;     /* canh chữ đứng giữa */
+            text-align: center;    /* canh chữ ngang giữa */
+            border-radius: .25rem; /* bo góc */
+        }
+    </style>
     @include('common.units.createUnit')
 @endsection
 
@@ -104,45 +113,20 @@
                     DATATABLE.mergeSearch(d, context);
                 }
             },
-            columnDefs: [
-                {
-                    'targets': 0,
-                    'checkboxes': {
-                        'selectRow': true
-                    }
-                }
-            ],
-            select: {
-                'style': 'multi'
-            },
+
             columns: [
-                {data: 'id', orderable: false},
                 {data: 'DT_RowIndex', orderable: false, title: "STT", className: "text-center"},
-                {data: 'name', title: 'Tên'},
+                {data: 'name', title: 'Sản phẩm'},
                 // {data: 'base_price', title: "Đơn giá chưa giảm"},
-                {data: 'price', title: "Đơn giá bán"},
+                {data: 'price', title: "Đơn giá bán", className: 'text-center'},
                 {data: 'cate_id', title: 'Danh mục'},
+                {data: 'count_variants', title: 'Số biến thể', className: 'text-center'},
                 {data: 'category_special', title: 'Danh mục đặc biệt'},
-                // {
-                //     data: 'state',
-                //     title: "Tình trạng",
-                //     render: function (data) {
-                //         if (data == 1) {
-                //             return `<span class="badge badge-success">Còn hàng</span>`;
-                //         } else {
-                //             return `<span class="badge badge-warning">Hết hàng</span>`;
-                //         }
-                //     },
-                //     className: "text-center"
-                // },
+                {data: 'category_collection', title: 'Bộ sưu tập'},
                 {data: 'action', orderable: false, title: "Hành động"}
             ],
             search_columns: [
-                {data: 'name', search_type: "text", placeholder: "Tên hàng hóa"},
-                {
-                    data: 'state', search_type: "select", placeholder: "Tình trạng",
-                    column_data: [{id: 1, name: "Còn hàng"}, {id: 2, name: "Hết hàng"}]
-                },
+                {data: 'name', search_type: "text", placeholder: "Tên sản phẩm"},
                 {
                     data: 'cate_id', search_type: "select", placeholder: "Danh mục",
                     column_data: @json(App\Model\Admin\Category::getForSelect())
@@ -150,9 +134,13 @@
                 {
                     data: 'cate_special_id', search_type: "select", placeholder: "Danh mục đặc biệt",
                     column_data: @json(App\Model\Admin\CategorySpecial::getForSelectForProduct())
-                }
+                },
+                {
+                    data: 'cate_collection_id', search_type: "select", placeholder: "Bộ sưu tập",
+                    column_data: @json(App\Model\Admin\Category::getCategoryCollection())
+                },
             ],
-            act: true,
+            act: false,
         }).datatable;
 
         app.controller('Product', function ($scope, $rootScope, $http) {
