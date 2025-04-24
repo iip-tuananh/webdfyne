@@ -60,10 +60,10 @@
 
 
                                     </image-element>
-                                </div><a href="/collections/impact" class="hero__slide-link" aria-hidden="true"></a><div class="hero__text-wrap">
+                                </div><a href="#" class="hero__slide-link" aria-hidden="true"></a><div class="hero__text-wrap">
                                     <div class="page-width">
                                         <div class="hero__text-content vertical-bottom horizontal-center">
-                                            <div class="hero__text-shadow"><div class="hero__link"><a href="/collections/impact" class="btn btn--inverse">
+                                            <div class="hero__text-shadow"><div class="hero__link"><a href="#" class="btn btn--inverse">
                                                         SHOP IMPACT
                                                     </a></div></div>
                                         </div>

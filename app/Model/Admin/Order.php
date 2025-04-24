@@ -3,6 +3,7 @@
 namespace App\Model\Admin;
 
 use App\Model\BaseModel;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -71,6 +72,27 @@ class Order extends Model
 
         if (!empty($request->code)) {
             $result = $result->where('code', 'like', '%' . $request->code . '%');
+        }
+
+        if (!empty($request->status)) {
+            $result = $result->where('status', $request->status);
+        }
+
+        if ($request->filled('startDate') && $request->filled('endDate')) {
+            $start = Carbon::parse($request->startDate)->startOfDay();
+            $end   = Carbon::parse($request->endDate)  ->endOfDay();
+
+            $result->whereBetween('created_at', [$start, $end]);
+
+
+        } elseif ($request->filled('startDate')) {
+            $start = Carbon::parse($request->startDate)->startOfDay();
+            $result->where('created_at', '>=', $start);
+
+
+        } elseif ($request->filled('endDate')) {
+            $end = Carbon::parse($request->endDate)->endOfDay();
+            $result->where('created_at', '<=', $end);
         }
 
         $result = $result->orderBy('created_at', 'desc')->get();

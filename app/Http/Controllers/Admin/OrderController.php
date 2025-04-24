@@ -52,7 +52,10 @@ class OrderController extends Controller
                 return '<a href = "'.route('orders.show', $object->id).'" title = "Xem chi tiết">' . $object->code . '</a>';
             })
             ->editColumn('created_at', function ($object) {
-                return formatDate($object->created_at);
+                return Carbon::parse($object->created_at)->format('d/m/Y H:i');
+            })
+            ->editColumn('updated_at', function ($object) {
+                return Carbon::parse($object->updated_at)->format('d/m/Y H:i');
             })
             ->addColumn('action', function ($object) {
                 $result = '<div class="btn-group btn-action">

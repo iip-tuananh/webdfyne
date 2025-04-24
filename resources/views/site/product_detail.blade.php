@@ -8,6 +8,12 @@
           href="https://cdn.tutorialjinni.com/jquery-toast-plugin/1.3.2/jquery.toast.css"/>
     <link rel="stylesheet" type="text/css"
           href="https://cdn.tutorialjinni.com/jquery-toast-plugin/1.3.2/jquery.toast.min.css"/>
+
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
 @endsection
 
 @section('content')
@@ -84,131 +90,238 @@
 
                     <div class="page-width">
                         <div class="grid">
+
+
                             <div class="grid__item medium-up--one-half product-single__sticky">
 
 
-                                <div
-                                    data-product-images
-                                    data-zoom="true"
-                                    data-has-slideshow="true">
-                                    <div class="product__photos product__photos-template--18121751003229__main product__photos--below">
-                                        <div class="product__main-photos" data-aos data-product-single-media-group>
-                                            <div
-                                                data-product-photos
-                                                data-zoom="true"
-                                                class="product-slideshow"
-                                                id="ProductPhotos-template--18121751003229__main">
+{{--                                <div--}}
+{{--                                    data-product-images--}}
+{{--                                    data-zoom="true"--}}
+{{--                                    data-has-slideshow="true">--}}
+{{--                                    <div class="product__photos product__photos-template--18121751003229__main product__photos--below">--}}
 
+{{--                                        <div class="product__main-photos" data-aos data-product-single-media-group>--}}
+{{--                                            <div--}}
+{{--                                                data-product-photos--}}
+{{--                                                data-zoom="true"--}}
+{{--                                                class="product-slideshow"--}}
+{{--                                                id="ProductPhotos-template--18121751003229__main">--}}
+
+{{--                                                @php--}}
+{{--                                                    $sizes = [360, 540, 720, 900, 1080];--}}
+
+{{--                                                    $srcset = collect($sizes)->map(function($size) use ($productVariant) {--}}
+{{--                                                        return (@$productVariant->image->path ?? '' ). "?width={$size} {$size}w";--}}
+{{--                                                    })->implode(', ');--}}
+{{--                                                @endphp--}}
+
+{{--                                                @if(isset($productVariant->galleries) && count($productVariant->galleries))--}}
+{{--                                                    @foreach($productVariant->galleries as $key => $gallery)--}}
+{{--                                                        @php--}}
+{{--                                                            $srcsetGallery = collect($sizes)->map(function($size) use ($gallery) {--}}
+{{--                                                           return $gallery->image->path . "?width={$size} {$size}w";--}}
+{{--                                                       })->implode(', ');--}}
+{{--                                                        @endphp--}}
+{{--                                                        <div--}}
+{{--                                                            class="product-main-slide {{ $loop->first ? 'starting-slide' : 'secondary-slide' }}"--}}
+{{--                                                            data-index="{{ $key }}">--}}
+
+{{--                                                            <div data-product-image-main class="product-image-main">--}}
+{{--                                                                <div class="image-wrap" style="height: 0; padding-bottom: 100.0%;">--}}
+{{--                                                                    <image-element data-aos="image-fade-in" data-aos-offset="150">--}}
+{{--                                                                        <img src="{{ @$gallery->image->path ?? '' }}?width=1080"--}}
+{{--                                                                             width="1080"--}}
+{{--                                                                             height="1080.0"--}}
+{{--                                                                             class="photoswipe__image--}}
+{{--                                                image-element"--}}
+{{--                                                                             loading="eager"--}}
+{{--                                                                             alt="Dynamic Twist Back Bra"--}}
+{{--                                                                             srcset="{{ $srcsetGallery }}"--}}
+{{--                                                                             data-photoswipe-src="{{ @$gallery->image->path ?? '' }}?width=1080"--}}
+{{--                                                                             data-photoswipe-width="2000"--}}
+{{--                                                                             data-photoswipe-height="2000"--}}
+{{--                                                                             data-index="{{ $key + 1 }}"--}}
+{{--                                                                             sizes="(min-width: 769px) 50vw, 100vw"--}}
+{{--                                                                        >--}}
+{{--                                                                    </image-element>--}}
+
+{{--                                                                    <button type="button" class="btn btn--body btn--circle js-photoswipe__zoom product__photo-zoom">--}}
+{{--                                                                        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 64 64">--}}
+{{--                                                                            <title>icon-search</title>--}}
+{{--                                                                            <path d="M47.16 28.58A18.58 18.58 0 1 1 28.58 10a18.58 18.58 0 0 1 18.58 18.58ZM54 54 41.94 42"/>--}}
+{{--                                                                        </svg>--}}
+{{--                                                                        <span class="icon__fallback-text">Close (esc)</span>--}}
+{{--                                                                    </button>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+
+{{--                                                        </div>--}}
+
+{{--                                                    @endforeach--}}
+{{--                                                @endif--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div--}}
+{{--                                            data-product-thumbs--}}
+{{--                                            class="product__thumbs product__thumbs--below product__thumbs-placement--left small--hide"--}}
+{{--                                            data-position="below"--}}
+{{--                                            data-arrows="false"--}}
+{{--                                            data-aos>--}}
+{{--                                            <div class="product__thumbs--scroller">--}}
+{{--                                                @php--}}
+{{--                                                    $sizes = [120, 360, 540, 720];--}}
+
+{{--                                                    $srcset = collect($sizes)->map(function($size) use ($productVariant) {--}}
+{{--                                                        return (@$productVariant->image->path ?? '' ). "?width={$size} {$size}w";--}}
+{{--                                                    })->implode(', ');--}}
+{{--                                                @endphp--}}
+
+{{--                                                @if(isset($productVariant->galleries) && count($productVariant->galleries))--}}
+{{--                                                    @foreach($productVariant->galleries as $key => $gallery)--}}
+{{--                                                        @php--}}
+{{--                                                            $srcsetGallery = collect($sizes)->map(function($size) use ($gallery) {--}}
+{{--                                                           return $gallery->image->path . "?width={$size} {$size}w";--}}
+{{--                                                       })->implode(', ');--}}
+{{--                                                        @endphp--}}
+{{--                                                        <div class="product__thumb-item"--}}
+{{--                                                             data-index="{{$key}}"--}}
+{{--                                                        >--}}
+{{--                                                            <a--}}
+{{--                                                                href="{{ @$gallery->image->path ?? '' }}"--}}
+{{--                                                                data-product-thumb--}}
+{{--                                                                class="product__thumb"--}}
+{{--                                                                data-index="{{$key}}"--}}
+{{--                                                                data-id="{{$productVariant->id}}">--}}
+{{--                                                                <div class="image-wrap image-wrap__thumbnail" style="height: 0; padding-bottom: 100.0%;">--}}
+{{--                                                                    <image-element data-aos="image-fade-in" data-aos-offset="150">--}}
+{{--                                                                        <img src="{{ @$gallery->image->path ?? '' }}?width=720"--}}
+{{--                                                                             alt="Dynamic Twist Back Bra"--}}
+{{--                                                                             srcset="{{$srcsetGallery}}"--}}
+{{--                                                                             width="720" height="720.0" loading="eager" class=" image-element" sizes="(min-width: 769px) 80px, 100vw">--}}
+{{--                                                                    </image-element>--}}
+{{--                                                                </div>--}}
+{{--                                                            </a>--}}
+{{--                                                        </div>--}}
+
+{{--                                                    @endforeach--}}
+{{--                                                @endif--}}
+
+
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+
+{{--                                    </div>--}}
+{{--                                </div>--}}
+                                <div class="product-gallery">
+
+                                    <style>
+                                        .product-gallery {
+                                            max-width: 600px;    /* hoặc bao nhiêu bạn muốn */
+                                            margin: auto;
+                                        }
+                                        .product-gallery .swiper {
+                                            width: 100%;
+                                            overflow: hidden;    /* quan trọng */
+                                        }
+                                        .product-gallery .swiper-slide img {
+                                            display: block;
+                                            width: 100%;
+                                            height: auto;
+                                        }
+
+                                        /* Thumbnail styling */
+                                        .gallery-thumbs {
+                                            margin-top: 10px;
+                                        }
+                                        .gallery-thumbs .swiper-slide {
+                                            width: 80px !important;
+                                            height: 80px;
+                                            padding: 0;              /* padding nếu cần, nhưng border nên nằm ngoài */
+                                            box-sizing: border-box;  /* bao gồm cả border trong width/height */
+                                            border: 1px solid transparent;
+                                            border-radius: 4px;
+                                            overflow: hidden;        /* đảm bảo ảnh không tràn */
+                                            cursor: pointer;
+                                            display: flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                        }
+
+                                        .gallery-thumbs .swiper-slide img {
+                                            width: 100%;
+                                            height: 100%;
+                                            object-fit: cover;
+                                            display: block;          /* loại bỏ khoảng trắng bên dưới ảnh */
+                                            border: none;            /* xóa border cũ nếu có */
+                                        }
+
+                                        .gallery-thumbs .swiper-slide-thumb-active {
+                                            border-color: #000;      /* viền đen toàn diện */
+                                        }
+                                    </style>
+                                    <div class="swiper gallery-top">
+                                        <div class="swiper-wrapper">
+                                            @foreach($productVariant->galleries ?? collect() as $gallery)
                                                 @php
-                                                    $sizes = [360, 540, 720, 900, 1080];
-
-                                                    $srcset = collect($sizes)->map(function($size) use ($productVariant) {
-                                                        return (@$productVariant->image->path ?? '' ). "?width={$size} {$size}w";
-                                                    })->implode(', ');
+                                                    $sizes = [360,540,720,900,1080];
+                                                    $srcset = collect($sizes)
+                                                      ->map(function($size) use($gallery){
+                                                        return "{$gallery->image->path}?width={$size} {$size}w";
+                                                      })->implode(', ');
                                                 @endphp
-
-                                                @if(isset($productVariant->galleries) && count($productVariant->galleries))
-                                                    @foreach($productVariant->galleries as $key => $gallery)
-                                                        @php
-                                                            $srcsetGallery = collect($sizes)->map(function($size) use ($gallery) {
-                                                           return $gallery->image->path . "?width={$size} {$size}w";
-                                                       })->implode(', ');
-                                                        @endphp
-                                                        <div
-                                                            class="product-main-slide {{ $loop->first ? 'starting-slide' : 'secondary-slide' }}"
-                                                            data-index="{{ $key }}">
-
-                                                            <div data-product-image-main class="product-image-main">
-                                                                <div class="image-wrap" style="height: 0; padding-bottom: 100.0%;">
-                                                                    <image-element data-aos="image-fade-in" data-aos-offset="150">
-                                                                        <img src="{{ @$gallery->image->path ?? '' }}?width=1080"
-                                                                             width="1080"
-                                                                             height="1080.0"
-                                                                             class="photoswipe__image
-                                                image-element"
-                                                                             loading="eager"
-                                                                             alt="Dynamic Twist Back Bra"
-                                                                             srcset="{{ $srcsetGallery }}"
-                                                                             data-photoswipe-src="{{ @$gallery->image->path ?? '' }}?width=1080"
-                                                                             data-photoswipe-width="2000"
-                                                                             data-photoswipe-height="2000"
-                                                                             data-index="{{ $key + 1 }}"
-                                                                             sizes="(min-width: 769px) 50vw, 100vw"
-                                                                        >
-                                                                    </image-element>
-
-                                                                    <button type="button" class="btn btn--body btn--circle js-photoswipe__zoom product__photo-zoom">
-                                                                        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 64 64">
-                                                                            <title>icon-search</title>
-                                                                            <path d="M47.16 28.58A18.58 18.58 0 1 1 28.58 10a18.58 18.58 0 0 1 18.58 18.58ZM54 54 41.94 42"/>
-                                                                        </svg>
-                                                                        <span class="icon__fallback-text">Close (esc)</span>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-                                                    @endforeach
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div
-                                            data-product-thumbs
-                                            class="product__thumbs product__thumbs--below product__thumbs-placement--left small--hide"
-                                            data-position="below"
-                                            data-arrows="false"
-                                            data-aos>
-                                            <div class="product__thumbs--scroller">
-                                                @php
-                                                    $sizes = [120, 360, 540, 720];
-
-                                                    $srcset = collect($sizes)->map(function($size) use ($productVariant) {
-                                                        return (@$productVariant->image->path ?? '' ). "?width={$size} {$size}w";
-                                                    })->implode(', ');
-                                                @endphp
-
-                                                @if(isset($productVariant->galleries) && count($productVariant->galleries))
-                                                    @foreach($productVariant->galleries as $key => $gallery)
-                                                        @php
-                                                            $srcsetGallery = collect($sizes)->map(function($size) use ($gallery) {
-                                                           return $gallery->image->path . "?width={$size} {$size}w";
-                                                       })->implode(', ');
-                                                        @endphp
-                                                        <div class="product__thumb-item"
-                                                             data-index="{{$key}}"
+                                                <div class="swiper-slide">
+                                                    <div class="swiper-zoom-container">
+                                                        <img
+                                                            src="{{ $gallery->image->path }}?width=1080"
+                                                            srcset="{{ $srcset }}"
+                                                            sizes="(min-width:769px)50vw,100vw"
+                                                            alt="Ảnh SP"
+                                                            loading="eager"
                                                         >
-                                                            <a
-                                                                href="{{ @$gallery->image->path ?? '' }}"
-                                                                data-product-thumb
-                                                                class="product__thumb"
-                                                                data-index="{{$key}}"
-                                                                data-id="{{$productVariant->id}}">
-                                                                <div class="image-wrap image-wrap__thumbnail" style="height: 0; padding-bottom: 100.0%;">
-                                                                    <image-element data-aos="image-fade-in" data-aos-offset="150">
-                                                                        <img src="{{ @$gallery->image->path ?? '' }}?width=720"
-                                                                             alt="Dynamic Twist Back Bra"
-                                                                             srcset="{{$srcsetGallery}}"
-                                                                             width="720" height="720.0" loading="eager" class=" image-element" sizes="(min-width: 769px) 80px, 100vw">
-                                                                    </image-element>
-                                                                </div>
-                                                            </a>
-                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="swiper-button-next"></div>
+                                        <div class="swiper-button-prev"></div>
+                                    </div>
 
-                                                    @endforeach
-                                                @endif
-
-
-                                            </div>
+                                    {{-- Thumbnail swiper --}}
+                                    <div class="swiper gallery-thumbs">
+                                        <div class="swiper-wrapper">
+                                            @foreach($productVariant->galleries ?? collect() as $gallery)
+                                                @php
+                                                    $sizes2 = [120,360,540,720];
+                                                    $srcset2 = collect($sizes2)
+                                                      ->map(function($s) use($gallery){
+                                                        return "{$gallery->image->path}?width={$s} {$s}w";
+                                                      })->implode(', ');
+                                                @endphp
+                                                <div class="swiper-slide">
+                                                    <img
+                                                        src="{{ $gallery->image->path }}?width=360"
+                                                        srcset="{{ $srcset2 }}"
+                                                        sizes="80px"
+                                                        alt="Thumb"
+                                                        loading="eager"
+                                                    >
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
-
 
                                 <script type="application/json" id="ModelJson-template--18121751003229__main">
                                     []
                                 </script>
                             </div>
+
+
+
+
+
+
                             <div class="grid__item medium-up--one-half">
                                 <div class="product-single__meta">
                                     <div class="product-block product-block--header">
@@ -584,9 +697,33 @@
             </script>
             <script src="https://cdn.tutorialjinni.com/jquery-toast-plugin/1.3.2/jquery.toast.js"></script>
             <script src="https://cdn.tutorialjinni.com/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
-      <script>
+            <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const thumbs = new Swiper('.gallery-thumbs', {
+                        spaceBetween: 10,
+                        slidesPerView: 'auto',
+                        watchSlidesProgress: true,
+                        watchSlidesVisibility: true,
+                    });
+                    new Swiper('.gallery-top', {
+                        spaceBetween: 10,
+                        slidesPerView: 1,
+                        loop: false,
+                        zoom: { maxRatio: 2 },
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                        thumbs: {
+                            swiper: thumbs,
+                        },
+                    });
+                });
+            </script>
+            <script>
 
-                app.controller('productDetail', function ($rootScope, $scope, $sce, $interval, cartItemSync) {
+                app.controller('productDetail', function ($rootScope, $scope, $sce, $interval, cartItemSync, isLoading) {
                     $scope.sizeVariantSelected = {};
                     $scope.chooseSize = function (sizeVariant) {
                         $scope.sizeVariantSelected = sizeVariant
@@ -604,7 +741,7 @@
                         //     price: element.getAttribute('data-price'),
                         //     name: element.getAttribute('data-name')
                         // };
-
+                        isLoading.set(true);
                         jQuery.ajax({
                             type: 'POST',
                             url: url,
@@ -617,22 +754,7 @@
                             success: function (response) {
                                 if (response.success) {
                                     $interval.cancel($rootScope.promise);
-
-                                    $scope.showCartNotification = true;
-
-                                    setTimeout(function () {
-                                        $scope.showCartNotification = false;
-                                    }, 3000);
-
-                                    // jQuery.toast({
-                                    //     heading: 'Đặt hàng thành công',
-                                    //     text: 'Sản phẩm đã được thêm vào giỏ hàng. Click giỏ hàng để thanh toán!',
-                                    //     showHideTransition: 'fade',
-                                    //     icon: 'success',
-                                    //     position: 'bottom-right',
-                                    //
-                                    // })
-                                    // $scope.product = product;
+                                    isLoading.set(false);
                                     $rootScope.promise = $interval(function () {
                                         cartItemSync.items = response.items;
                                         cartItemSync.total = response.total;

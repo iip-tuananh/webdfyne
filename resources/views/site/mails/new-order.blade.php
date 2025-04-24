@@ -132,7 +132,7 @@
                                                             <tr>
                                                                 <td style="font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif">
                                                                     <img
-                                                                        src="{{$item->product->image ? $_SERVER['HTTP_HOST'].$item->product->image->path : asset('site/image/no-image.png')}}"
+                                                                        src="{{$item->productVariant->image ? $_SERVER['HTTP_HOST'].$item->productVariant->image->path : asset('site/image/no-image.png')}}"
                                                                         align="left" width="60" height="60"
                                                                         style="margin-right:15px;border-radius:8px;border:1px solid #e5e5e5"
                                                                         class="CToWUd">
@@ -140,7 +140,9 @@
                                                                 </td>
                                                                 <td style="font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;width:100%">
                                                                 <span
-                                                                    style="font-size:16px;font-weight:600;line-height:1.4;color:#555">{{$item->product->name}} ×&nbsp;{{$item->qty}}</span><br>
+                                                                    style="font-size:16px;font-weight:600;line-height:1.4;color:#555">
+                                                                    {{$item->product->name}} - {{$item->color}} - {{$item->product->size}} ×&nbsp;{{$item->qty}}
+                                                                </span><br>
                                                                     <span style="font-size:14px;color:#999"></span><br>
                                                                 </td>
                                                                 <td style="font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Roboto&quot;,&quot;Oxygen&quot;,&quot;Ubuntu&quot;,&quot;Cantarell&quot;,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,&quot;Helvetica Neue&quot;,sans-serif;white-space:nowrap">

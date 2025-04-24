@@ -9,8 +9,7 @@
     <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
     <link rel="dns-prefetch" href="https://ajax.googleapis.com">
     <link rel="dns-prefetch" href="https://maps.googleapis.com">
-    <link rel="dns-prefetch" href="https://maps.gstatic.com"><link rel="shortcut icon" href="//dfyne.com/cdn/shop/files/DFYNE_Favlicon_32x32.png?v=1629367710" type="image/png" /><title>Motion Square Neck Bra
-        &ndash; DFYNE
+    <link rel="dns-prefetch" href="https://maps.gstatic.com"><link rel="shortcut icon" href="//dfyne.com/cdn/shop/files/DFYNE_Favlicon_32x32.png?v=1629367710" type="image/png" /><title>{{ $config->web_title }}
     </title>
     <meta name="description" content="Motion Collection"><meta property="og:site_name" content="DFYNE">
     <meta property="og:url" content="https://dfyne.com/products/dfyne-motion-mulberry-sports-bras-240402">

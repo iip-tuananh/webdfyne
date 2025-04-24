@@ -257,10 +257,17 @@
                     <i class="nav-icon fas fa-info"></i>
                     <p>
                         Về chúng tôi
-                        <i class="fas fa-angle-left right"></i>
                     </p>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a href="{{ route('contacts.index') }}" class="nav-link {{ Request::routeIs('contacts.index') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-address-card"></i>
+                    <p>Danh mục khách hàng liên hệ</p>
+                </a>
+            </li>
+
 
 
             {{--            <li class="nav-item has-treeview">--}}

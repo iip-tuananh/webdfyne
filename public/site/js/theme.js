@@ -1563,7 +1563,8 @@ window.theme = window.theme || {}, window.Shopify = window.Shopify || {}, theme.
                     new theme.Modals(modalId, name), theme.sections.register("product", theme.Product, holder), theme.collapsibles.init(), theme.videoModal(), btn && btn.classList.remove("quick-product__btn--not-ready")
                 }
             })
-        }, theme.Slideshow = function() {
+        },
+            theme.Slideshow = function() {
             var classes = {
                     animateOut: "animate-out",
                     isPaused: "is-paused",
@@ -1600,6 +1601,8 @@ window.theme = window.theme || {}, window.Shopify = window.Shopify || {}, theme.
                     wrapAround: !0
                 };
 
+
+
             function slideshow(el, args) {
                 if (this.el = el, this.args = Object.assign({}, defaults, args), this.args.on = {
                     ready: this.init.bind(this),
@@ -1613,6 +1616,9 @@ window.theme = window.theme || {}, window.Shopify = window.Shopify || {}, theme.
                 this.args.avoidReflow
                 && avoidReflow(el)
                     ,
+
+
+
                     this.slideshow = new Flickity(el, this.args),
                 el.dataset.zoom && el.dataset.zoom === "true" && (this.slideshow.on("dragStart", () => {
                     this.slideshow.slider.style.pointerEvents = "none", this.slideshow.options.fade && (this.slideshow.slider.querySelector(".is-selected").style.pointerEvents = "none")
@@ -1626,12 +1632,20 @@ window.theme = window.theme || {}, window.Shopify = window.Shopify || {}, theme.
                     this.resize()
                 }.bind(this)));
 
+
                 function avoidReflow(el2) {
-                    if (el2.id) {
-                        for (var firstChild = el2.firstChild; firstChild != null && firstChild.nodeType == 3;) firstChild = firstChild.nextSibling;
-                        var style = document.createElement("style");
-                        style.innerHTML = `#${el2.id} .flickity-viewport{height:${firstChild.offsetHeight}px}`, document.head.appendChild(style)
-                    }
+                    document.addEventListener('DOMContentLoaded', () => {
+                        if (el2.id) {
+
+
+                            for (var firstChild = el2.firstChild; firstChild != null && firstChild.nodeType == 3;) firstChild = firstChild.nextSibling;
+                            var style = document.createElement("style");
+                            style.innerHTML = `#${el2.id} .flickity-viewport{height:${firstChild.offsetHeight}px}`, document.head.appendChild(style)
+                        }
+
+                    })
+
+
                 }
             }
 
@@ -1708,11 +1722,16 @@ window.theme = window.theme || {}, window.Shopify = window.Shopify || {}, theme.
                 arrowClick: function(evt) {
                     evt.currentTarget.classList.contains("product__thumb-arrow--prev") ? this.slideshow.previous() : this.slideshow.next()
                 }
-            }), slideshow
-        }(), theme.VariantAvailability = function() {
+            }),
+                slideshow
+        }(),
+
+            theme.VariantAvailability = function() {
             var classes = {
                 disabled: "disabled"
             };
+
+
 
             function availability(args) {
                 this.type = args.type, this.variantsObject = args.variantsObject, this.currentVariantObject = args.currentVariantObject, this.container = args.container, this.namespace = args.namespace, this.init()
@@ -2080,6 +2099,7 @@ window.theme = window.theme || {}, window.Shopify = window.Shopify || {}, theme.
                 })
             }
         }
+
         customElements.define("recipient-form", RecipientForm), theme.announcementBar = function() {
             var args = {
                     autoPlay: 5e3,
@@ -2095,6 +2115,7 @@ window.theme = window.theme || {}, window.Shopify = window.Shopify || {}, theme.
                     unload(), bar.dataset.compact === "true" && initSlider()
                 })))
             }
+
 
             function initSlider() {
                 flickity = new theme.Slideshow(bar, args)
@@ -2119,7 +2140,8 @@ window.theme = window.theme || {}, window.Shopify = window.Shopify || {}, theme.
                 onBlockDeselect,
                 unload
             }
-        }(), theme.customerTemplates = function() {
+        }(),
+            theme.customerTemplates = function() {
             checkUrlHash(), initEventListeners(), resetPasswordSuccess(), customerAddressForm();
 
             function checkUrlHash() {

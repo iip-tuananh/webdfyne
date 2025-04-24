@@ -102,11 +102,17 @@ Quản lý đơn hàng
                 className: "text-center"
             },
             {data: 'created_at', title: 'Ngày tạo'},
+            {data: 'updated_at', title: 'Ngày cập nhật'},
             {data: 'action', orderable: false, title: "Hành động"}
         ],
         search_columns: [
             {data: 'code', search_type: "text", placeholder: "Mã đơn hàng"},
+            {
+                data: 'status', search_type: "select", placeholder: "Trạng thái",
+                column_data: @json(\App\Model\Admin\Order::STATUSES)
+            }
         ],
+        search_by_time: true,
     }).datatable;
 
     createReviewCallback = (response) => {

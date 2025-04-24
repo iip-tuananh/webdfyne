@@ -21,9 +21,10 @@
 @include('site.partials.angular_mix')
 
 <script>
-    app.controller('headerPartial', function ($rootScope, $scope, cartItemSync, $interval) {
+    app.controller('headerPartial', function ($rootScope, $scope, cartItemSync, isLoading, $interval) {
         $scope.hasItemInCart = true;
         $scope.cart = cartItemSync;
+        isLoading.watch($scope, 'isLoading');
 
         // xóa item trong giỏ
         $scope.removeItem = function (product_id) {
@@ -135,6 +136,32 @@
         return cart;
     });
 
+    app.factory('isLoading', function($interval) {
+        var loading = false;
+
+        return {
+            // bật/tắt trạng thái loading
+            set: function(val) {
+                loading = !!val;
+            },
+            // lấy trạng thái hiện tại
+            get: function() {
+                return loading;
+            },
+            // cho controller “theo dõi” biến loading trên scope
+            watch: function(scope, modelName, pollInterval) {
+                pollInterval = pollInterval || 100; // ms
+                // mỗi pollInterval ms gán giá trị loading vào scope[modelName]
+                var promise = $interval(function() {
+                    scope[modelName] = loading;
+                }, pollInterval);
+                // cleanup khi scope bị destroy
+                scope.$on('$destroy', function() {
+                    $interval.cancel(promise);
+                });
+            }
+        };
+    });
 
 </script>
 @stack('script')
