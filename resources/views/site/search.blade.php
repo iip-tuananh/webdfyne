@@ -14,7 +14,7 @@
                 <div class="page-width page-content">
                     <header class="section-header">
                         <h1 class="section-header__title">
-                            Tìm kiếm
+                            Search
                         </h1>
                     </header>
                     <predictive-search data-context="search-page" data-enabled="true" data-dark="false">
@@ -58,7 +58,7 @@
                                         </button>
                                     </div>
 
-                                    <div class="collection-filter__item collection-filter__item--count small--hide">{{ $productVariants->count() }} kết quả
+                                    <div class="collection-filter__item collection-filter__item--count small--hide">{{ $productVariants->count() }} results
                                     </div>
 
 {{--                                    <div class="collection-filter__item collection-filter__item--sort">--}}

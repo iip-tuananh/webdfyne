@@ -733,7 +733,12 @@
         </div>
     </header>
     <div class="LoadingShellDisclosure ShopPay">
-        <div class="LoadingShellDisclosureButton LoadingShellDisclosureButton-containerFill"><span class="LoadingShellDisclosureButtonContent FadeIn"><span class="Text Text--size-small"><span class="SkeletonText"><span class="SkeletonTextInner SkeletonTextInner--inline-size-base"><span></span></span></span></span><span><span class="Text Text--size-large"><span class="SkeletonText"><span class="SkeletonTextInner SkeletonTextInner--inline-size-small"><span></span></span></span></span></span></span></div>
+        <div class="LoadingShellDisclosureButton LoadingShellDisclosureButton-containerFill">
+            <span class="LoadingShellDisclosureButtonContent FadeIn"><span class="Text Text--size-small">
+                    <span class="SkeletonText"><span class="SkeletonTextInner SkeletonTextInner--inline-size-base"><span>
+
+                            </span></span></span></span><span><span class="Text Text--size-large"><span class="SkeletonText">
+                            <span class="SkeletonTextInner SkeletonTextInner--inline-size-small"><span></span></span></span></span></span></span></div>
     </div>
     <div class="LoadingShellContent LoadingShellContent-containerFill">
         <div class="LoadingShellMain">
@@ -846,7 +851,7 @@
                             <div>
                                 <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem41 _1fragem5u _1fragem2s">
                                     <div style="--_16s97g7a:1fr;--_16s97g7k:minmax(0, 1fr);--_16s97g71e:minmax(0, 1fr) minmax(auto, max-content);--_16s97g71o:minmax(0, 1fr);" class="_1mrl40q0 _1fragemlt _1fragem4l _1fragem6e _1fragemmi _1fragemmn _1fragem2s _1fragemmd _16s97g7f _16s97g7p _16s97g71j _16s97g71t    _16s97g79l">
-                                        <span><a href="https://mymonsteraudio.com" class="s2kwpi1 s2kwpi0 _1fragemlt _1fragemsy _1fragemt4 _1fragemss s2kwpi3 s2kwpi7 s2kwpi5 _1fragemso"><span class="pJt3c"><span class="n8k95w1 n8k95w0 _1fragemlt n8k95w2">
+                                        <span><a href="{{ route('front.home-page') }}" class="s2kwpi1 s2kwpi0 _1fragemlt _1fragemsy _1fragemt4 _1fragemss s2kwpi3 s2kwpi7 s2kwpi5 _1fragemso"><span class="pJt3c"><span class="n8k95w1 n8k95w0 _1fragemlt n8k95w2">
                                                         {{ $config->web_title }}</span></span></a></span>
                                         <span>
                       <a aria-label="Cart" id="cart-link" href="https://mymonsteraudio.com/cart?logged_in=true" class="s2kwpi1 s2kwpi0 _1fragemlt _1fragemsy _1fragemt4 _1fragemss s2kwpi2 s2kwpi6 s2kwpi4 _1fragemsp">
@@ -903,7 +908,7 @@
                                                     <section class="_197l2ofi _197l2ofg _1fragemnm _197l2ofp _197l2ofk _1fragemni _1fragemth _1fragem1y _1fragemf5 _1fragemg5 _1fragemh8 _1fragemhy _1fragemdc _1fragemec _1fragemj1 _1fragemjr _1fragemlt">
                                                         <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem3w _1fragem5p _1fragem2s">
                                                             <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem3c _1fragem55 _1fragem2s">
-                                                                <h2 id="deliveryAddress" class="n8k95w1 n8k95w0 _1fragemlt n8k95w2">Thông tin thanh toán</h2>
+                                                                <h2 id="deliveryAddress" class="n8k95w1 n8k95w0 _1fragemlt n8k95w2">Payment Information</h2>
                                                             </div>
                                                             <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem4b _1fragem64 _1fragem2s">
                                                                 <section aria-label="Shipping address" class="_1fragem1y _1fragemlt">
@@ -921,7 +926,7 @@
                                                                                                                 <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem3m _1fragem5f _1fragem2s">
                                                                                                                     <div class="_7ozb2u2 _7ozb2u1 _1fragem3c _1fragem55 _1fragemlt _1fragem2s _10vrn9p1 _10vrn9p0 _10vrn9p4 _7ozb2u4 _7ozb2u3 _1fragemnn">
                                                                                                                         <div class="cektnc0 _1fragemlt cektnc5">
-                                                                                                                            <label id="TextField841-label" for="TextField841" class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9"><span class="cektnca"><span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">Họ tên</span></span></label>
+                                                                                                                            <label id="TextField841-label" for="TextField841" class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9"><span class="cektnca"><span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">Full Name</span></span></label>
                                                                                                                             <div class="_7ozb2u6 _7ozb2u5 _1fragemlt _1fragem2s _1fragemnx _1fragemsy _1fragemst _1fragemt8 _1fragemtb _7ozb2uc _7ozb2ua _1fragemnn _1fragemth _7ozb2ul _7ozb2uh"><input id="TextField841" name="customer_name"  ng-model="form.customer_name" placeholder="Họ tên" required type="text" aria-required="true" aria-labelledby="TextField841-label" value autocomplete="shipping address-line1" class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2u11 _7ozb2u1h _7ozb2ur"/></div>
                                                                                                                             <span class="invalid-feedback d-block" role="alert">
                                                                         <strong><% errors.customer_name[0] %></strong>
@@ -934,7 +939,7 @@
                                                                                                         <div style="--_16s97g7a:minmax(0, 1fr);--_16s97g7k:minmax(auto, max-content);--_16s97g71e:minmax(0, 1fr);--_16s97g71o:minmax(auto, max-content);" class="_1mrl40q0 _1fragemlt _1fragem3w _1fragem5p _1fragem2s _1fragemmd _1fragemm9 _16s97g7f _16s97g7p _16s97g71j _16s97g71t">
                                                                                                             <div class="_7ozb2u2 _7ozb2u1 _1fragem3c _1fragem55 _1fragemlt _1fragem2s _10vrn9p1 _10vrn9p0 _10vrn9p4 _7ozb2u4 _7ozb2u3 _1fragemnn">
                                                                                                                 <div class="cektnc0 _1fragemlt cektnc5">
-                                                                                                                    <label id="TextField842-label" for="TextField842" class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9"><span class="cektnca"><span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">Địa chỉ</span></span></label>
+                                                                                                                    <label id="TextField842-label" for="TextField842" class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9"><span class="cektnca"><span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">Shipping Address</span></span></label>
                                                                                                                     <div class="_7ozb2u6 _7ozb2u5 _1fragemlt _1fragem2s _1fragemnx _1fragemsy _1fragemst _1fragemt8 _1fragemtb _7ozb2uc _7ozb2ua _1fragemnn _1fragemth _7ozb2ul _7ozb2uh">
                                                                                                                         <input id="TextField842" name="address2" ng-model="form.customer_address" placeholder="Địa chỉ giao hàng" type="text" aria-required="false" aria-labelledby="TextField842-label" value autocomplete="shipping address-line2" class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2u11 _7ozb2u1h _7ozb2ur"/></div>
                                                                                                                     <span class="invalid-feedback d-block" role="alert">
@@ -946,7 +951,7 @@
                                                                                                         <div style="--_16s97g7a:minmax(0, 1fr);--_16s97g7k:minmax(auto, max-content);--_16s97g71e:minmax(0, 1fr);--_16s97g71o:minmax(auto, max-content);" class="_1mrl40q0 _1fragemlt _1fragem3w _1fragem5p _1fragem2s _1fragemmd _1fragemm9 _16s97g7f _16s97g7p _16s97g71j _16s97g71t">
                                                                                                             <div class="_7ozb2u2 _7ozb2u1 _1fragem3c _1fragem55 _1fragemlt _1fragem2s _10vrn9p1 _10vrn9p0 _10vrn9p4 _7ozb2u4 _7ozb2u3 _1fragemnn">
                                                                                                                 <div class="cektnc0 _1fragemlt cektnc5">
-                                                                                                                    <label id="TextField842-label" for="TextField842" class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9"><span class="cektnca"><span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">Số điện thoại</span></span></label>
+                                                                                                                    <label id="TextField842-label" for="TextField842" class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9"><span class="cektnca"><span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">Phone Number</span></span></label>
                                                                                                                     <div class="_7ozb2u6 _7ozb2u5 _1fragemlt _1fragem2s _1fragemnx _1fragemsy _1fragemst _1fragemt8 _1fragemtb _7ozb2uc _7ozb2ua _1fragemnn _1fragemth _7ozb2ul _7ozb2uh"><input id="TextField842" name="phone_number" ng-model="form.customer_phone" placeholder="Số điện thoại" type="text" aria-required="false" aria-labelledby="TextField842-label" value autocomplete="shipping address-line2" class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2u11 _7ozb2u1h _7ozb2ur"/></div>
                                                                                                                     <span class="invalid-feedback d-block" role="alert">
                                                                         <strong><% errors.customer_phone[0] %></strong>
@@ -982,7 +987,7 @@
                                                                                                     <div><div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem3w _1fragem5p _1fragem2s">
                                                                                                             <div>
                                                                                                                 <button  id="checkout-pay-button" type="button" ng-click="submitOrder()" class="_1m2hr9ge _1m2hr9gd _1fragemt9 _1fragemlt _1fragemnw _1fragem2i _1fragemsn _1fragemt2 _1fragemt4 _1fragemst _1m2hr9g18 _1m2hr9g15 _1fragemss _1fragemsh _1m2hr9g1t _1m2hr9g1r _1m2hr9g11  _1m2hr9g1q _1m2hr9g14 _1m2hr9g13 _1fragems1 _1m2hr9g2c _1m2hr9g2b  _1fragemso"><span class="_1m2hr9gr _1m2hr9gq _1fragemsj _1fragemsy _1fragemss _1fragemt5 _1m2hr9gn _1m2hr9gl _1fragem28 _1fragem6t _1fragemsl">
-                                                                                                                        <span class="_19gi7yt0 _19gi7yti _19gi7yth _1fragemo9 _19gi7yt19 _19gi7yt1t">Đặt hàng</span>
+                                                                                                                        <span class="_19gi7yt0 _19gi7yti _19gi7yth _1fragemo9 _19gi7yt19 _19gi7yt1t">Submit Order</span>
                                                                                                                     </span>
                                                                                                                 </button>
 
@@ -1018,7 +1023,7 @@
                                                                                                                 </style>
 
                                                                                                                 <div style="text-align: center">
-                                                                                                                    <span class="mx-3 separator">Hoặc thanh toán qua</span>
+                                                                                                                    <span class="mx-3 separator">Or pay via</span>
                                                                                                                 </div>
 
 
@@ -1152,12 +1157,12 @@
                                                 <div role="table" aria-labelledby="MoneyLine-Heading160">
                                                     <div role="rowgroup" class="nfgb6p1 nfgb6p0 _1fragem2s nfgb6p3">
                                                         <div role="row" class="_1qy6ue60 _1qy6ue69 _1qy6ue61 _1qy6ue67 _1qy6ue65 _1fragem3h _1fragem5a _1fragem2s">
-                                                            <div role="rowheader" class="_1qy6ue6b"><span class="_19gi7yt0 _19gi7yt19 _19gi7yt1t">Tạm tính</span></div>
+                                                            <div role="rowheader" class="_1qy6ue6b"><span class="_19gi7yt0 _19gi7yt19 _19gi7yt1t">Subtotal</span></div>
                                                             <div role="cell" class="_1qy6ue6c"><span class="_19gi7yt0 _19gi7yt19 _19gi7yt1t notranslate">{{number_format($total)}} đ</span></div>
                                                         </div>
 
                                                         <div role="row" class="_1x41w3p1 _1x41w3p0 _1fragem2s _1fragemmn _1x41w3p2">
-                                                            <div role="rowheader" class="_1x41w3p6"><strong class="_19gi7yt0 _19gi7ytk _19gi7ytj _1fragemoa _19gi7yt19 _19gi7yt1x">Tổng tiền</strong></div>
+                                                            <div role="rowheader" class="_1x41w3p6"><strong class="_19gi7yt0 _19gi7ytk _19gi7ytj _1fragemoa _19gi7yt19 _19gi7yt1x">Total</strong></div>
                                                             <div role="cell" class="_1x41w3p7">
                                                                 <div class="_5uqybw0 _1fragemlt _1fragem28 _1fragem78">
                                                                     <div class="_5uqybw1 _1fragem28 _1fragemku _1fragemo5 _1fragem3h _1fragem5a _1fragemmm _1fragem78"><abbr class="_1qifbzv1 _1qifbzv0 _1fragemso"><span class="_19gi7yt0 _19gi7yte _19gi7ytd _1fragemo7 _19gi7yt1a _19gi7yt1t notranslate"></span></abbr><strong class="_19gi7yt0 _19gi7ytk _19gi7ytj _1fragemoa _19gi7yt19 _19gi7yt1x notranslate">{{number_format($total)}} đ</strong></div>

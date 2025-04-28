@@ -114,7 +114,7 @@
                     </div>
                     <div class="track123_layout_Left">
                         <div class="track123_form_wrapper track_form">
-                            <h1 id="track123_track_title" class="track123_track_form_title track123_title">Theo dõi đơn hàng</h1>
+                            <h1 id="track123_track_title" class="track123_track_form_title track123_title">Order Tracking</h1>
                             <div class=""><div id="track123_text_above" class="track123_tracking_above"></div></div>
                             <div><!----> <div class="track123_tab"><div class="track123_tab_bar track123_tab_bar_color">Order Number</div>
                                     <div class="track123_tab_bar">Tracking Number</div></div>
@@ -123,7 +123,7 @@
                                         <div class="track123_input_wrapper">
                                             <div class="track123_input_container">
                                                 <div id="track123_order_number" class="track123_form_label">
-                                                   Mã đơn hàng
+                                                    Order Number
                                                 </div>
                                                 <input placeholder="" class="track123_form_input track123_form_field track123_form_input1 form__input"
                                                        ng-model="order_number">
@@ -145,7 +145,7 @@
 
                                             <button type="button" id="track123_submit_button" ng-click="submit()"
                                                     class="button-enter btn button button--solid btn--solid button--primary button-primary btn--primary button_primary Button Button--primary styled-submit track123_form_button track123_form_button_style">
-                                                Tra cứu
+                                                Lookup
                                             </button>
                                         </div>
                                     </div>
@@ -159,16 +159,16 @@
                     </div>
                     <div class="card p-4" style="margin-top: 10px" ng-show="isLoading">
                         <div class="mt-4">
-                            <p><strong>Mã order: </strong><% order.code %> </p>
-                            <p><strong>Trạng thái đơn hàng: </strong><% order.status %> </p>
-                            <p><strong>Đơn vị vận chuyển:</strong> <% order.carrier %> </p>
-                            <p><strong>Mã vận đơn:</strong>  <% order.tracking_number %></p>
-                            <p><strong>Trạng thái vận chuyển: Đang chờ cập nhật</strong> </p>
-                            <p><strong>Ngày dự kiến giao: /  /  /</strong> </p>
+                            <p><strong>Order Code: </strong><% order.code %> </p>
+                            <p><strong>Order Status: </strong><% order.status %> </p>
+                            <p><strong>Shipping Provider:</strong> <% order.carrier %> </p>
+                            <p><strong>Tracking Number:</strong>  <% order.tracking_number %></p>
+                            <p><strong>Shipping Status: Pending update</strong> </p>
+                            <p><strong>Estimated Delivery Date: /  /  /</strong> </p>
 
                             <div class="alert alert-info mt-3">
-                                Hệ thống sẽ cập nhật trạng thái vận chuyển tự động khi có dữ liệu từ đối tác.
-                                Nếu cần hỗ trợ, vui lòng liên hệ <a href="tel:{{ $config->hotline }}">{{ $config->hotline }}</a>.
+                                The system will automatically update the shipping status when data is available from our partners.
+                                If you need assistance, please contact <a href="tel:{{ $config->hotline }}">{{ $config->hotline }}</a>.
                             </div>
                         </div>
                     </div>
@@ -331,15 +331,15 @@
                        success: function (response) {
                            if (response.success) {
                                $scope.isLoading = true;
-                               toastr.success('Thao tác thành công');
+                               toastr.success('Operation successful');
                                $scope.order = response.data
                            } else {
-                               toastr.warning(response.message);
+                               toastr.warning('Operation failed');
                                $scope.errors = response.errors;
                            }
                        },
                        error: function (e) {
-                           toastr.error('Đã có lỗi xảy ra');
+                           toastr.error('Operation failed');
                        },
                        complete: function () {
                            $scope.$applyAsync();

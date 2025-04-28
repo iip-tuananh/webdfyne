@@ -3,9 +3,9 @@
 <head>
     <link rel="shortcut icon" href="//theme.hstatic.net/200000541929/1001190790/14/favicon.png?v=1811" type="image/png" />
     <title>
-        {{$config->web_title}} - Đơn hàng#{{$order->code}}
+        {{$config->web_title}} - Order#{{$order->code}}
     </title>
-    <meta name="description" content="{{$config->web_title}} - Đơn hàng#{{$order->code}}" />
+    <meta name="description" content="{{$config->web_title}} - Order#{{$order->code}}" />
     <style>
         .btn {
         display: inline-block;
@@ -2222,13 +2222,13 @@
                         </svg>
                         <div class="os-header-heading">
                             <h2 class="os-header-title">
-                                Đặt hàng thành công
+                                Order placed successfully
                             </h2>
                             <span class="os-order-number">
-                            Mã đơn hàng #{{$order->code}}
+                           Order #{{$order->code}}
                             </span>
                             <span class="os-description">
-                            Cám ơn bạn đã mua hàng!
+                            Thank you for your purchase!
                             </span>
                         </div>
                         </div>
@@ -2240,12 +2240,12 @@
                         <div class="section-content">
                         <div class="content-box">
                             <div class="content-box-row content-box-row-padding content-box-row-no-border">
-                                <h2>Thông tin đơn hàng</h2>
+                                <h2>Order details</h2>
                             </div>
                             <div class="content-box-row content-box-row-padding">
                                 <div class="section-content">
                                     <div class="section-content-column">
-                                    <h3>Thông tin giao hàng</h3>
+                                    <h3>Order details</h3>
                                     {{$order->customer_name}}
                                     </br>
                                     {{$order->customer_phone}}
@@ -2253,9 +2253,9 @@
                                     <p>
                                         {{$order->customer_address}}
                                     </p>
-                                    <h3>Phương thức thanh toán</h3>
+                                    <h3>Payment method</h3>
                                     <p>
-                                        Thanh toán khi nhận hàng - COD
+                                        Cash on delivery - COD
                                     </p>
                                     </div>
                                 </div>
@@ -2265,12 +2265,12 @@
                     </div>
                     <div class="step-footer">
                         <a href="{{route('front.home-page')}}" class="step-footer-continue-btn btn">
-                        <span class="btn-content">Tiếp tục mua hàng</span>
+                        <span class="btn-content">Continue shopping</span>
                         </a>
                         <p class="step-footer-info">
                         <i class="icon icon-os-question"></i>
                         <span>
-                        Cần hỗ trợ? <a href="mailto:{{$config->email}}">Liên hệ chúng tôi</a>
+                        Need help?? <a href="mailto:{{$config->email}}">Contact Us</a>
                         </span>
                         </p>
                     </div>

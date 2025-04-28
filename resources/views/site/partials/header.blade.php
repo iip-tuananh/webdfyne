@@ -136,10 +136,10 @@
                     <li class="mobile-nav__item mobile-nav__item--secondary">
                         <div class="grid">
                             <div class="grid__item one-half appear-animation appear-delay-4 medium-up--hide">
-                                <a href="{{route('front.about-us')}}" class="mobile-nav__link">Giới thiệu</a>
+                                <a href="{{route('front.about-us')}}" class="mobile-nav__link">About</a>
                             </div>
                             <div class="grid__item one-half appear-animation appear-delay-8 medium-up--hide">
-                                <a href="{{ route('front.contact') }}" class="mobile-nav__link">Liên hệ</a>
+                                <a href="{{ route('front.contact') }}" class="mobile-nav__link">Contact</a>
                             </div>
                         </div>
                     </li>
@@ -244,7 +244,7 @@
 
                                         <div class="cart__item--variants">
                                             <div>
-                                                <span>Màu sắc:</span> <% item.attributes.color %>
+                                                <span>Color:</span> <% item.attributes.color %>
                                             </div>
                                         </div>
 
@@ -295,7 +295,7 @@
                     </div>
 
                     <div class="cart__item-sub cart__item-row">
-                        <div class="ajaxcart__subtotal">Thành tiền</div>
+                        <div class="ajaxcart__subtotal">Total</div>
                         <div data-subtotal><span class=money><% cart.total | number%> đ</span></div>
                     </div>
 
@@ -310,7 +310,7 @@
                     <div class="cart__checkout-wrapper">
                         <a href="{{ route('cart.checkout') }}">
                             <button type="button" name="checkout" data-terms-required="false" class="btn cart__checkout">
-                                Thanh toán
+                                Checkout
                             </button>
                         </a>
                     </div>
@@ -356,14 +356,14 @@
                 <div class="toolbar__content"><div class="toolbar__item toolbar__item--menu">
                         <ul class="inline-list toolbar__menu">
                             <li>
-                                <a href="{{route('front.about-us')}}">Giới thiệu</a>
+                                <a href="{{route('front.about-us')}}">About</a>
                             </li>
                             <li>
-                                <a href="{{ route('front.contact') }}">Liên hệ</a>
+                                <a href="{{ route('front.contact') }}">Contact Us</a>
                             </li>
 
                             <li>
-                                <a href="{{ route('front.track-my-order') }}">Theo dõi đơn hàng</a>
+                                <a href="{{ route('front.track-my-order') }}">Track My Order</a>
                             </li>
                         </ul>
                     </div><div class="toolbar__item">
@@ -396,7 +396,6 @@
             <div id="HeaderWrapper" class="header-wrapper"><header
                     id="SiteHeader"
                     class="site-header"
-
                    >
                     <div class="page-width">
                         <div

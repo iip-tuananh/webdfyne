@@ -211,11 +211,11 @@
                                 @endforeach
 
                                 <div class="grid__item text-center small--hide">
-                                    <a href="{{route('front.getProductListFeatured', $categorySpecial->slug)}}" class="btn">Xem tất cả</a>
+                                    <a href="{{route('front.getProductListFeatured', $categorySpecial->slug)}}" class="btn">View All</a>
                                 </div>
                                 <div class="grid__item grid__item--view-all text-center small--one-half medium-up--one-quarter medium-up--hide">
                                     <a href="{{route('front.getProductListFeatured', $categorySpecial->slug)}}" class="grid-product__see-all">
-                                        Xem tất cảl<br>
+                                        View All<br>
                                     </a>
                                 </div>
                             </div>
@@ -330,10 +330,10 @@
 
 
                                 <div class="grid__item text-center small--hide">
-                                    <a href="{{route('front.getProductListCollection', $categoryCollection->slug)}}" class="btn">Xem tất cả</a>
+                                    <a href="{{route('front.getProductListCollection', $categoryCollection->slug)}}" class="btn">View All</a>
                                 </div><div class="grid__item grid__item--view-all text-center small--one-half medium-up--one-quarter medium-up--hide">
                                     <a href="{{route('front.getProductListCollection', $categoryCollection->slug)}}" class="grid-product__see-all">
-                                        Xem tất cả<br>
+                                        View All<br>
                                     </a>
                                 </div></div>
                         </div>

@@ -254,7 +254,7 @@
                         <h2 class="section-header__title">
                             {{ $category->name }}
                         </h2>
-                        <a href="{{route('front.getProductListFeatured', $category->slug)}}" class="btn btn--secondary btn--small section-header__link">Xem tất cả</a>
+                        <a href="{{route('front.getProductListFeatured', $category->slug)}}" class="btn btn--secondary btn--small section-header__link">View All</a>
                     </div>
                 </div>
                 <div class="page-width page-width--flush-small">
@@ -269,7 +269,7 @@
 
                             <div class="grid__item grid__item--view-all text-center small--one-half medium-up--one-quarter medium-up--hide">
                                 <a href="{{route('front.getProductListFeatured', $category->slug)}}" class="grid-product__see-all">
-                                    Xem tất cả<br>
+                                    View All<br>
                                 </a>
                             </div>
                         </div>

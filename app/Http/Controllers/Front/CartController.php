@@ -116,12 +116,13 @@ class CartController extends Controller
         DB::beginTransaction();
         try {
             $translate = [
-                'customer_name.required' => 'Vui lòng nhập họ tên',
-                'customer_phone.required' => 'Vui lòng nhập số điện thoại',
-                'customer_phone.regex' => 'Số điện thoại không đúng định dạng',
-                'customer_address.required' => 'Vui lòng nhập địa chỉ',
-                'payment_method.required' => 'Vui lòng chọn phương thức thanh toán',
-                'customer_email.required' => 'Vui lòng nhập email',
+                'customer_name.required' => 'Please enter your full name',
+                'customer_phone.required' => 'Please enter your phone number',
+                'customer_phone.regex' => 'The phone number format is invalid',
+                'customer_address.required' => 'Please enter your address',
+                'payment_method.required' => 'Please select a payment method',
+                'customer_email.required' => 'Please enter your email address',
+                'customer_email.email' => 'Invalid email address',
             ];
 
             $validate = Validator::make(

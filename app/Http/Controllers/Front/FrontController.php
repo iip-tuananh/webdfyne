@@ -622,10 +622,10 @@ class FrontController extends Controller
             $request->all(),
             $rule,
             [
-                'formReview.name.required' => 'Vui lòng nhập họ tên',
-                'formReview.email.required' => 'Vui lòng nhập email',
-                'formReview.title.required' => 'Vui lòng nhập nội dung',
-                'formReview.content.required' => 'Vui lòng nhập nội dung',
+                'formReview.name.required' => 'Please enter your full name',
+                'formReview.email.required' => 'Please enter your email address',
+                'formReview.title.required' => 'Please enter a review title',
+                'formReview.content.required' => 'Please enter your review content',
             ]
         );
 
@@ -648,7 +648,7 @@ class FrontController extends Controller
 
         $json = new \stdClass();
         $json->success = true;
-        $json->message = "Thao tác thành công!";
+        $json->message = "Operation successful!";
         return Response::json($json);
     }
 
@@ -714,7 +714,7 @@ class FrontController extends Controller
         if ($validate->fails()) {
             $json->success = false;
             $json->errors = $validate->errors();
-            $json->message = "Thao tác thất bại!";
+            $json->message = "Operation failed!";
             return Response::json($json);
         }
 

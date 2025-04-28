@@ -516,7 +516,7 @@
                                                     <button type="submit" name="add" ng-if="sizeVariantSelected.stock > 0"
                                                             ng-click="addToCart({{ $product->id }},  $event)"
                                                             class="btn btn--full add-to-cart">
-                                                        <span data-add-to-cart-text="" data-default-text="Add to cart">Thêm vào giỏ hàng</span>
+                                                        <span data-add-to-cart-text="" data-default-text="Add to cart">Add to cart</span>
                                                     </button>
                                                 </a>
 
@@ -536,7 +536,7 @@
                                                 <button type="button"
                                                         class="label collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height" aria-controls="Product-content-d6cb0be8-3250-4a9e-9573-54adeeb61a637589307777117"
                                                 >
-                                                    Đặc điểm sản phẩm
+                                                    Product Features
                                                     <span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
                                        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16">
                                           <path d="m1.57 1.59 12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"/>
@@ -558,7 +558,7 @@
                                                 <button type="button"
                                                         class="label collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height" aria-controls="Product-content-a6fc2c8f-c5b8-4590-9610-88fa7d9de6c57589307777117"
                                                 >
-                                                    Bảng kích cỡ
+                                                    Size Chart
                                                     <span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
                                        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16">
                                           <path d="m1.57 1.59 12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"/>
@@ -583,7 +583,7 @@
                                                 <button type="button"
                                                         class="label collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height" aria-controls="Product-content-tab7589307777117"
                                                 >
-                                                    Vận chuyển và hoàn trả
+                                                    Shipping & Returns
                                                     <span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
                                        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16">
                                           <path d="m1.57 1.59 12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"/>
@@ -633,7 +633,7 @@
                             <div class="jdgm-rev-widg" data-updated-at="2025-04-26T00:58:56Z" data-average-rating="4.83" data-number-of-reviews="1119" data-number-of-questions="0">
                                 <style class="jdgm-temp-hiding-style">.jdgm-rev-widg{ display: none }</style>
                                 <div class="jdgm-rev-widg__header">
-                                    <h2 class="jdgm-rev-widg__title">Khách hàng đánh giá
+                                    <h2 class="jdgm-rev-widg__title">Customer Reviews
                                     </h2>
                                     <div class="jdgm-row-stars">
                                         <div class="jdgm-rev-widg__summary">
@@ -693,7 +693,7 @@
 
 
                                             <div class="jdgm-histogram__row jdgm-histogram__clear-filter" data-rating="null" tabindex="0" style="display: block;">
-                                               Xem tất cả đánh giá
+                                                View all review
                                             </div>
                                         </div>
 
@@ -702,7 +702,7 @@
                                                aria-expanded="<% showReviewForm %>"
                                                ng-click="openReviewForm($event)"
                                                aria-expanded="false">
-                                                Viết đánh giá
+                                                Write review
                                             </a>
                                         </div>
 
@@ -711,7 +711,7 @@
                                     <div class="jdgm-form-wrapper" ng-show="showReviewForm" id="jdgm_form_wrapper">
                                         <form class="jdgm-form" novalidate="novalidate">
                                             <div class="jdgm-form__title">
-                                              <% checkSendRating ? 'Cảm ơn bạn đã để lại đánh giá. Đánh giá của bạn đang được phê duyệt' : 'Đánh giá'%>
+                                              <% checkSendRating ? ' Thank you for leaving a review. Your review is pending approval.' : 'Review'%>
                                             </div>
 
                                             <div ng-if="! checkSendRating">
@@ -734,7 +734,7 @@
                                                 </div>
 
                                                 <div class="jdgm-form__fieldset">
-                                                    <label class="jdgm-form__inline-label" for="jdgm_review_reviewer_name_du88for2a">Họ tên</label>
+                                                    <label class="jdgm-form__inline-label" for="jdgm_review_reviewer_name_du88for2a">Full Name</label>
                                                     <input id="jdgm_review_reviewer_name_du88for2a" name="reviewer_name" type="text"
                                                            ng-model="formReview.name"
                                                            placeholder="Nhập họ tên (public)" aria-label="Name">
@@ -762,7 +762,7 @@
 
                                                 <div class="jdgm-form__fieldset">
 
-                                                    <label class="jdgm-form__inline-label" for="jdgm_review_title_du88for2a">Tiêu đề đánh giá</label><span class="jdgm-countdown"></span>
+                                                    <label class="jdgm-form__inline-label" for="jdgm_review_title_du88for2a">Review Title</label><span class="jdgm-countdown"></span>
                                                     <input id="jdgm_review_title_du88for2a" name="review_title" type="text" placeholder="Give your review a title"
                                                            ng-model="formReview.title"
                                                            aria-label="Review Title">
@@ -803,9 +803,9 @@
                                     <div class="">
                                         <div class="">
                                             <select class="jdgm-sort" aria-label="Sort dropdown">
-                                                <option value="most-recent">Mới nhất</option>
-                                                <option value="highest-rating">Đánh giá cao nhất</option>
-                                                <option value="lowest-rating">Đánh giá thấp nhất</option>
+                                                <option value="most-recent">Newest</option>
+                                                <option value="highest-rating">Highest Rating</option>
+                                                <option value="lowest-rating">Lowest Rating</option>
                                             </select>
                                             <span class="jdgm-sort-dropdown-arrow"></span>
                                         </div>
@@ -879,7 +879,7 @@
                                            class="jdgm-btn jdgm-btn--solid jdgm-paginate__load-more"
                                            data-url="{{ route('front.getMoreReview', $product->id) }}"
                                            data-page="2">
-                                            Xem thêm
+                                            Show more
                                         </a>
                                     </div>
                                 @endif
