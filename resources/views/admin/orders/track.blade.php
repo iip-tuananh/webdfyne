@@ -67,7 +67,7 @@
             $scope.form = {
                 capture_id: "{{ $order->capture_id }}",   // hoặc $order->capture_id
                 carrier: null,
-                code: "{{ $order->code }}",
+                code: "",
                 notify_payer: false
             };
             $scope.loading = false;

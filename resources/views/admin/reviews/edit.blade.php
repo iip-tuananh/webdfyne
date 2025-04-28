@@ -1,8 +1,8 @@
 <div class="modal fade" id="edit-review" tabindex="-1" role="dialog" aria-hidden="true" ng-controller="EditReview">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="semi-bold">Sửa đặt lịch</h4>
+                <h4 class="semi-bold">Chi tiết review</h4>
             </div>
             <div class="modal-body">
                 @include('admin.reviews.form')
@@ -30,6 +30,7 @@
         });
 
         @include('admin.reviews.formJs');
+        $scope.statues = @json(\App\Model\Admin\Review::STATUSES);
 
         // Submit Form sửa
         $scope.submit = function () {
@@ -42,8 +43,6 @@
                 headers: {
                     'X-CSRF-TOKEN': CSRF_TOKEN
                 },
-                processData: false,
-                contentType: false,
                 success: function (response) {
                     if (response.success) {
                         $('#edit-review').modal('hide');

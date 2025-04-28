@@ -14,6 +14,31 @@
         rel="stylesheet"
         href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
+
+    <style>
+        /* Hiển thị sao rỗng khi off */
+        .jdgm-star.jdgm--off::before {
+            content: '☆';       /* Unicode empty star */
+            font-size: 1.5rem;
+            color: #ccc;
+            display: inline-block;
+        }
+
+        /* Hiển thị sao đầy khi on */
+        .jdgm-star.jdgm--on::before {
+            content: '★';       /* Unicode filled star */
+            font-size: 1.5rem;
+            color: #f5b301;
+            display: inline-block;
+        }
+    </style>
+
+    <style>
+        .invalid-feedback {
+            font-size: 14.5px;
+            color: #dc3545;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -345,10 +370,37 @@
                                  <h4 style="font-size:8px;font-weight:lighter;margin-bottom:-10px;margin-top:-20px;align:middle;"></h4>
                               </span>
                                         </div>
-                                        <div id="shopify-block-Ad2Y3dVZUTVhyeXpFa__judge_me_reviews_preview_badge_tCQ3AY" class="shopify-block shopify-app-block">
-                                            <div class='jdgm-widget jdgm-preview-badge'
-                                                 data-id='7589307777117'
-                                                 data-template='manual-installation'>
+                                        <div id="shopify-block-ANjZTck5zOGl3RUhZV__judge_me_reviews_preview_badge_tCQ3AY" class="shopify-block shopify-app-block">
+                                            <div class="jdgm-widget jdgm-preview-badge jdgm-preview-badge--with-link jdgm--done-setup" data-id="7589307678813"
+                                                 data-template="manual-installation" data-widget-name="preview_badge"
+                                                 data-impressions-tracked="true" data-views-tracked="true">
+                                                <div style="display:none" class="jdgm-prev-badge" data-average-rating="4.83"
+                                                     data-number-of-reviews="1119" data-number-of-questions="0">
+                                                    @php
+                                                        $avgFloat  = $product->reviews()
+                                                        ->where('status', \App\Model\Admin\Review::STATUS_APPROVED)
+                                                        ->avg('rating') ?: 0;
+                                                        $avgDisplay= number_format($avgFloat, 2);
+                                                        $fullStars = floor($avgFloat);
+                                                    @endphp
+
+                                                    <span class="jdgm-prev-badge__stars"
+                                                          data-score="{{ $avgDisplay }}"
+                                                          tabindex="0"
+                                                          aria-label="{{ $avgDisplay }} stars"
+                                                          role="button">
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            <span class="jdgm-star {{ $i <= $fullStars ? 'jdgm--on' : 'jdgm--off' }}"></span>
+                                                        @endfor
+                                                    </span>
+
+                                                    <span class="jdgm-prev-badge__text">
+                                                            {{ $product->reviews()
+                                                                        ->where('status', \App\Model\Admin\Review::STATUS_APPROVED)
+                                                                        ->count() }} đánh giá
+                                                    </span>
+
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="product-block" >
@@ -441,6 +493,7 @@
                                                                    data-index="option{{$key}}"
                                                                    name="Size"
                                                                    ng-click="chooseSize({{ $sizeStock }})"
+                                                                   ng-checked="sizeVariantSelected && sizeVariantSelected.size.name === '{{ $sizeStock->size->name }}'"
                                                                    class="{{ $sizeStock->stock == 0 ? 'disabled' : '' }}"
                                                                    id="ProductSelect-template--18121751003229__main-7589307777117-option-size-{{ $sizeStock->size->name }}"><label
                                                                 for="ProductSelect-template--18121751003229__main-7589307777117-option-size-{{ $sizeStock->size->name }}"
@@ -572,8 +625,275 @@
 
 
 
-        <div id="shopify-section-template--18121751003229__collection-return" class="shopify-section">
-        </div>
+        <section id="shopify-section-template--18169556893789__17321898911583408b"
+                 class="shopify-section"><div class="index-section">
+                <div class="page-width">
+                    <div id="shopify-block-AbjZCZHF0L0hYbXFlM__judge_me_reviews_review_widget_zXiWxw" class="shopify-block shopify-app-block"><div style="clear:both"></div>
+                        <div id="judgeme_product_reviews" class="jdgm-widget jdgm-review-widget jdgm--done-setup-widget" data-product-title="Dynamic Twist Back Bra" data-id="7589307678813" data-widget-name="review_widget" data-impressions-tracked="true" data-views-tracked="true" data-clicks-tracked="true">
+                            <div class="jdgm-rev-widg" data-updated-at="2025-04-26T00:58:56Z" data-average-rating="4.83" data-number-of-reviews="1119" data-number-of-questions="0">
+                                <style class="jdgm-temp-hiding-style">.jdgm-rev-widg{ display: none }</style>
+                                <div class="jdgm-rev-widg__header">
+                                    <h2 class="jdgm-rev-widg__title">Khách hàng đánh giá
+                                    </h2>
+                                    <div class="jdgm-row-stars">
+                                        <div class="jdgm-rev-widg__summary">
+                                            <div class="jdgm-rev-widg__summary-inner">
+
+                                                @php
+                                                    $avgFloat    = $product->reviews()->avg('rating') ?: 0;
+                                                    $avgDisplay  = number_format($avgFloat, 2);
+                                                    $fullStars   = floor($avgFloat);
+                                                    $hasHalfStar = ($avgFloat - $fullStars) >= 0.5;
+                                                @endphp
+
+                                                <div class="jdgm-rev-widg__summary-stars"
+                                                     aria-label="Average rating is {{ $avgDisplay }} stars"
+                                                     role="img">
+                                                    @for ($i = 1; $i <= 5; $i++)
+                                                        @if ($i <= $fullStars)
+                                                            <span class="jdgm-star jdgm--on"></span>
+                                                        @elseif ($i === $fullStars + 1 && $hasHalfStar)
+                                                            <span class="jdgm-star jdgm--half"></span>
+                                                        @else
+                                                            <span class="jdgm-star jdgm--off"></span>
+                                                        @endif
+                                                    @endfor
+                                                        <span class="jdgm-rev-widg__summary-average">  {{ $avgDisplay }} out of 5</span>
+                                                </div>
+
+                                            </div>
+                                        </div><div class="jdgm-histogram jdgm-temp-hidden">
+                                            @foreach($distribution as $row)
+                                                <div class="jdgm-histogram__row"
+                                                     data-rating="{{ $row['rating'] }}"
+                                                     data-frequency="{{ $row['frequency'] }}"
+                                                     data-percentage="{{ $row['percentage'] }}">
+                                                    {{-- Stars --}}
+                                                    <div class="jdgm-histogram__star"
+                                                         role="button"
+                                                         aria-label="{{ $row['percentage'] }}% ({{ $row['frequency'] }}) reviews with {{ $row['rating'] }} star rating"
+                                                         tabindex="0">
+                                                        @for($i = 1; $i <= 5; $i++)
+                                                            <span class="jdgm-star jdgm--{{ $i <= $row['rating'] ? 'on' : 'off' }}"></span>
+                                                        @endfor
+                                                    </div>
+
+                                                    {{-- Bar --}}
+                                                    <div class="jdgm-histogram__bar">
+                                                        <div class="jdgm-histogram__bar-content"
+                                                             style="width: {{ $row['percentage'] }}%;"></div>
+                                                    </div>
+
+                                                    {{-- Frequency --}}
+                                                    <div class="jdgm-histogram__frequency">
+                                                        {{ $row['frequency'] }}
+                                                    </div>
+                                                </div>
+                                            @endforeach
+
+
+                                            <div class="jdgm-histogram__row jdgm-histogram__clear-filter" data-rating="null" tabindex="0" style="display: block;">
+                                               Xem tất cả đánh giá
+                                            </div>
+                                        </div>
+
+                                        <div class="jdgm-widget-actions-wrapper">
+                                            <a style="" href="javascript:void(0)" class="jdgm-write-rev-link" role="button"
+                                               aria-expanded="<% showReviewForm %>"
+                                               ng-click="openReviewForm($event)"
+                                               aria-expanded="false">
+                                                Viết đánh giá
+                                            </a>
+                                        </div>
+
+                                        </div>
+
+                                    <div class="jdgm-form-wrapper" ng-show="showReviewForm" id="jdgm_form_wrapper">
+                                        <form class="jdgm-form" novalidate="novalidate">
+                                            <div class="jdgm-form__title">
+                                              <% checkSendRating ? 'Cảm ơn bạn đã để lại đánh giá. Đánh giá của bạn đang được phê duyệt' : 'Đánh giá'%>
+                                            </div>
+
+                                            <div ng-if="! checkSendRating">
+                                                <div class="jdgm-form__fieldset" aria-label="Rating">
+                                                    <label>Rating</label>
+                                                    <span class="jdgm-form__rating" style="cursor: pointer;">
+                                                    <a ng-repeat="star in [1,2,3,4,5]" class="jdgm-star" ng-class="{
+                                                               'jdgm--on': star <= formReview.rating,
+                                                               'jdgm--off': star >  formReview.rating }"
+                                                       title="<%star%> star"
+                                                       data-alt="<%star%>"
+                                                       aria-label="<%star%> star"
+                                                       role="button"
+                                                       ng-click="formReview.rating = star">
+                                                            </a>
+                                                            <input name="score"
+                                                                   type="hidden"
+                                                                   ng-model="formReview.rating">
+                                                </span>
+                                                </div>
+
+                                                <div class="jdgm-form__fieldset">
+                                                    <label class="jdgm-form__inline-label" for="jdgm_review_reviewer_name_du88for2a">Họ tên</label>
+                                                    <input id="jdgm_review_reviewer_name_du88for2a" name="reviewer_name" type="text"
+                                                           ng-model="formReview.name"
+                                                           placeholder="Nhập họ tên (public)" aria-label="Name">
+
+                                                    <div class="invalid-feedback d-block error" role="alert" ng-if="errors && errors['formReview.name']">
+                                                            <span >
+                                                                <% errors['formReview.name'][0] %>
+                                                            </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="jdgm-form__fieldset jdgm-form__email-fieldset">
+
+                                                    <label for="jdgm_review_reviewer_email_du88for2a">Email</label>
+                                                    <input id="jdgm_review_reviewer_email_du88for2a" name="reviewer_email" type="text"
+                                                           ng-model="formReview.email"
+                                                           required="" placeholder="Nhập email (private)" aria-label="Email"
+                                                    >
+                                                    <div class="invalid-feedback d-block error" role="alert" ng-if="errors && errors['formReview.email']">
+                                                            <span >
+                                                                <% errors['formReview.email'][0] %>
+                                                            </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="jdgm-form__fieldset">
+
+                                                    <label class="jdgm-form__inline-label" for="jdgm_review_title_du88for2a">Tiêu đề đánh giá</label><span class="jdgm-countdown"></span>
+                                                    <input id="jdgm_review_title_du88for2a" name="review_title" type="text" placeholder="Give your review a title"
+                                                           ng-model="formReview.title"
+                                                           aria-label="Review Title">
+                                                    <div class="invalid-feedback d-block error" role="alert" ng-if="errors && errors['formReview.title']">
+                                                            <span >
+                                                                <% errors['formReview.title'][0] %>
+                                                            </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="jdgm-form__fieldset">
+
+                                                    <label class="jdgm-form__inline-label" for="jdgm_review_body_du88for2a">Review</label><span class="jdgm-countdown"></span>
+                                                    <textarea id="jdgm_review_body_du88for2a" rows="5" name="review_body" placeholder="Write your comments here"
+                                                              ng-model="formReview.content"
+                                                              aria-label="Review">
+
+                                                </textarea>
+                                                    <div class="invalid-feedback d-block error" role="alert" ng-if="errors && errors['formReview.content']">
+                                                            <span >
+                                                                <% errors['formReview.content'][0] %>
+                                                            </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="jdgm-form__fieldset jdgm-form__fieldset-actions" ng-if="! checkSendRating">
+                                                <a href="javascript:void(0)" role="button" class="jdgm-btn jdgm-btn--border jdgm-cancel-rev "  ng-click="closeReviewForm($event)">Đóng</a>
+                                                <input type="button" class="jdgm-btn jdgm-btn--solid jdgm-submit-rev " value="Gửi đánh giá" ng-click="submitReview()">
+                                            </div>
+                                        </form>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="jdgm-row-actions">
+                                    <div class="">
+                                        <div class="">
+                                            <select class="jdgm-sort" aria-label="Sort dropdown">
+                                                <option value="most-recent">Mới nhất</option>
+                                                <option value="highest-rating">Đánh giá cao nhất</option>
+                                                <option value="lowest-rating">Đánh giá thấp nhất</option>
+                                            </select>
+                                            <span class="jdgm-sort-dropdown-arrow"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="jdgm-rev-widg__body" style="">
+{{--                                    @foreach($reviews as $review)--}}
+{{--                                        <div class="jdgm-rev-widg__reviews">--}}
+{{--                                            <div class="jdgm-rev jdgm-divider-top jdgm--done-setup" data-verified-buyer="true"--}}
+{{--                                                 data-review-id="f4a4a380-f318-4e3b-978d-8165f04ff538"--}}
+{{--                                                 data-product-title="Dynamic Twist Back Bra"--}}
+{{--                                                 data-product-url="#" data-thumb-up-count="0" data-thumb-down-count="0">--}}
+{{--                                                <div class="jdgm-rev__header">--}}
+{{--                                                    <div class="jdgm-row-product"></div>--}}
+{{--                                                    <div class="jdgm-row-profile">--}}
+{{--                                                        <div class="jdgm-rev__icon"></div>--}}
+{{--                                                        <span class="jdgm-rev__author-wrapper">--}}
+{{--                                                    <span class="jdgm-rev__author">{{ $review->user_name }}</span>--}}
+{{--                                                        <span class="jdgm-rev__buyer-badge-wrapper">--}}
+{{--                                                            <span class="jdgm-rev__buyer-badge"></span>--}}
+{{--                                                        </span>--}}
+
+{{--                                                    </span>--}}
+
+{{--                                                        <div class="jdgm-rev__header-custom-form custom-form--horizontal-style">--}}
+{{--                                                            <div class="jdgm-rev__cf-ans--type jdgm-rev__cf-ans--text-type"></div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="jdgm-rev__br"></div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="jdgm-rev__content">--}}
+{{--                                                    <div class="jdgm-row-rating">--}}
+
+{{--                                                        <span class="jdgm-rev__rating" data-score="3" tabindex="0" aria-label="3 star review" role="img">--}}
+{{--                                                              @for($i = 1; $i <= 5; $i++)--}}
+{{--                                                                <span class="jdgm-star jdgm--{{ $i <= $review->rating ? 'on' : 'off' }}"></span>--}}
+{{--                                                            @endfor--}}
+{{--                                                        </span>--}}
+{{--                                                        <span class="jdgm-rev__timestamp" data-content="2025-03-21 10:06:11 UTC">--}}
+{{--                                                            {{ $review->created_at->format('d/m/y H:i') }}--}}
+{{--                                                        </span>--}}
+{{--                                                    </div>--}}
+{{--                                                    <b class="jdgm-rev__title">{{ $review->title }}</b>--}}
+{{--                                                    <div class="jdgm-rev__body" style="overflow-wrap: break-word;">--}}
+{{--                                                       {!! $review->content !!}--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="jdgm-rev__actions">--}}
+{{--                                                    <div class="jdgm-rev__social"></div>--}}
+{{--                                                    <div class="jdgm-rev__votes"></div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    @endforeach--}}
+
+
+{{--                                    <div class="jdgm-paginate" data-per-page="5" data-url="https://api.judge.me/reviews/reviews_for_widget">--}}
+{{--                                        <a class="jdgm-btn jdgm-btn--solid jdgm-paginate__load-more" data-page="2" role="button">Load More</a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
+
+                                <div class="jdgm-rev-widg__body" id="review-container">
+                                    @include('site.partials.review')
+                                </div>
+
+                                @if($reviews->hasMorePages())
+                                    <div class="jdgm-paginate text-center mt-3">
+                                        <a href="#"
+                                           id="load-more"
+                                           class="jdgm-btn jdgm-btn--solid jdgm-paginate__load-more"
+                                           data-url="{{ route('front.getMoreReview', $product->id) }}"
+                                           data-page="2">
+                                            Xem thêm
+                                        </a>
+                                    </div>
+                                @endif
+
+                                <div class="jdgm-rev-widg__paginate-spinner-wrapper" style="display: none;"> <div class="jdgm-spinner"></div> </div> </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 @endsection
 
@@ -699,6 +1019,100 @@
             <script src="https://cdn.tutorialjinni.com/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
             <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
             <script>
+                // jQuery(function(){
+                //     jQuery('#load-more').on('click', function(e){
+                //         e.preventDefault();
+                //         let $btn  = jQuery(this);
+                //         let page  = $btn.data('page');
+                //         let url   = $btn.data('url') + '?page=' + page;
+                //
+                //         $btn.prop('disabled', true).text('Loading…');
+                //
+                //         jQuery.get(url, function(html){
+                //             // append HTML trả về (chính là các <div class="jdgm-rev-widg__reviews">…)
+                //             jQuery('#review-container').append(html);
+                //
+                //             // tăng page, bật lại button
+                //             page++;
+                //             $btn.data('page', page).prop('disabled', false).text('Load More');
+                //
+                //             // nếu không còn trang nào nữa thì ẩn nút
+                //             // bạn có thể check từ header pagination JSON, nhưng đơn giản:
+                //             // nếu html rỗng thì ẩn
+                //             if (!html.trim()) {
+                //                 $btn.closest('.jdgm-paginate').remove();
+                //             }
+                //         })
+                //             .fail(function(){
+                //                 alert('Không tải được, thử lại sau.');
+                //                 $btn.prop('disabled', false).text('Load More');
+                //             });
+                //     });
+                // });
+
+
+                jQuery(function(){
+                    var $btn     = jQuery('#load-more'),
+                        $select  = jQuery('.jdgm-sort'),
+                        $target  = jQuery('#review-container'),
+                        baseUrl  = $btn.data('url'),
+                        page     = 2,                            // lần đầu server đã load page 1
+                        sort     = $select.val() || 'most-recent';
+
+                    if (!$btn.length) {
+                        baseUrl = "{{ route('front.getMoreReview', $product->id) }}";
+                    }
+
+                    // Hàm load reviews, reset=true thì clear container và reset page=2
+                    function loadReviews(reset) {
+                        if (reset) {
+                            page = 1;
+                            $target.empty();
+                            $btn.show();
+                        }
+
+                        $btn.prop('disabled', true).text('Loading…');
+
+                        var url = baseUrl + '?page=' + (reset ? 1 : page) + '&sort=' + sort;
+
+                        jQuery.get(url, function(html){
+                            if (reset) {
+                                $target.html(html);
+                            } else {
+                                $target.append(html);
+                            }
+
+                            // sau khi load xong, tăng page và bật lại nút
+                            page++;
+                            $btn.data('page', page)
+                                .prop('disabled', false)
+                                .text('Load More');
+
+                            // nếu không còn page (html rỗng) thì ẩn nút
+                            if (!html.trim()) {
+                                $btn.hide();
+                            }
+                        })
+                            .fail(function(){
+                                alert('Không tải được, thử lại sau.');
+                                $btn.prop('disabled', false).text('Load More');
+                            });
+                    }
+
+                    // Chọn sort mới → load lại từ đầu
+                    $select.on('change', function(){
+                        sort = jQuery(this).val();
+                        loadReviews(true);
+                    });
+
+                    // Load more
+                    $btn.on('click', function(e){
+                        e.preventDefault();
+                        loadReviews(false);
+                    });
+                });
+
+
                 document.addEventListener('DOMContentLoaded', () => {
                     const thumbs = new Swiper('.gallery-thumbs', {
                         spaceBetween: 10,
@@ -723,24 +1137,30 @@
             </script>
             <script>
 
-                app.controller('productDetail', function ($rootScope, $scope, $sce, $interval, cartItemSync, isLoading) {
+                app.controller('productDetail', function ($rootScope, $scope, $sce, $interval, cartItemSync, isLoading, $timeout) {
                     $scope.sizeVariantSelected = {};
-                    $scope.chooseSize = function (sizeVariant) {
-                        $scope.sizeVariantSelected = sizeVariant
+                    window.sizesStock = @json($productVariant->sizesStock);
+                    $scope.sizesStock = window.sizesStock;
+                    const saved = window.localStorage.getItem('selectedSize');
+                    if (saved) {
+                        const found = $scope.sizesStock.find(v => v.size.name === saved);
+                        if (found) {
+                            $scope.sizeVariantSelected = found;
+                        }
                     }
+
+                    $scope.chooseSize = function (sizeVariant) {
+                        $scope.sizeVariantSelected = sizeVariant;
+                        window.localStorage.setItem('selectedSize', sizeVariant.size.name);
+                    }
+
 
                     $scope.addToCart = function (event) {
                         console.log($scope.sizeVariantSelected)
                         url = "{{route('cart.add.item', ['productId' => 'productId', 'variantSizeId' => 'variantSizeId'])}}";
                         url = url.replace('productId', {{ $product->id }});
                         url = url.replace('variantSizeId',  $scope.sizeVariantSelected.id);
-                        var element = event.currentTarget;
 
-                        // var product = {
-                        //     image: element.getAttribute('data-image'),
-                        //     price: element.getAttribute('data-price'),
-                        //     name: element.getAttribute('data-name')
-                        // };
                         isLoading.set(true);
                         jQuery.ajax({
                             type: 'POST',
@@ -770,6 +1190,77 @@
                             }
                         });
                     }
+
+
+                    $scope.checkSendRating = false;
+                    $scope.formReview = { rating: 0 };
+                    $scope.formReview.product_id = {{ $product->id }};
+                    $scope.submitReview = function () {
+                        jQuery.ajax({
+                            type: 'POST',
+                            url: '{{ route('front.submitRating') }}',
+                            headers: {
+                                'X-CSRF-TOKEN': "{{csrf_token()}}"
+                            },
+                            data: {
+                                formReview: $scope.formReview
+                            },
+                            success: function (response) {
+                                if (response.success) {
+                                    $scope.checkSendRating = true;
+                                } else {
+                                    $scope.errors = response.errors;
+                                    toastr.error(response.message);
+                                }
+                            },
+                            error: function () {
+                                toastr.error('Thao tác thất bại !')
+                            },
+                            complete: function () {
+                                $scope.$applyAsync();
+                            }
+                        });
+                    }
+
+
+
+                    // 1. Ẩn form ban đầu
+                    $scope.showReviewForm = false;
+
+                    // 2. Hàm mở form và scroll
+                    $scope.openReviewForm = function($event) {
+                        $event && $event.preventDefault();
+                        $scope.showReviewForm = true;
+
+                        // đợi Angular render xong form
+                        $timeout(function () {
+                            var $el = jQuery('#jdgm_form_wrapper');
+                            if ($el.length) {
+                                // Animate scrollTop của html/body
+                                jQuery('html, body').animate({
+                                    scrollTop: $el.offset().top
+                                }, 600);  // 600ms, bạn có thể tuỳ chỉnh
+                            }
+                        }, 0);
+                    };
+
+                    $scope.closeReviewForm = function($event) {
+                        $event && $event.preventDefault();
+
+                        // Tính toán vị trí scroll đến (ví dụ scroll lên đầu container reviews)
+                        var $scrollTarget = jQuery('#review-container');
+                        var top = $scrollTarget.length
+                            ? $scrollTarget.offset().top
+                            : 0;
+
+                        // Cuộn mượt lên trong 600ms
+                        jQuery('html, body').animate({ scrollTop: top }, 300);
+
+                        // Sau khi cuộn xong, ẩn form
+                        $timeout(function() {
+                            $scope.showReviewForm = false;
+                        }, 300);
+                    };
                 })
 
             </script>

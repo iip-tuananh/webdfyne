@@ -136,10 +136,10 @@
                     <li class="mobile-nav__item mobile-nav__item--secondary">
                         <div class="grid">
                             <div class="grid__item one-half appear-animation appear-delay-4 medium-up--hide">
-                                <a href="{{route('front.about-us')}}" class="mobile-nav__link">About</a>
+                                <a href="{{route('front.about-us')}}" class="mobile-nav__link">Giới thiệu</a>
                             </div>
                             <div class="grid__item one-half appear-animation appear-delay-8 medium-up--hide">
-                                <a href="{{ route('front.contact') }}" class="mobile-nav__link">Contact Us</a>
+                                <a href="{{ route('front.contact') }}" class="mobile-nav__link">Liên hệ</a>
                             </div>
                         </div>
                     </li>
@@ -356,14 +356,14 @@
                 <div class="toolbar__content"><div class="toolbar__item toolbar__item--menu">
                         <ul class="inline-list toolbar__menu">
                             <li>
-                                <a href="{{route('front.about-us')}}">About</a>
+                                <a href="{{route('front.about-us')}}">Giới thiệu</a>
                             </li>
                             <li>
-                                <a href="{{ route('front.contact') }}">Contact Us</a>
+                                <a href="{{ route('front.contact') }}">Liên hệ</a>
                             </li>
 
                             <li>
-                                <a href="#">Track My Order</a>
+                                <a href="{{ route('front.track-my-order') }}">Theo dõi đơn hàng</a>
                             </li>
                         </ul>
                     </div><div class="toolbar__item">
@@ -610,7 +610,7 @@
                             <div class="page-width">
                                 <predictive-search data-context="header" data-enabled="true" data-dark="false">
                                     <div class="predictive__screen" data-screen></div>
-                                    <form action="/search" method="get" role="search">
+                                    <form action="#" method="get" role="search">
                                         <label for="Search" class="hidden-label">Search</label>
                                         <div class="search__input-wrap">
                                             <input
@@ -631,9 +631,10 @@
                                                 spellcheck="false"
                                                 placeholder="Search"
                                                 tabindex="0"
+                                                ng-model="keyword"
                                             >
                                             <input name="options[prefix]" type="hidden" value="last">
-                                            <button class="btn--search" type="submit">
+                                            <button class="btn--search" type="button" ng-click="search()">
                                                 <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 64 64"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:2px}</style></defs><path class="cls-1" d="M47.16 28.58A18.58 18.58 0 1 1 28.58 10a18.58 18.58 0 0 1 18.58 18.58zM54 54L41.94 42"/></svg>
                                                 <span class="icon__fallback-text">Search</span>
                                             </button>

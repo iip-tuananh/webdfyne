@@ -4,11 +4,16 @@
 @endsection
 
 @section('css')
+    <style>
+        .error_ {
+            color: #b44141;
+        }
+    </style>
 
 @endsection
 
 @section('content')
-    <main class="main-content" id="MainContent" ng-controller="contact">
+    <main class="main-content" id="MainContent" ng-controller="contact" ng-cloak>
         <section id="shopify-section-template--18159281864797__main" class="shopify-section">
             <div class="page-width page-width--narrow page-content">
                 <header class="section-header">
@@ -42,7 +47,7 @@
                                                                aria-label="First Name" style="display: block;">First Name</label>
                                                         <input class="form-control" aria-required="false" name="contact[first_name]" id="form_input_2"
                                                                type="text" aria-placeholder="" placeholder="">
-                                                        <div class="invalid-feedback d-block error" role="alert" ng-if="errors && errors['contact.first_name']">
+                                                        <div class="invalid-feedback d-block error_" role="alert" ng-if="errors && errors['contact.first_name']">
                                                             <span >
                                                                 <% errors['contact.first_name'][0] %>
                                                             </span>
@@ -55,7 +60,7 @@
                                                                                style="display: block;">Last Name</label>
                                                         <input class="form-control" aria-required="false" name="contact[last_name]" id="form_input_3" type="text" aria-placeholder=""
                                                                placeholder="">
-                                                        <div class="invalid-feedback d-block error" role="alert"  ng-if="errors && errors['contact.last_name']">
+                                                        <div class="invalid-feedback d-block error_" role="alert"  ng-if="errors && errors['contact.last_name']">
                                                             <span>
                                                                 <% errors['contact.last_name'][0] %>
                                                             </span>
@@ -67,7 +72,7 @@
                                                         <label class="fitText block_label" tabindex="0" for="form_input_4" aria-label="Email" style="display: block;">Email*</label>
                                                         <input class="form-control required email_confirm" aria-required="true"
                                                                id="form_input_4" name="contact[email]" type="email" aria-placeholder="" placeholder="">
-                                                        <div class="invalid-feedback d-block error" role="alert" ng-if="errors && errors['contact.email']">
+                                                        <div class="invalid-feedback d-block error_" role="alert" ng-if="errors && errors['contact.email']">
                                                             <span >
                                                                 <% errors['contact.email'][0] %>
                                                             </span>
@@ -79,7 +84,7 @@
                                                         <label class="fitText block_label" tabindex="0" for="form_input_8" aria-label="Message"
                                                                                style="display: block;">Message*</label>
                                                         <textarea class="form-control required" id="form_input_8" name="contact[message]" data-max="250" aria-valuemax="250" data-limiting="false" style="height: 50px" aria-required="true" aria-placeholder="" placeholder=""></textarea>
-                                                        <div class="invalid-feedback d-block error" role="alert" ng-if="errors && errors['contact.message']">
+                                                        <div class="invalid-feedback d-block error_" role="alert" ng-if="errors && errors['contact.message']">
                                                             <span >
                                                                 <% errors['contact.message'][0] %>
                                                             </span>

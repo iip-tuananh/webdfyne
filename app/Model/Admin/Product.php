@@ -88,6 +88,10 @@ class Product extends BaseModel
         return $this->belongsToMany(Category::class, 'product_collections', 'product_id', 'category_id');
     }
 
+    public function reviews() {
+        return $this->hasMany(Review::class, 'product_id');
+    }
+
     public function image()
     {
         return $this->morphOne(File::class, 'model')->where('custom_field', 'image');

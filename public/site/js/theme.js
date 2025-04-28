@@ -1998,7 +1998,11 @@ window.theme = window.theme || {}, window.Shopify = window.Shopify || {}, theme.
         customElements.define("image-element", ImageElement);
         class PredictiveSearch extends HTMLElement {
             constructor() {
-                super(), this.enabled = this.getAttribute("data-enabled"), this.context = this.getAttribute("data-context"), this.input = this.querySelector('input[type="search"]'), this.predictiveSearchResults = this.querySelector("#predictive-search"), this.closeBtn = this.querySelector(".btn--close-search"), this.screen = this.querySelector("[data-screen]"), this.SearchModal = this.closest("#SearchModal") || null, document.addEventListener("predictive-search:open", e => {
+                super(), this.enabled = this.getAttribute("data-enabled"), this.context = this.getAttribute("data-context"), this.input = this.querySelector('input[type="search"]'),
+                    this.predictiveSearchResults = this.querySelector("#predictive-search"),
+                    this.closeBtn = this.querySelector(".btn--close-search"),
+                    this.screen = this.querySelector("[data-screen]"),
+                    this.SearchModal = this.closest("#SearchModal") || null, document.addEventListener("predictive-search:open", e => {
                     e.detail.context === this.context && (this.classList.add("is-active"), setTimeout(() => {
                         this.input.focus()
                     }, 100), document.body.classList.add("predictive-overflow-hidden"))
@@ -2013,7 +2017,7 @@ window.theme = window.theme || {}, window.Shopify = window.Shopify || {}, theme.
                 }), this.enabled !== "false" && (this.input.addEventListener("keydown", () => {
                     this.classList.add("is-active")
                 }), this.input.addEventListener("input", this.debounce(event => {
-                    this.onChange(event)
+                    // this.onChange(event)
                 }, 300).bind(this)), document.addEventListener("predictive-search:close", () => {
                     this.close()
                 }), document.addEventListener("keydown", event => {

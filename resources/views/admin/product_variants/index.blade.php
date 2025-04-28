@@ -89,8 +89,6 @@
                 {data: 'sizes', title: 'Size'},
                 {data: 'cate_id', title: 'Danh mục'},
                 {data: 'price', title: "Đơn giá bán", className: "text-right",},
-
-
                 {data: 'action', orderable: false, title: "Hành động"}
             ],
             search_columns: [

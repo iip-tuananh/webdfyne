@@ -33,6 +33,26 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::post('/{id}/update', 'Admin\AboutController@update')->name('abouts.update');
     });
 
+    Route::group(['prefix' => 'privacy'], function () {
+        Route::get('/edit', 'Admin\PrivacyController@edit')->name('privacy.edit');
+        Route::post('/update', 'Admin\PrivacyController@update')->name('privacy.update');
+    });
+
+    Route::group(['prefix' => 'delivery'], function () {
+        Route::get('/edit', 'Admin\DeliveryController@edit')->name('delivery.edit');
+        Route::post('/update', 'Admin\DeliveryController@update')->name('delivery.update');
+    });
+
+    Route::group(['prefix' => 'refund'], function () {
+        Route::get('/edit', 'Admin\RefundController@edit')->name('refund.edit');
+        Route::post('/update', 'Admin\RefundController@update')->name('refund.update');
+    });
+
+    Route::group(['prefix' => 'term'], function () {
+        Route::get('/edit', 'Admin\TermController@edit')->name('term.edit');
+        Route::post('/update', 'Admin\TermController@update')->name('term.update');
+    });
+
     // Menu Catalog
     Route::group(['prefix' => 'categories'], function() {
         Route::get('/create', 'Admin\CategoryController@create')->name('Category.create');
@@ -136,6 +156,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/{id}/delete', 'Admin\ContactController@delete')->name('contacts.delete');
     });
 
+    Route::group(['prefix' => 'reviews'], function () {
+        Route::get('/', 'Admin\ReviewController@index')->name('reviews.index');
+        Route::get('/searchData', 'Admin\ReviewController@searchData')->name('reviews.searchData');
+        Route::get('/{id}/getDataForEdit', 'Admin\ReviewController@getDataForEdit')->name('reviews.getDataForEdit');
+        Route::get('/{id}/detail', 'Admin\ReviewController@getReview')->name('reviews.detail');
+        Route::post('/{id}/update', 'Admin\ReviewController@update')->name('reviews.update');
+        Route::get('/{id}/delete', 'Admin\ReviewController@delete')->name('reviews.delete');
+    });
+
     Route::group(['prefix' => 'apply-recruitments'], function () {
         Route::get('/', 'Admin\ApplyRecruitmentsController@index')->name('apply-recruitments.index');
         Route::get('/searchData', 'Admin\ApplyRecruitmentsController@searchData')->name('apply-recruitments.searchData');
@@ -153,6 +182,28 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::post('/updateOrderShowroom', 'Admin\ShowroomController@updateOrderShowroom')->name('showrooms.updateOrderShowroom');
         Route::get('/{id}/delete', 'Admin\ShowroomController@delete')->name('showrooms.delete');
         Route::get('/{id}/getDataForEdit', 'Admin\ShowroomController@getDataForEdit')->name('showrooms.getDataForEdit');
+    });
+
+    Route::group(['prefix' => 'topic'], function () {
+        Route::get('/', 'Admin\TopicController@index')->name('topics.index');
+        Route::get('/searchData', 'Admin\TopicController@searchData')->name('topics.searchData');
+        Route::get('/{id}/show', 'Admin\TopicController@show')->name('topics.show');
+        Route::get('/create', 'Admin\TopicController@create')->name('topics.create');
+        Route::post('/', 'Admin\TopicController@store')->name('topics.store');
+        Route::post('/{id}/update', 'Admin\TopicController@update')->name('topics.update');
+        Route::get('/{id}/delete', 'Admin\TopicController@delete')->name('topics.delete');
+        Route::get('/{id}/getDataForEdit', 'Admin\TopicController@getDataForEdit')->name('topics.getDataForEdit');
+    });
+
+    Route::group(['prefix' => 'questions'], function () {
+        Route::get('/', 'Admin\QuestionController@index')->name('questions.index');
+        Route::get('/searchData', 'Admin\QuestionController@searchData')->name('questions.searchData');
+        Route::get('/{id}/edit', 'Admin\QuestionController@edit')->name('questions.edit');
+        Route::get('/create', 'Admin\QuestionController@create')->name('questions.create');
+        Route::post('/', 'Admin\QuestionController@store')->name('questions.store');
+        Route::post('/{id}/update', 'Admin\QuestionController@update')->name('questions.update');
+        Route::get('/{id}/delete', 'Admin\QuestionController@delete')->name('questions.delete');
+        Route::get('/{id}/getDataForEdit', 'Admin\QuestionController@getDataForEdit')->name('questions.getDataForEdit');
     });
 
     Route::group(['prefix' => 'e-brochure'], function () {
@@ -195,18 +246,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/exportExcel','Admin\BlockController@exportExcel')->name('Block.exportExcel');
     });
 
-    // Customer Review
-    Route::group(['prefix' => 'reviews'], function () {
-        Route::get('/', 'Admin\ReviewController@index')->name('Review.index');
-        Route::get('/searchData', 'Admin\ReviewController@searchData')->name('Review.searchData');
-        Route::get('/{id}/show', 'Admin\ReviewController@show')->name('Review.show');
-        Route::get('/create', 'Admin\ReviewController@create')->name('Review.create');
-        Route::post('/', 'Admin\ReviewController@store')->name('Review.store');
-        Route::post('/{id}/update', 'Admin\ReviewController@update')->name('Review.update');
-        Route::get('/{id}/delete', 'Admin\ReviewController@delete')->name('Review.delete');
-        Route::get('/{id}/getDataForEdit', 'Admin\ReviewController@getDataForEdit');
-        Route::get('/exportExcel','Admin\ReviewController@exportExcel')->name('Review.exportExcel');
-    });
 
     // Manufacturers (hãng sản xuất)
     Route::group(['prefix' => 'manufacturers'], function () {

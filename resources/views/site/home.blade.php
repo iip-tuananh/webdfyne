@@ -10,70 +10,184 @@
 @section('content')
 
     <main class="main-content" id="MainContent">
-        <div id="shopify-section-template--18159281537117__slideshow_ccTga3" class="shopify-section index-section--hero"><div data-section-id="template--18159281537117__slideshow_ccTga3" data-section-type="slideshow-section"><div class="slideshow-wrapper"><style data-shopify="">@media only screen and (min-width: 769px) {
-                            .hero-natural--template--18159281537117__slideshow_ccTga3 {
-                                height: 0;
-                                padding-bottom: 55.56%;
-                            }
-                        }</style><style data-shopify="">@media screen and (max-width: 768px) {
-                            .hero-natural-mobile--template--18159281537117__slideshow_ccTga3 {
-                                height: 0;
-                                padding-bottom: 179.98560115190784%;
-                            }
-                        }</style><div class="hero-natural--template--18159281537117__slideshow_ccTga3 hero-natural-mobile--template--18159281537117__slideshow_ccTga3">
-                        <div id="Slideshow-template--18159281537117__slideshow_ccTga3" class="hero hero--natural hero--template--18159281537117__slideshow_ccTga3 hero--mobile--auto loaded" data-natural="true" data-mobile-natural="true" data-autoplay="false" data-speed="5000" data-dots="true" data-bars="true" data-slide-count="1"><div class="slideshow__slide slideshow__slide--image_MtaHVQ is-selected" data-index="0" data-id="image_MtaHVQ"><style data-shopify="">.slideshow__slide--image_MtaHVQ .hero__title {
-                                        font-size: 20.0px;
-                                    }
-                                    @media only screen and (min-width: 769px) {
-                                        .slideshow__slide--image_MtaHVQ .hero__title {
-                                            font-size: 40px;
+{{--        <div id="shopify-section-template--18159281537117__slideshow_ccTga3" class="shopify-section index-section--hero">--}}
+{{--            <div data-section-id="template--18159281537117__slideshow_ccTga3" data-section-type="slideshow-section">--}}
+{{--                <div class="slideshow-wrapper">--}}
+{{--                    <style data-shopify="">@media only screen and (min-width: 769px) {--}}
+{{--                            .hero-natural--template--18159281537117__slideshow_ccTga3 {--}}
+{{--                                height: 0;--}}
+{{--                                padding-bottom: 55.56%;--}}
+{{--                            }--}}
+{{--                        }</style>--}}
+{{--                    <style data-shopify="">@media screen and (max-width: 768px) {--}}
+{{--                            .hero-natural-mobile--template--18159281537117__slideshow_ccTga3 {--}}
+{{--                                height: 0;--}}
+{{--                                padding-bottom: 179.98560115190784%;--}}
+{{--                            }--}}
+{{--                        }</style>--}}
+{{--                    <div class="hero-natural--template--18159281537117__slideshow_ccTga3 hero-natural-mobile--template--18159281537117__slideshow_ccTga3">--}}
+{{--                        <div id="Slideshow-template--18159281537117__slideshow_ccTga3" class="hero hero--natural hero--template--18159281537117__slideshow_ccTga3 hero--mobile--auto loaded" data-natural="true" data-mobile-natural="true" data-autoplay="false" data-speed="5000" data-dots="true" data-bars="true" data-slide-count="1"><div class="slideshow__slide slideshow__slide--image_MtaHVQ is-selected" data-index="0" data-id="image_MtaHVQ"><style data-shopify="">.slideshow__slide--image_MtaHVQ .hero__title {--}}
+{{--                                        font-size: 20.0px;--}}
+{{--                                    }--}}
+{{--                                    @media only screen and (min-width: 769px) {--}}
+{{--                                        .slideshow__slide--image_MtaHVQ .hero__title {--}}
+{{--                                            font-size: 40px;--}}
+{{--                                        }--}}
+{{--                                    }--}}
+
+{{--                                </style>--}}
+
+{{--                                <div class="hero__image-wrapper">--}}
+
+{{--                                    @php--}}
+{{--                                        $sizes = [352, 832, 1200, 1920, 2778];--}}
+
+{{--                                        $srcset = collect($sizes)->map(function($size) use ($cateSpecialForBanner) {--}}
+{{--                                            return (@$cateSpecialForBanner->image->path ?? '' ). "?width={$size} {$size}w";--}}
+{{--                                        })->implode(', ');--}}
+{{--                                    @endphp--}}
+
+{{--                                    @if($cateSpecialForBanner)--}}
+{{--                                        <image-element >--}}
+
+{{--                                            <img src="{{@$cateSpecialForBanner->image->path ?? ''}}?width=2400" alt=""--}}
+{{--                                                 srcset="{{ $srcset }}" width="2778"--}}
+{{--                                                 height=1333.44" loading="lazy" class="medium-up--hide hero__image hero__image--image_MtaHVQ image-element" sizes="100vw">--}}
+{{--                                        </image-element>--}}
+
+{{--                                    @else--}}
+{{--                                            <image-element data-aos="image-fade-in" data-aos-offset="150" class="aos-init aos-animate">--}}
+
+{{--                                                <img src="//dfyne.com/cdn/shop/files/IMPACT_HERO.jpg?v=1744039527&amp;width=2400" alt=""--}}
+{{--                                                     srcset="//dfyne.com/cdn/shop/files/IMPACT_HERO.jpg?v=1744039527&amp;width=352 352w,--}}
+{{--                                             //dfyne.com/cdn/shop/files/IMPACT_HERO.jpg?v=1744039527&amp;width=832 832w,--}}
+{{--                                              //dfyne.com/cdn/shop/files/IMPACT_HERO.jpg?v=1744039527&amp;width=1200 1200w,--}}
+{{--                                               //dfyne.com/cdn/shop/files/IMPACT_HERO.jpg?v=1744039527&amp;width=1920 1920w,--}}
+{{--                                               //dfyne.com/cdn/shop/files/IMPACT_HERO.jpg?v=1744039527&amp;width=2400 2400w" width="2400" height="1333.44"--}}
+{{--                                                     loading="lazy" class="small--hide hero__image hero__image--image_MtaHVQ image-element" sizes="100vw">--}}
+{{--                                            </image-element>--}}
+{{--                                    @endif--}}
+
+
+
+{{--                                    @if($cateSpecialForBanner)--}}
+{{--                                        <image-element data-aos="image-fade-in" data-aos-offset="150" class="aos-init aos-animate">--}}
+
+{{--                                            <img src="{{@$cateSpecialForBanner->image->path ?? ''}}?width=2778" alt=""--}}
+{{--                                                 srcset="{{@$cateSpecialForBanner->image->path ?? ''}}?width=352 352w,--}}
+{{--                                                 {{@$cateSpecialForBanner->image->path ?? ''}}?width=832 832w,--}}
+{{--                                                  {{@$cateSpecialForBanner->image->path ?? ''}}?width=1200 1200w,--}}
+{{--                                                  {{@$cateSpecialForBanner->image->path ?? ''}}?width=1920 1920w,--}}
+{{--                                                  {{@$cateSpecialForBanner->image->path ?? ''}}?width=2778 2778w" width="2778"--}}
+{{--                                                 height="5000.0" loading="lazy" class="medium-up--hide hero__image hero__image--image_MtaHVQ image-element" sizes="100vw">--}}
+{{--                                        </image-element>--}}
+{{--                                    @else--}}
+{{--                                        <image-element data-aos="image-fade-in" data-aos-offset="150" class="aos-init aos-animate">--}}
+{{--                                            <img src="//dfyne.com/cdn/shop/files/IMPACT_HERO_MOBILE.jpg?v=1744039699&amp;width=2778" alt="" srcset="//dfyne.com/cdn/shop/files/IMPACT_HERO_MOBILE.jpg?v=1744039699&amp;width=352 352w, //dfyne.com/cdn/shop/files/IMPACT_HERO_MOBILE.jpg?v=1744039699&amp;width=832 832w, //dfyne.com/cdn/shop/files/IMPACT_HERO_MOBILE.jpg?v=1744039699&amp;width=1200 1200w, //dfyne.com/cdn/shop/files/IMPACT_HERO_MOBILE.jpg?v=1744039699&amp;width=1920 1920w, //dfyne.com/cdn/shop/files/IMPACT_HERO_MOBILE.jpg?v=1744039699&amp;width=2778 2778w" width="2778" height="5000.0" loading="lazy" class="medium-up--hide hero__image hero__image--image_MtaHVQ image-element" sizes="100vw">--}}
+{{--                                        </image-element>--}}
+{{--                                    @endif--}}
+
+{{--                                </div>--}}
+{{--                                <a href="#" class="hero__slide-link" aria-hidden="true">--}}
+
+{{--                                </a>--}}
+{{--                                <div class="hero__text-wrap">--}}
+{{--                                    <div class="page-width">--}}
+{{--                                        <div class="hero__text-content vertical-bottom horizontal-center">--}}
+{{--                                            <div class="hero__text-shadow"><div class="hero__link"><a href="#" class="btn btn--inverse">--}}
+{{--                                                        SHOP IMPACT--}}
+{{--                                                    </a></div></div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+
+{{--        </div>--}}
+
+
+
+            <div id="shopify-section-template--18159281537117__slideshow_NXh4cP-{{$cateSpecialForBanner->id}}" class="shopify-section index-section--hero">
+                <div data-section-id="template--18159281537117__slideshow_NXh4cP" data-section-type="slideshow-section">
+                    <div class="slideshow-wrapper">
+                        <style data-shopify="">@media only screen and (min-width: 769px) {
+                                .hero-natural--template--18159281537117__slideshow_NXh4cP {
+                                    height: 0;
+                                    padding-bottom: 55.56%;
+                                }
+                            }</style><style data-shopify="">@media screen and (max-width: 768px) {
+                                .hero-natural-mobile--template--18159281537117__slideshow_NXh4cP {
+                                    height: 0;
+                                    padding-bottom: 179.98560115190784%;
+                                }
+                            }</style>
+                        <div class="hero-natural--template--18159281537117__slideshow_NXh4cP hero-natural-mobile--template--18159281537117__slideshow_NXh4cP">
+
+                            <div id="Slideshow-template--18159281537117__slideshow_NXh4cP"
+                                 class="hero hero--natural hero--template--18159281537117__slideshow_NXh4cP hero--mobile--auto loading loading--delayed"
+                                 data-natural="true" data-mobile-natural="true" data-autoplay="false" data-speed="5000" data-dots="true" data-bars="true" data-slide-count="1">
+                                <div class="slideshow__slide slideshow__slide--image_qPAA7t" data-index="0" data-id="image_qPAA7t">
+                                    <style data-shopify="">.slideshow__slide--image_qPAA7t .hero__title {
+                                            font-size: 20.0px;
                                         }
-                                    }
+                                        @media only screen and (min-width: 769px) {
+                                            .slideshow__slide--image_qPAA7t .hero__title {
+                                                font-size: 40px;
+                                            }
+                                        }
 
 
-                                </style><div class="hero__image-wrapper">
+                                    </style>
+
+                                    @php
+                                        $sizes = [352, 832, 1200, 1920, 2778];
+
+                                        $srcset = collect($sizes)->map(function($size) use ($cateSpecialForBanner) {
+                                            return (@$cateSpecialForBanner->image->path ?? '' ). "?width={$size} {$size}w";
+                                        })->implode(', ');
+                                    @endphp
+
+                                    <div class="hero__image-wrapper">
+                                        <image-element data-aos="image-fade-in" data-aos-offset="150" class="aos-init">
+                                            <img src="{{@$cateSpecialForBanner->image->path ?? ''}}?width=2400"
+                                                 alt="" srcset="{{$srcset}}"
+                                                 width="2400" height="1333.44" loading="lazy" class="small--hide hero__image hero__image--image_qPAA7t image-element" sizes="100vw">
+                                        </image-element>
 
 
+                                        <image-element data-aos="image-fade-in" data-aos-offset="150" class="aos-init">
+                                            <img src="{{@$cateSpecialForBanner->image->path ?? ''}}?width=2778" alt="" srcset="{{$srcset}}"
+                                                 width="2778" height="5000.0" loading="lazy"
+                                                 class="medium-up--hide hero__image hero__image--image_qPAA7t image-element"
+                                                 sizes="100vw">
+                                        </image-element>
+                                    </div>
 
-
-
-                                    <image-element data-aos="image-fade-in" data-aos-offset="150" class="aos-init aos-animate">
-
-
-
-                                        <img src="//dfyne.com/cdn/shop/files/IMPACT_HERO.jpg?v=1744039527&amp;width=2400" alt="" srcset="//dfyne.com/cdn/shop/files/IMPACT_HERO.jpg?v=1744039527&amp;width=352 352w, //dfyne.com/cdn/shop/files/IMPACT_HERO.jpg?v=1744039527&amp;width=832 832w, //dfyne.com/cdn/shop/files/IMPACT_HERO.jpg?v=1744039527&amp;width=1200 1200w, //dfyne.com/cdn/shop/files/IMPACT_HERO.jpg?v=1744039527&amp;width=1920 1920w, //dfyne.com/cdn/shop/files/IMPACT_HERO.jpg?v=1744039527&amp;width=2400 2400w" width="2400" height="1333.44" loading="lazy" class="small--hide hero__image hero__image--image_MtaHVQ image-element" sizes="100vw">
-
-
-
-                                    </image-element>
-
-
-
-
-
-                                    <image-element data-aos="image-fade-in" data-aos-offset="150" class="aos-init aos-animate">
-
-
-
-                                        <img src="//dfyne.com/cdn/shop/files/IMPACT_HERO_MOBILE.jpg?v=1744039699&amp;width=2778" alt="" srcset="//dfyne.com/cdn/shop/files/IMPACT_HERO_MOBILE.jpg?v=1744039699&amp;width=352 352w, //dfyne.com/cdn/shop/files/IMPACT_HERO_MOBILE.jpg?v=1744039699&amp;width=832 832w, //dfyne.com/cdn/shop/files/IMPACT_HERO_MOBILE.jpg?v=1744039699&amp;width=1200 1200w, //dfyne.com/cdn/shop/files/IMPACT_HERO_MOBILE.jpg?v=1744039699&amp;width=1920 1920w, //dfyne.com/cdn/shop/files/IMPACT_HERO_MOBILE.jpg?v=1744039699&amp;width=2778 2778w" width="2778" height="5000.0" loading="lazy" class="medium-up--hide hero__image hero__image--image_MtaHVQ image-element" sizes="100vw">
-
-
-
-                                    </image-element>
-                                </div><a href="#" class="hero__slide-link" aria-hidden="true"></a><div class="hero__text-wrap">
-                                    <div class="page-width">
-                                        <div class="hero__text-content vertical-bottom horizontal-center">
-                                            <div class="hero__text-shadow"><div class="hero__link"><a href="#" class="btn btn--inverse">
-                                                        SHOP IMPACT
-                                                    </a></div></div>
+                                    <a href="{{route('front.getProductListFeatured', $cateSpecialForBanner->slug)}}" class="hero__slide-link" aria-hidden="true"></a>
+                                    <div class="hero__text-wrap">
+                                        <div class="page-width">
+                                            <div class="hero__text-content vertical-bottom horizontal-center">
+                                                <div class="hero__text-shadow"><div class="hero__link">
+                                                        <a href="{{route('front.getProductListFeatured', $cateSpecialForBanner->slug)}}" class="btn btn--inverse">
+                                                            {{ $cateSpecialForBanner->name }}
+                                                        </a></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div></div></div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div></div>
+                </div>
+            </div>
 
-
-        </div>
 
         @foreach($categoriesSpecial as $categorySpecial)
 

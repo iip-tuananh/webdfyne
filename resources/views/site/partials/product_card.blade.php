@@ -57,22 +57,22 @@
                     <div class="grid-product__vendor">{{$variant->color->name}}</div>
                     <div class="grid-product__price"><span class=money>{{ formatCurrency($product->price) }}</span>
                         <!-- Start of Judge.me code -->
-                        <div class='jdgm-widget jdgm-preview-badge' data-id='7542781476957'>
-                            <p style="margin-bottom:5px;">
-                            <div style='display:none' class='jdgm-prev-badge' data-average-rating='4.41'
-                                 data-number-of-reviews='29' data-number-of-questions='0'><span
-                                    class='jdgm-prev-badge__stars' data-score='4.41' tabindex='0'
-                                    aria-label='5 stars' role='button'>
-                                    <span class='jdgm-star jdgm--on'></span>
-                                    <span class='jdgm-star jdgm--on'></span>
-                                    <span class='jdgm-star jdgm--on'></span>
-                                    <span class='jdgm-star jdgm--on'></span>
-                                    <span class='jdgm-star jdgm--on'></span>
-                                </span>
+{{--                        <div class='jdgm-widget jdgm-preview-badge' data-id='7542781476957'>--}}
+{{--                            <p style="margin-bottom:5px;">--}}
+{{--                            <div style='display:none' class='jdgm-prev-badge' data-average-rating='4.41'--}}
+{{--                                 data-number-of-reviews='29' data-number-of-questions='0'><span--}}
+{{--                                    class='jdgm-prev-badge__stars' data-score='4.41' tabindex='0'--}}
+{{--                                    aria-label='5 stars' role='button'>--}}
+{{--                                    <span class='jdgm-star jdgm--on'></span>--}}
+{{--                                    <span class='jdgm-star jdgm--on'></span>--}}
+{{--                                    <span class='jdgm-star jdgm--on'></span>--}}
+{{--                                    <span class='jdgm-star jdgm--on'></span>--}}
+{{--                                    <span class='jdgm-star jdgm--on'></span>--}}
+{{--                                </span>--}}
 {{--                                <span class='jdgm-prev-badge__text'> 29 reviews </span>--}}
-                            </div>
-                            </p>
-                        </div>
+{{--                            </div>--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
                         <!-- End of Judge.me code -->
 
 

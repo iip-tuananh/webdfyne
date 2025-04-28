@@ -2995,7 +2995,9 @@ html[dir=rtl] .grid--center .grid__item {
     .medium-up--four-fifths {
         width: 80%
     }
-
+    .medium-up--four-fifths-search {
+        width: 100%
+    }
     .grid--uniform .medium-up--one-fifth:nth-of-type(5n+1) {
         clear: both
     }

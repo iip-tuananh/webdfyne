@@ -8,11 +8,18 @@ use App\Model\Admin\About;
 use App\Model\Admin\Block;
 use App\Model\Admin\Category;
 use App\Model\Admin\CategorySpecial;
+use App\Model\Admin\Config;
+use App\Model\Admin\Delivery;
+use App\Model\Admin\Order;
+use App\Model\Admin\Privacy;
 use App\Model\Admin\Product;
 use App\Model\Admin\ProductCategorySpecial;
 use App\Model\Admin\ProductCollection;
 use App\Model\Admin\ProductSize;
 use App\Model\Admin\ProductVariant;
+use App\Model\Admin\Refund;
+use App\Model\Admin\Term;
+use App\Model\Admin\Topic;
 use App\Model\Common\User;
 use App\Services\CategoryService;
 use Darryldecode\Cart\Cart;
@@ -97,7 +104,8 @@ class FrontController extends Controller
             $category->setRelation('variants', $allDefaultVariants);
         });
 
-        return view('site.home', compact('categoriesSpecial', 'categoriesCollection'));
+        $cateSpecialForBanner = CategorySpecial::query()->with('image')->where('highlight', 1)->first();
+        return view('site.home', compact('categoriesSpecial', 'categoriesCollection', 'cateSpecialForBanner'));
     }
 
     public function getProductList($categorySlug)
@@ -183,6 +191,20 @@ class FrontController extends Controller
 
     public function getProductDetail($slug)
     {
+        $orderMap = [
+            'XXS'   => 1,
+            'XS'    => 2,
+            'S'     => 3,
+            'M'     => 4,
+            'L'     => 5,
+            'XL'    => 6,
+            'XXL'   => 7,
+            'XXXL'  => 8,
+            '4XL'   => 9,
+            '5XL'   => 10,
+            '6XL'   => 11,
+        ];
+
         $productVariant = ProductVariant::query()
             ->with(['baseProduct', 'image', 'color', 'sizesStock.size', 'galleries' => function ($q) {
                 $q->select(['id', 'variant_id', 'sort'])
@@ -190,6 +212,11 @@ class FrontController extends Controller
                     ->orderBy('sort', 'ASC');
             }, ])
             ->where('slug', $slug)->first();
+        $productVariant->sizesStock = $productVariant->sizesStock
+            ->sortBy(function ($stock) use ($orderMap) {
+                return $orderMap[$stock->size->name] ?? PHP_INT_MAX;
+            })
+            ->values();
 
         $product = $productVariant->baseProduct()
             ->with([
@@ -197,6 +224,9 @@ class FrontController extends Controller
                     $q->select(['id', 'name']);
                 },
                 'sizes',
+                'reviews' => function($q) {
+                    $q->where('status', Review::STATUS_APPROVED);
+                },
                 'variants' => function ($q) {
                     $q->with(['image', 'color', 'sizesStock', 'galleries' => function ($q) {
                         $q->select(['id', 'variant_id', 'sort'])
@@ -207,7 +237,34 @@ class FrontController extends Controller
             ])
             ->first();
 
-        return view('site.product_detail', compact('product', 'productVariant'));
+
+        $totalReviews = Review::where('product_id', $product->id)
+            ->where('status', Review::STATUS_APPROVED)
+            ->count();
+
+        $counts = Review::where('product_id', $product->id)
+            ->where('status', Review::STATUS_APPROVED)
+            ->selectRaw('rating, count(*) as frequency')
+            ->groupBy('rating')
+            ->orderBy('rating', 'desc')
+            ->pluck('frequency', 'rating')  // -> [5=>987, 4=>93, …]
+            ->toArray();
+
+        $distribution = [];
+        for ($rating = 5; $rating >= 1; $rating--) {
+            $frequency  = $counts[$rating] ?? 0;
+            $percentage = $totalReviews
+                ? round($frequency / $totalReviews * 100)
+                : 0;
+
+            $distribution[] = compact('rating','frequency','percentage');
+        }
+
+        $reviews = $product->reviews()
+            ->where('status', Review::STATUS_APPROVED)
+            ->orderBy('created_at', 'desc')->paginate(5);
+
+        return view('site.product_detail', compact('product', 'productVariant', 'distribution', 'reviews'));
     }
 
     public function searchProducts(Request $request) {
@@ -424,10 +481,10 @@ class FrontController extends Controller
             $request->all(),
             $rule,
             [
-                'contact.first_name' => 'Vui lòng nhập họ tên',
-                'contact.last_name' => 'Vui lòng nhập họ tên',
-                'contact.email' => 'Vui lòng nhập email',
-                'contact.body' => 'Vui lòng nhập nội dung',
+                'contact.first_name.required' => 'Vui lòng nhập họ tên',
+                'contact.last_name.required' => 'Vui lòng nhập họ tên',
+                'contact.email.required' => 'Vui lòng nhập email',
+                'contact.body.required' => 'Vui lòng nhập nội dung',
             ]
         );
 
@@ -464,5 +521,208 @@ class FrontController extends Controller
 
 
         return view('site.about_us', compact('about', 'productVariants', 'category'));
+    }
+
+    public function privacy() {
+        $privacy = Privacy::query()->find(1);
+        $category = CategorySpecial::query()->get()->random();
+
+        $category = CategorySpecial::findBySlug($category->first()->slug);
+        $product_ids = ProductCategorySpecial::query()->where('category_special_id', $category->id)->pluck('product_id')->toArray();
+
+        $productVariants = ProductVariant::query()->with(['baseProduct', 'color', 'image', 'galleries' => function ($q) {
+            $q->select(['id', 'variant_id', 'sort'])
+                ->with(['image'])
+                ->orderBy('sort', 'ASC');
+        },])
+            ->whereIn('product_id', $product_ids)
+            ->where('is_default', 1)->limit(4)->get();
+
+        return view('site.privacy', compact('privacy','productVariants', 'category'));
+    }
+
+    public function shipping() {
+        $privacy = Delivery::query()->find(1);
+        $category = CategorySpecial::query()->get()->random();
+
+        $category = CategorySpecial::findBySlug($category->first()->slug);
+        $product_ids = ProductCategorySpecial::query()->where('category_special_id', $category->id)->pluck('product_id')->toArray();
+
+        $productVariants = ProductVariant::query()->with(['baseProduct', 'color', 'image', 'galleries' => function ($q) {
+            $q->select(['id', 'variant_id', 'sort'])
+                ->with(['image'])
+                ->orderBy('sort', 'ASC');
+        },])
+            ->whereIn('product_id', $product_ids)
+            ->where('is_default', 1)->limit(4)->get();
+
+        return view('site.privacy', compact('privacy','productVariants', 'category'));
+    }
+
+    public function refund() {
+        $privacy = Refund::query()->find(1);
+        $category = CategorySpecial::query()->get()->random();
+
+        $category = CategorySpecial::findBySlug($category->first()->slug);
+        $product_ids = ProductCategorySpecial::query()->where('category_special_id', $category->id)->pluck('product_id')->toArray();
+
+        $productVariants = ProductVariant::query()->with(['baseProduct', 'color', 'image', 'galleries' => function ($q) {
+            $q->select(['id', 'variant_id', 'sort'])
+                ->with(['image'])
+                ->orderBy('sort', 'ASC');
+        },])
+            ->whereIn('product_id', $product_ids)
+            ->where('is_default', 1)->limit(4)->get();
+
+        return view('site.privacy', compact('privacy','productVariants', 'category'));
+    }
+
+    public function term() {
+        $term = Term::query()->find(1);
+        $category = CategorySpecial::query()->get()->random();
+
+        $category = CategorySpecial::findBySlug($category->first()->slug);
+        $product_ids = ProductCategorySpecial::query()->where('category_special_id', $category->id)->pluck('product_id')->toArray();
+
+        $productVariants = ProductVariant::query()->with(['baseProduct', 'color', 'image', 'galleries' => function ($q) {
+            $q->select(['id', 'variant_id', 'sort'])
+                ->with(['image'])
+                ->orderBy('sort', 'ASC');
+        },])
+            ->whereIn('product_id', $product_ids)
+            ->where('is_default', 1)->limit(4)->get();
+
+        return view('site.term', compact('term','productVariants', 'category'));
+    }
+
+
+    public function faqs() {
+        $topics = Topic::query()->with(['questions'])->latest()->get();
+        $columns = $topics
+            ->chunk(ceil(count($topics) / 3));
+
+        return view('site.faq', compact('columns'));
+    }
+
+    public function getFaq($id) {
+        $topic = Topic::query()->with(['questions'])->find(1);
+
+        return view('site.faq_detail', compact('topic'));
+    }
+
+    public function submitRating(Request $request) {
+        $rule  =  [
+            'formReview.name' => 'required',
+            'formReview.title'  => 'required',
+            'formReview.email'  => 'required|email|max:255',
+            'formReview.content'  => 'required',
+        ];
+
+        $validate = Validator::make(
+            $request->all(),
+            $rule,
+            [
+                'formReview.name.required' => 'Vui lòng nhập họ tên',
+                'formReview.email.required' => 'Vui lòng nhập email',
+                'formReview.title.required' => 'Vui lòng nhập nội dung',
+                'formReview.content.required' => 'Vui lòng nhập nội dung',
+            ]
+        );
+
+        if ($validate->fails()) {
+            return $this->responseErrors('Gửi yêu cầu thất bại!', $validate->errors());
+        }
+
+        $data = $request->formReview;
+
+        $review = new Review();
+        $review->product_id = $data['product_id'];
+        $review->user_name = $data['name'];
+        $review->user_email = $data['email'];
+        $review->title = $data['title'];
+        $review->content = $data['content'];
+        $review->rating = $data['rating'];
+        $review->status = Review::STATUS_PENDING;
+
+        $review->save();
+
+        $json = new \stdClass();
+        $json->success = true;
+        $json->message = "Thao tác thành công!";
+        return Response::json($json);
+    }
+
+    public function getMoreReview(Request $request, $productId) {
+        $sort = $request->query('sort', 'most-recent');
+
+        $product = Product::findOrFail($productId);
+        $query   = $product->reviews()->where('status', Review::STATUS_APPROVED);
+
+        switch ($sort) {
+            case 'highest-rating':
+                $query->orderBy('rating', 'desc');
+                break;
+            case 'lowest-rating':
+                $query->orderBy('rating', 'asc');
+                break;
+            case 'most-recent':
+            default:
+                $query->orderBy('created_at', 'desc');
+        }
+
+        $perPage = 5;
+        $reviews = $query
+            ->paginate($perPage)
+            ->appends(['sort' => $sort]);
+
+        return view('site.partials.review', compact('reviews'));
+    }
+
+    public function search(Request $request) {
+        $keyWord = $request->get('keyword');
+
+        $productVariants = ProductVariant::query()
+            ->select('product_variants.*')
+            ->with(['baseProduct', 'image', 'galleries' => function ($q) {
+                $q->select(['id', 'variant_id', 'sort'])
+                    ->with(['image'])
+                    ->orderBy('sort', 'ASC');
+            },])
+            ->whereHas('baseProduct', function($q) use ($keyWord) {
+                $q->where('name', 'like', '%' . $keyWord . '%');
+            })
+            ->leftJoin('products as bp', 'product_variants.product_id', '=', 'bp.id')->get();
+
+        return view('site.search', compact('productVariants','keyWord'));
+    }
+
+    public function trackOrder(Request $request) {
+        $config = Config::query()->find(1);
+
+        return view('site.orders.track', compact('config'));
+    }
+
+    public function getTracking(Request $request) {
+        $json = new \stdClass();
+        $validate = \Illuminate\Support\Facades\Validator::make(
+            $request->all(),
+            [
+                'order_number' => 'required',
+            ]
+        );
+
+        if ($validate->fails()) {
+            $json->success = false;
+            $json->errors = $validate->errors();
+            $json->message = "Thao tác thất bại!";
+            return Response::json($json);
+        }
+
+        $order = Order::query()->where('code', $request->input('order_number'))->first();
+        $order->status = Order::STATUS[$order->status];
+
+        $json->success = true;
+        $json->data = $order;
+        return Response::json($json);
     }
 }

@@ -101,7 +101,8 @@
                     <div style="clear:both"></div></div>
             </div>
         </div>
-    </main>@endsection
+    </main>
+@endsection
 
 @section('extends')
     <div id="VideoModal" class="modal modal--solid">

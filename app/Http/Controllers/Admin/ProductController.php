@@ -116,7 +116,8 @@ class ProductController extends Controller
                     $result = $result . ' <a href="' . route($this->route.'.delete', $object->id) . '" title="xóa" class="dropdown-item confirm"><i class="fa fa-angle-right"></i>Xóa</a>';
                 }
 
-                $result = $result . ' <a href="' . route('product_variants.index').'?product-id='.$object->id . '" title="Quản lý biến thể" class="dropdown-item"><i class="fa fa-angle-right"></i>Quản lý biến thể</a>';
+                $result = $result . ' <a href="' . route('product_variants.index').'?product-id='.$object->id . '" title="Quản lý biến thể" class="dropdown-item" target="_blank"><i class="fa fa-angle-right"></i>Quản lý biến thể</a>';
+                $result = $result . ' <a href="' . route('reviews.index').'?product-id='.$object->id . '" title="Quản lý review" class="dropdown-item" target="_blank"><i class="fa fa-angle-right"></i>Quản lý review</a>';
 
                 $result = $result . '</div></div>';
                 return $result;

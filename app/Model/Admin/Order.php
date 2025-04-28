@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $table = 'orders';
-    protected $fillable = ['id', 'customer_name', 'customer_address', 'status', 'capture_id', 'tracking_sent_at', 'carrier',
+    protected $fillable = ['id', 'customer_name', 'customer_address', 'status', 'capture_id', 'tracking_sent_at', 'carrier', 'tracking_number',
         'customer_email', 'customer_phone', 'customer_required', 'payment_method', 'created_at', 'updated_at', 'code', 'discount_code', 'discount_value', 'total_before_discount', 'total_after_discount'];
 
     protected $appends = ['total_price'];
@@ -19,6 +19,14 @@ class Order extends Model
     public const DANG_VAN_CHUYEN = 30;
     public const DA_GIAO_HANG = 40;
     public const HUY = 50;
+
+    public const STATUS = [
+        self::MOI             => 'Mới',
+        self::DA_THANH_TOAN   => 'Đã thanh toán',
+        self::DANG_VAN_CHUYEN => 'Đang vận chuyển',
+        self::DA_GIAO_HANG    => 'Đã giao hàng',
+        self::HUY             => 'Hủy',
+    ];
 
     public const PAYMENT_METHODS = [1=> 'Thanh toán khi nhận hàng - COD', 0 => 'Chuyển khoản ngân hàng'];
 

@@ -13,9 +13,19 @@ Route::group(['namespace' => 'Front'], function () {
     Route::get('/contact.html','FrontController@contact')->name('front.contact');
     Route::get('/dat-hang-thanh-cong.html','CartController@checkoutSuccess')->name('cart.checkout.success');
 
+    Route::get('/search.html','FrontController@search')->name('front.search');
     Route::get('/support.html','FrontController@support')->name('front.support');
     Route::get('/about.html','FrontController@about')->name('front.about-us');
+    Route::get('/privacy-policy.html','FrontController@privacy')->name('front.privacy-policy');
+    Route::get('/shipping-policy.html','FrontController@shipping')->name('front.shipping-policy');
+    Route::get('/refund-policy.html','FrontController@refund')->name('front.refund-policy');
+    Route::get('/terms-conditions.html','FrontController@term')->name('front.terms-conditions');
+    Route::get('/track-my-order.html','FrontController@trackOrder')->name('front.track-my-order');
+    Route::post('/getTracking','FrontController@getTracking')->name('front.getTracking');
+    Route::get('/faqs.html','FrontController@faqs')->name('front.faqs');
+    Route::get('/faqs/{id}.html','FrontController@getFaq')->name('front.getFaq');
     Route::post('/send-support.html','FrontController@submitSupport')->name('front.submitSupport');
+    Route::post('/send-rating.html','FrontController@submitRating')->name('front.submitRating');
     Route::get('/contact.html','FrontController@contact')->name('front.contact');
     Route::post('/send-contact.html','FrontController@submitContact')->name('front.submitContact');
     Route::get('/collections.html','FrontController@collections')->name('front.collections');
@@ -57,6 +67,7 @@ Route::group(['namespace' => 'Front'], function () {
 
     // review
     Route::post('/review/submit','FrontController@submitReview')->name('front.submit-review');
+    Route::get('/review/getMoreReview/{productId}','FrontController@getMoreReview')->name('front.getMoreReview');
 
 });
 

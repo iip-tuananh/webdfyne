@@ -123,7 +123,7 @@ class OrderController extends Controller
             $data = $req->all();
 
             // Gọi PayPal Tracking API
-            $this->paypal->trackOrder($order->code,[
+            $result = $this->paypal->trackOrder($order->code,[
                 'capture_id'      => $data['capture_id'],
                 'tracking_number' => $data['code'],
                 'carrier'            => 'OTHER',
@@ -134,6 +134,7 @@ class OrderController extends Controller
             // Lưu lại để ghi nhận đã gửi
             $order->update([
                 'carrier'         => $data['carrier'],
+                'tracking_number'         => $data['code'],
                 'tracking_sent_at'=> now(),
                 'status'=> Order::DANG_VAN_CHUYEN,
             ]);
@@ -141,6 +142,7 @@ class OrderController extends Controller
             DB::commit();
 
             $json->success = true;
+            $json->result = $result;
             return Response::json($json);
 
         }catch (Exception $exception) {

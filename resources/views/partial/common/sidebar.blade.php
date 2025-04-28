@@ -268,7 +268,31 @@
                 </a>
             </li>
 
+            <li class="nav-item has-treeview  {{ request()->is('admin/topic') || request()->is('admin/topic/*') || request()->is('admin/topic') || request()->is('admin/topic/*') ? 'menu-open' : '' }} ">
 
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-question"></i>
+                    <p>
+                        FAQs
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('topics.index') }}" class="nav-link {{ Request::routeIs('topics.index') ? 'active' : '' }}">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>Chủ đề câu hỏi</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('questions.index') }}" class="nav-link {{ Request::routeIs('questions.index') ? 'active' : '' }}">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>Danh sách câu hỏi</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             {{--            <li class="nav-item has-treeview">--}}
 {{--                <a href="{{route('design_orders.index')}}" class="nav-link">--}}
@@ -490,6 +514,56 @@
                     </li>
                 </ul>
             </li> --}}
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon far fa-user"></i>
+                    <p>
+                        Danh mục khác
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+
+                    <li class="nav-item">
+                        <a href="{{ route('privacy.edit') }}" class="nav-link">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>Chính sách bảo mật</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('delivery.edit') }}" class="nav-link">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>Chính sách vận chuyển</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('refund.edit') }}" class="nav-link">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>Chính sách hoàn trả</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('term.edit') }}" class="nav-link">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>Điều khoản & Điều kiện</p>
+                        </a>
+                    </li>
+
+                    {{-- <li class="nav-item">
+                        <a href="{{ route('User.create') }}" class="nav-link">
+                            <i class="far fas fa-angle-right nav-icon"></i>
+                            <p>Tạo tài khoản</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('Role.index') }}" class="nav-link">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>Chức vụ</p>
+                        </a>
+                    </li> --}}
+                </ul>
+            </li>
+
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon far fa-user"></i>

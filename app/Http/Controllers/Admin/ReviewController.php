@@ -2,218 +2,135 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Traits\ResponseTrait;
+use App\Model\Admin\Category;
+use App\Model\Admin\Review;
 use Illuminate\Http\Request;
 use App\Model\Admin\Review as ThisModel;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use \stdClass;
-use Response;
+
 use Rap2hpoutre\FastExcel\FastExcel;
 use PDF;
 use App\Http\Controllers\Controller;
 use \Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use App\Helpers\FileHelper;
-use DB;
-use Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Model\Common\Customer;
 
 class ReviewController extends Controller
 {
-	protected $view = 'admin.reviews';
-	protected $route = 'Review';
+    use ResponseTrait;
+    protected $view = 'admin.reviews';
+    protected $route = 'reviews';
 
-	public function index()
-	{
-		return view($this->view.'.index');
-	}
-	// Hàm lấy data cho bảng list
-    public function searchData(Request $request)
+    public function index()
     {
-		$objects = ThisModel::searchByFilter($request);
-        return Datatables::of($objects)
-			->editColumn('name', function ($object) {
-				return $object->name;
-			})
-			->addColumn('message', function ($object) {
-				return $object->message;
-			})
-            ->addColumn('image', function ($object) {
-                return '<img style ="max-width:45px !important" src="' . ($object->image->path ?? '') . '"/>';
-			})
-			->editColumn('updated_by', function ($object) {
-				return $object->user_update->name ? $object->user_update->name : '';
-			})
-			->editColumn('updated_at', function ($object) {
-				return formatDate($object->updated_at);
-			})
-
-			->addColumn('action', function ($object) {
-				$result = '';
-				$result .= '<a href="javascript:void(0)" title="Sửa" class="btn btn-sm btn-primary edit"><i class="fas fa-pencil-alt"></i></a> ';
-				$result .= '<a href="' . route($this->route.'.delete', $object->id) . '" title="Xóa" class="btn btn-sm btn-danger confirm"><i class="fas fa-times"></i></a>';
-				return $result;
-			})
-			->addIndexColumn()
-			->rawColumns(['name','image','action'])
-			->make(true);
+        return view($this->view . '.index');
     }
 
-	public function create()
-	{
-		return view($this->view.'.create');
-	}
-
-	public function store(Request $request)
-	{
-		$validate = Validator::make(
-			$request->all(),
-			[
-				'name' => 'required|max:255',
-				'message' => 'required|max:255',
-                'position' => 'required|max:255',
-				'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-			]
-		);
-		$json = new stdClass();
-
-		if ($validate->fails()) {
-			$json->success = false;
-            $json->errors = $validate->errors();
-            $json->message = "Thao tác thất bại!";
-            return Response::json($json);
-		}
-
-		DB::beginTransaction();
-		try {
-			$object = new ThisModel();
-
-			$object->name = $request->name;
-            $object->position = $request->position;
-			$object->message = $request->message;
-			$object->save();
-
-            if ($request->image) {
-                // FileHelper::uploadFile($request->image, 'reviews', $object->id, ThisModel::class, 'image', 2);
-                FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
-            }
-
-			DB::commit();
-			$json->success = true;
-			$json->message = "Thao tác thành công!";
-			$json->data = $object;
-			return Response::json($json);
-		} catch (Exception $e) {
-            DB::rollBack();
-            throw new Exception($e->getMessage());
-        }
-	}
-
-	public function show(Request $request,$id)
-	{
-		$object = ThisModel::findOrFail($id);
-		if (!$object->canview()) return view('not_found');
-		$object = ThisModel::getDataForShow($id);
-		return view($this->view.'.show', compact('object'));
-	}
-
-	public function update(Request $request, $id)
-	{
-
-		$validate = Validator::make(
-			$request->all(),
-			[
-				'name' => 'required|max:255',
-				'message' => 'required|max:255',
-                'position' => 'required|max:255',
-				'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-			]
-		);
-		$json = new stdClass();
-
-		if ($validate->fails()) {
-			$json->success = false;
-            $json->errors = $validate->errors();
-            $json->message = "Thao tác thất bại!";
-            return Response::json($json);
-		}
-
-		DB::beginTransaction();
-		try {
-			$object = ThisModel::findOrFail($id);
-			$object->name = $request->name;
-			$object->message = $request->message;
-			$object->position = $request->position;
-			$object->save();
-
-            if ($request->image) {
-                if ($object->image) {
-                    // FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
-                    FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
-                }
-				// FileHelper::uploadFile($request->image, 'reviews', $object->id, ThisModel::class, 'image', 2);
-                FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
-			}
-
-			DB::commit();
-			$json->success = true;
-			$json->message = "Thao tác thành công!";
-			$json->data = $object;
-			return Response::json($json);
-		} catch (Exception $e) {
-            DB::rollBack();
-            throw new Exception($e->getMessage());
-        }
-	}
-
-	public function delete($id)
+    // Hàm lấy data cho bảng list
+    public function searchData(Request $request)
     {
-		$object = ThisModel::findOrFail($id);
-		if (!$object->canDelete()) {
-			$message = array(
-				"message" => "Không thể xóa!",
-				"alert-type" => "warning"
-			);
-		} else {
-            if($object->image) {
-                FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
-            }
-			$object->delete();
-			$message = array(
-				"message" => "Thao tác thành công!",
-				"alert-type" => "success"
-			);
-		}
+        $objects = ThisModel::searchByFilter($request);
 
+        return Datatables::of($objects)
+            ->editColumn('product_id', function ($object) {
+                return $object->product->name ?? '';
+            })
+            ->editColumn('created_at', function ($object) {
+                return $object->created_at->format('d/m/y H:i');
+            })
+            ->editColumn('user_name', function ($object) {
+                return $object->user_name. '<br>' . $object->user_email;
+            })
+            ->editColumn('approve_date', function ($object) {
+                return $object->approve_date ? formatDate($object->approve_date) : '' ;
+            })
+            ->editColumn('approve_id', function ($object) {
+                return $object->approve_id ? $object->approved->name : '';
+            })
+            ->editColumn('content', function ($object) {
+                return Str::limit($object->content, 100);
+            })
+            ->editColumn('rating', function ($object) {
+                $fullStar  = '<i class="fas fa-star text-warning"></i>';
+                $emptyStar = '<i class="far fa-star text-muted"></i>';
 
-        return redirect()->route($this->route.'.index')->with($message);
-	}
+                return str_repeat($fullStar, $object->rating)
+                    . str_repeat($emptyStar, 5 - $object->rating);
+            })
+            ->addColumn('action', function ($object) {
+                $result = '';
+                $result .= '<a href="javascript:void(0)" title="Chi tiết" class="btn btn-sm btn-primary edit"><i class="fas fa-eye"></i></a>';
+                $result .= '&nbsp;<a href="'.route('reviews.delete', $object->id).'" title="Xóa" class="btn btn-sm btn-danger confirm"><i class="fas fa-times"></i></a>';
+                return $result;
+            })
+            ->addIndexColumn()
+            ->rawColumns(['user_name', 'action', 'rating'])
+            ->make(true);
+    }
 
-	public function getDataForEdit($id) {
+    public function create()
+    {
+        return view($this->view . '.create');
+    }
+
+    public function getReview(Request $request, $id) {
+        $review = Review::query()->find($id);
+
+        if($review) {
+            $review->created_at = \Illuminate\Support\Carbon::parse($review->created_at)->format('d/m/Y H:i');
+            $review->approve_date = \Illuminate\Support\Carbon::parse($review->approve_date)->format('d/m/Y H:i');
+            return $this->responseSuccess("", $review);
+        } else {
+            return $this->responseErrors();
+        }
+    }
+
+    public function getDataForEdit($id)
+    {
         $json = new stdclass();
         $json->success = true;
         $json->data = ThisModel::getDataForEdit($id);
         return Response::json($json);
-	}
+    }
 
-		// Xuất Excel
-		public function exportExcel(Request $request)
-		{
-			return (new FastExcel(ThisModel::searchByFilter($request)))->download('danh_sach_lich_hen.xlsx', function ($object) {
-				return [
-					'Khách hàng' => $object->customer->name,
-					'SĐT khách' => $object->customer->mobile,
-					'Giờ hẹn' => \Carbon\Carbon::parse($object->booking_time)->format('H:m d/m/Y'),
-					'Ghi chú' => $object->note,
-					'Trạng thái' => $object->status == 0 ? 'Khóa' : 'Hoạt động',
-				];
-			});
-		}
+    public function delete($id)
+    {
+        $object = ThisModel::findOrFail($id);
 
-		// Xuất PDF
-		public function exportPDF(Request $request) {
-			$data = ThisModel::searchByFilter($request);
-			$pdf = PDF::loadView($this->view.'.pdf', compact('data'));
-			return $pdf->download('danh_sach_lich_hen.pdf');
-		}
+        $object->delete();
+
+        $message = array(
+            "message" => "Thao tác thành công!",
+            "alert-type" => "success"
+        );
+
+        return redirect()->route($this->route . '.index')->with($message);
+    }
+
+    public function update($id, Request $request)
+    {
+        $object = ThisModel::findOrFail($id);
+
+        $object->status = $request->status;
+        if($request->status == 2) {
+            $object->approve_id = auth()->id();
+            $object->approve_date = Carbon::now();
+        }
+        $object->save();
+
+        $json = new stdclass();
+        $json->success = true;
+        $json->message = 'Thao tác thành công';
+
+        return Response::json($json);
+    }
+
 }

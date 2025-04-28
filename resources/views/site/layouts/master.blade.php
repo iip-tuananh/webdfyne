@@ -123,6 +123,15 @@
                 }
             });
         }
+
+
+        $scope.search = function () {
+            if (!$scope.keyword) return;
+            var frontSearchUrl = "{{ route('front.search') }}";
+
+            var q = encodeURIComponent($scope.keyword);
+            window.location.href = frontSearchUrl + '?keyword=' + q;
+        }
     });
 
     // đồng bộ hiển thị số lượng item giỏ hàng

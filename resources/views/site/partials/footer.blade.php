@@ -55,10 +55,10 @@
                             }
 
                         }</style><h2 class="h4 footer__title small--hide">
-                        About
+                        Giới thiệu
                     </h2>
                     <button type="button" class="h4 footer__title collapsible-trigger collapsible-trigger-btn medium-up--hide" aria-controls="Footer-3a0e761c-a96c-46b0-9c19-1ffd84e58bfe">
-                        About
+                        Giới thiệu
                         <span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
   <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16"><path d="m1.57 1.59 12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"/></svg>
 </span>
@@ -68,7 +68,9 @@
                     >
                         <div class="collapsible-content__inner">
                             <div class="footer__collapsible">
-                                <ul class="no-bullets site-footer__linklist"><li><a href="{{route('front.about-us')}}">About</a></li><li><a href="/pages/careers">Careers</a></li><li><a href="/pages/sustainability">Sustainability</a></li></ul>
+                                <ul class="no-bullets site-footer__linklist">
+                                    <li><a href="{{route('front.about-us')}}">Về chúng tôi</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div></div><div  class="grid__item footer__item--1494301487049" data-type="menu"><style data-shopify>@media only screen and (min-width: 769px) and (max-width: 959px) {
@@ -86,10 +88,10 @@
                             }
 
                         }</style><h2 class="h4 footer__title small--hide">
-                        Contact
+                        Liên hệ
                     </h2>
                     <button type="button" class="h4 footer__title collapsible-trigger collapsible-trigger-btn medium-up--hide" aria-controls="Footer-1494301487049">
-                        Contact
+                        Liên hệ
                         <span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
   <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16"><path d="m1.57 1.59 12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"/></svg>
 </span>
@@ -100,12 +102,11 @@
                         <div class="collapsible-content__inner">
                             <div class="footer__collapsible">
                                 <ul class="no-bullets site-footer__linklist">
-                                    <li><a href="#">FAQ</a>
+                                    <li><a href="{{route('front.faqs')}}">FAQ</a>
                                     </li>
-                                    <li><a href="{{ route('front.contact') }}">Contact Us</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Terms & Conditions</a></li>
-                                    <li><a href="#">Terms of Service</a></li>
+                                    <li><a href="{{ route('front.contact') }}">Liên hệ</a></li>
+                                    <li><a href="{{route('front.privacy-policy')}}">Chính sách bảo mật</a></li>
+                                    <li><a href="{{route('front.terms-conditions')}}">Điều khoản và điều kiện</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -124,10 +125,10 @@
                             }
 
                         }</style><h2 class="h4 footer__title small--hide">
-                        Delivery and Returns
+                        Vận chuyển và hoàn trả
                     </h2>
                     <button type="button" class="h4 footer__title collapsible-trigger collapsible-trigger-btn medium-up--hide" aria-controls="Footer-5abb9750-778b-4ceb-8040-b31049167a89">
-                        Delivery and Returns
+                        Vận chuyển và hoàn trả
                         <span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
   <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16"><path d="m1.57 1.59 12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"/></svg>
 </span>
@@ -138,11 +139,10 @@
                         <div class="collapsible-content__inner">
                             <div class="footer__collapsible">
                                 <ul class="no-bullets site-footer__linklist">
-                                    <li><a href="#">Shipping</a>
+                                    <li><a href="{{route('front.shipping-policy')}}">Vận chuyển</a>
                                     </li>
-                                    <li><a href="#">Returns</a></li>
-                                    <li><a href="#">Track My Order</a></li>
-                                    <li><a href="#">International Customs & Imports</a></li>
+                                    <li><a href="{{route('front.refund-policy')}}">Hoàn trả</a></li>
+                                    <li><a href="{{ route('front.track-my-order') }}">Theo dõi đơn hàng</a></li>
                                 </ul>
                             </div>
                         </div>

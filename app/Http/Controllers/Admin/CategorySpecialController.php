@@ -100,6 +100,10 @@ class CategorySpecialController extends Controller
                 CategorySpecial::query()->whereNotIn('id', [$object->id])->update(['highlight' => 0]);
             }
 
+            if ($request->image) {
+                FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
+            }
+
             DB::commit();
             $json->success = true;
             $json->message = "Thao tác thành công!";
@@ -151,6 +155,14 @@ class CategorySpecialController extends Controller
                 CategorySpecial::query()->whereNotIn('id', [$object->id])->update(['highlight' => 0]);
             }
 
+            if ($request->image) {
+
+                if ($object->image) {
+                    FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
+                }
+
+                FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
+            }
 
             DB::commit();
             $json->success = true;
