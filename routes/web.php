@@ -53,6 +53,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::post('/update', 'Admin\TermController@update')->name('term.update');
     });
 
+    Route::group(['prefix' => 'products-suggest'], function () {
+        Route::get('/edit', 'Admin\ProductController@productSuggest')->name('products-suggest.edit');
+        Route::post('/submitProductSuggest', 'Admin\ProductController@submitProductSuggest')->name('products-suggest.submitProductSuggest');
+    });
+
     // Menu Catalog
     Route::group(['prefix' => 'categories'], function() {
         Route::get('/create', 'Admin\CategoryController@create')->name('Category.create');

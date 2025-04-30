@@ -170,6 +170,7 @@ return [
         App\Providers\HelperServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
         \Jenssegers\Agent\AgentServiceProvider::class,
+        Webpatser\Countries\CountriesServiceProvider::class,
 
 
     ],
@@ -225,6 +226,7 @@ return [
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'Http' => Illuminate\Support\Facades\Http::class,
+        'Countries' => Webpatser\Countries\CountriesFacade::class,
 
     ],
 

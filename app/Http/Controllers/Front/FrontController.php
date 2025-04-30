@@ -187,8 +187,6 @@ class FrontController extends Controller
         return view('site.product_category', compact('productVariants', 'category', 'colors', 'sizes'));
     }
 
-
-
     public function getProductDetail($slug)
     {
         $orderMap = [
@@ -264,7 +262,9 @@ class FrontController extends Controller
             ->where('status', Review::STATUS_APPROVED)
             ->orderBy('created_at', 'desc')->paginate(5);
 
-        return view('site.product_detail', compact('product', 'productVariant', 'distribution', 'reviews'));
+        $productsSuggest = $product->completeYourLook()->with('variantDefault.image', 'variantDefault.color')->limit(4)->get();
+
+        return view('site.product_detail', compact('product', 'productVariant', 'distribution', 'reviews', 'productsSuggest'));
     }
 
     public function searchProducts(Request $request) {

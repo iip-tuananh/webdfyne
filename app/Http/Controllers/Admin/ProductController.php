@@ -118,6 +118,7 @@ class ProductController extends Controller
 
                 $result = $result . ' <a href="' . route('product_variants.index').'?product-id='.$object->id . '" title="Quản lý biến thể" class="dropdown-item" target="_blank"><i class="fa fa-angle-right"></i>Quản lý biến thể</a>';
                 $result = $result . ' <a href="' . route('reviews.index').'?product-id='.$object->id . '" title="Quản lý review" class="dropdown-item" target="_blank"><i class="fa fa-angle-right"></i>Quản lý review</a>';
+                $result = $result . ' <a href="' . route('products-suggest.edit').'?product-id='.$object->id . '" title="Cấu hình gợi ý sản phẩm" class="dropdown-item" target="_blank"><i class="fa fa-angle-right"></i>Cấu hình gợi ý sản phẩm</a>';
 
                 $result = $result . '</div></div>';
                 return $result;
@@ -362,6 +363,104 @@ class ProductController extends Controller
         $json->data = $req;
 
         return \Response::json($json);
+    }
+
+    public function productSuggest(Request $request) {
+        $product = Product::query()->find($request->get('product-id'));
+
+        if(! $product) return view('not_found');
+        $suggestCompleteYourLookArr = $product
+            ->completeYourLook()
+            ->with('variantDefault.image')
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'id'    => $item->id,
+                    'name'  => $item->name,
+                    'image' => optional($item->variantDefault->image)->path ?: '',
+                ];
+            })
+            ->toArray();
+
+        $suggestUpSellArr = $product
+            ->upsells()
+            ->with('variantDefault.image')
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'id'    => $item->id,
+                    'name'  => $item->name,
+                    'image' => optional($item->variantDefault->image)->path ?: '',
+                ];
+            })
+            ->toArray();
+
+        $suggestCrossSellArr = $product
+            ->crossSells()
+            ->with('variantDefault.image')
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'id'    => $item->id,
+                    'name'  => $item->name,
+                    'image' => optional($item->variantDefault->image)->path ?: '',
+                ];
+            })
+            ->toArray();
+
+        $suggestions = [
+            'complete_your_look' => $suggestCompleteYourLookArr,
+            'upsell' => $suggestUpSellArr,
+            'cross_sell' => $suggestCrossSellArr,
+        ];
+
+        return view('admin.product_suggest.edit', compact('product', 'suggestions'));
+    }
+    public function submitProductSuggest(Request $request) {
+        \Illuminate\Support\Facades\DB::beginTransaction();
+        try {
+            $data = $request->validate([
+                'product_id'                     => 'required|exists:products,id',
+                'suggestions'                    => 'nullable|array',
+                'suggestions.complete_your_look' => 'array',
+                'suggestions.upsell'             => 'array',
+                'suggestions.cross_sell'         => 'array',
+                'suggestions.*.*'                => 'integer|exists:products,id',
+            ]);
+
+            $product = Product::findOrFail($data['product_id']);
+
+            $product->completeYourLook()->detach();
+            foreach ($data['suggestions']['complete_your_look'] ?? [] as $id) {
+                $product->completeYourLook()
+                    ->attach($id, ['type' => 'complete_your_look']);
+            }
+
+
+            $product->upsells()->detach();
+            foreach ($data['suggestions']['upsell'] ?? [] as $id) {
+                $product->upsells()
+                    ->attach($id, ['type' => 'upsell']);
+            }
+
+
+            $product->crossSells()->detach();
+            foreach ($data['suggestions']['cross_sell'] ?? [] as $id) {
+                $product->crossSells()
+                    ->attach($id, ['type' => 'cross_sell']);
+            }
+
+            $json = new stdclass();
+            $json->success = true;
+            $json->message = 'Thao tác thành công';
+
+            \Illuminate\Support\Facades\DB::commit();
+
+            return Response::json($json);
+        } catch (\Exception $exception) {
+            \Illuminate\Support\Facades\DB::rollBack();
+            \Illuminate\Support\Facades\Log::error($exception);
+        }
     }
 
 }

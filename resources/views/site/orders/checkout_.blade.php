@@ -11,11 +11,6 @@
     <link rel="dns-prefetch" href="https://checkout.pci.shopifyinc.com" crossorigin/>
     <link rel="preconnect" href="https://shop.app" crossorigin/>
     <link rel="dns-prefetch" href="https://shop.app" crossorigin/>
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.3.1/build/css/intlTelInput.min.css"
-    />
 </head>
 <body class="Loading">
 <script>
@@ -728,10 +723,7 @@
     ._7ozb2u6{
         margin-bottom: 10px;
     }
-
-
 </style>
-
 <div class="LoadingShell LoadingShellConfig-Header-positionStart LoadingShell-variantOneStepCheckout colorSchemeScheme1 backgroundColorBase">
     <header class="LoadingShellHeader LoadingShellHeader-containerFill LoadingShellHeader-positionStart">
         <div class="LoadingShellHeaderContent">
@@ -897,15 +889,6 @@
             </span>
                     </button>
                 </aside>
-
-                @php
-                    $allCountries = \Webpatser\Countries\Countries::all()
-                        ->pluck('name', 'iso_3166_2')
-                        ->toArray();
-
-                    $popular = ['US','GB','AU','CA','SE', 'VN'];
-                @endphp
-
                 <div class="Sxi8I">
                     <div class="_9F1Rf GI5Fn _1fragemnm _1fragemnh _1fragemtp">
                         <div class="gdtca">
@@ -924,54 +907,9 @@
                                                 <div>
                                                     <section class="_197l2ofi _197l2ofg _1fragemnm _197l2ofp _197l2ofk _1fragemni _1fragemth _1fragem1y _1fragemf5 _1fragemg5 _1fragemh8 _1fragemhy _1fragemdc _1fragemec _1fragemj1 _1fragemjr _1fragemlt">
                                                         <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem3w _1fragem5p _1fragem2s">
-
-                                                            <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem4v _1fragem6o _1fragem2s">
-                                                                <div>
-                                                                    <div>
-                                                                        <div>
-                                                                            <div class="bSo96">
-                                                                                <h2 id="contact" class="n8k95w1 n8k95w0 _1fragemlt n8k95w2 n8k95wg">Contact</h2>
-                                                                            </div>
-                                                                            <div class="_16s97g75f"></div>
-                                                                            <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem3w _1fragem5p _1fragem2s">
-                                                                                <div>
-                                                                                    <div class="_1mrl40q0 _1fragemlt _1fragem3w _1fragem5p _1fragem2s _1fragemmd _16s97g7f _16s97g7p _16s97g71j _16s97g71t"
-                                                                                         style="--_16s97g7a: 1fr; --_16s97g7k: minmax(0, 1fr); --_16s97g71e: minmax(0, 1fr); --_16s97g71o: minmax(0, 1fr);">
-                                                                                        <div class="_7ozb2u2 _7ozb2u1 _1fragem3c _1fragem55
-                                                                                        _1fragemlt _1fragem2s _10vrn9p1 _10vrn9p0 _10vrn9p4 _7ozb2u4 _7ozb2u3 _1fragemnn">
-                                                                                            <div class="cektnc0 _1fragemlt cektnc5">
-                                                                                                <label id="email-label" for="email"
-                                                                                                       class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9">
-                                                                                                    <span class="cektnca">
-                                                                                                        <span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">Email</span>
-                                                                                                    </span>
-                                                                                                </label>
-                                                                                                <div class="_7ozb2u6 _7ozb2u5 _1fragemlt _1fragem2s _1fragemnx _1fragemsy _1fragemst _1fragemt8
-                                                                                                 _1fragemtb _7ozb2uc _7ozb2ua _1fragemnn _1fragemth _7ozb2ul _7ozb2uh">
-                                                                                                    <input id="email" name="email" placeholder="Email" required="" type="email" aria-required="true"
-                                                                                                           aria-labelledby="email-label" autocomplete="shipping email" autofocus="true"
-                                                                                                           ng-model="form.customer_email"
-                                                                                                           class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi
-                                                                                                           _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2u12 _7ozb2u1h _7ozb2ur">
-                                                                                                </div>
-                                                                                                <div class="invalid-feedback d-block error_" role="alert" ng-if="errors && errors['payer.email_address']">
-                                                                                                                                <span >
-                                                                                                                                    <% errors['payer.email_address'][0] %>
-                                                                                                                                </span>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div>
-
-                                                                </div>
+                                                            <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem3c _1fragem55 _1fragem2s">
+                                                                <h2 id="deliveryAddress" class="n8k95w1 n8k95w0 _1fragemlt n8k95w2">Payment Information</h2>
                                                             </div>
-                                                            <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem3c _1fragem55 _1fragem2s"><h2 id="deliveryAddress" class="n8k95w1 n8k95w0 _1fragemlt n8k95w2 n8k95wg">Delivery</h2></div>
                                                             <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem4b _1fragem64 _1fragem2s">
                                                                 <section aria-label="Shipping address" class="_1fragem1y _1fragemlt">
                                                                     <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem3w _1fragem5p _1fragem2s">
@@ -983,237 +921,56 @@
                                                                                             <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem3w _1fragem5p _1fragem2s">
                                                                                                 <div style="--_16s97g7a:minmax(0, 1fr);--_16s97g7k:minmax(auto, max-content);--_16s97g71e:minmax(0, 1fr);--_16s97g71o:minmax(auto, max-content);" class="_1mrl40q0 _1fragemlt _1fragem3w _1fragem5p _1fragem2s _1fragemmd _1fragemm9 _16s97g7f _16s97g7p _16s97g71j _16s97g71t">
                                                                                                     <div class="RD23h _1k3449n1 _1k3449n0 _1fragemnn _10vrn9p1 _10vrn9p0 _10vrn9p4">
-
-
-
-
-
-                                                                                                        <div class="_1mrl40q0 _1fragemlt _1fragem3w _1fragem5p _1fragem2s _1fragemmd _1fragemm9 _16s97g7f _16s97g7p _16s97g71j _16s97g71t"
-                                                                                                             style="--_16s97g7a: minmax(0, 1fr); --_16s97g7k: minmax(auto, max-content); --_16s97g71e: minmax(0, 1fr); --_16s97g71o: minmax(auto, max-content);">
-                                                                                                            <div class="RD23h _1k3449n1 _1k3449n0 _1fragemnn _10vrn9p1 _10vrn9p0 _10vrn9p4">
-                                                                                                                <div>
-                                                                                                                    <div class="VZudx _1k3449n1 _1k3449n0 _1fragemnn">
-                                                                                                                        <label for="SelectCountry" class="QCxaD A9HkF">
-                                                                                                                                                  <span class="XDBWz">
-                                                                                                                                                    <span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">
-                                                                                                                                                      Country/Region
-                                                                                                                                                    </span>
-                                                                                                                                                  </span>
-                                                                                                                        </label>
-
-                                                                                                                        <select id="SelectCountry"
-                                                                                                                                name="country"
-                                                                                                                                ng-model="form.selectedCountry"
-                                                                                                                                ng-options="c as c.name for c in countriesList track by c.code"
-                                                                                                                                required
-                                                                                                                                autocomplete="shipping country"
-                                                                                                                                class="ZHJU6 _1k3449n5 _1k3449n3 _1fragemth oAlPg IWR5K tu1VS">
-                                                                                                                            <option value="" disabled selected>-- Select country --</option>
-                                                                                                                        </select>
-
-                                                                                                                        <div class="VXrUd">
-                                                                                                                            <!-- dropdown arrow SVG như cũ -->
-                                                                                                                            <span class="a8x1wu2 a8x1wu1 _1fragemor _1fragem1t _1fragemkp _1fragemkf a8x1wu9 a8x1wui a8x1wum a8x1wuk _1fragem1y a8x1wup a8x1wuo a8x1wuw">
-                                                                                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14"
-                                                                                                                                     focusable="false" aria-hidden="true"
-                                                                                                                                     class="a8x1wuy a8x1wux _1fragem1y _1fragemor _1fragemkp _1fragemkf _1fragemny">
-                                                                                                                                  <path stroke-linecap="round" stroke-linejoin="round"
-                                                                                                                                        d="M12 4.75 7.354 9.396a.5.5 0 0 1-.708 0L2 4.75"></path>
-                                                                                                                                </svg>
-                                                                                                                            </span>
+                                                                                                        <div style="--_16s97g7a:minmax(0, 1fr);--_16s97g7k:minmax(auto, max-content);--_16s97g71e:minmax(0, 1fr);--_16s97g71o:minmax(auto, max-content);" class="_1mrl40q0 _1fragemlt _1fragem3w _1fragem5p _1fragem2s _1fragemmd _1fragemm9 _16s97g7f _16s97g7p _16s97g71j _16s97g71t">
+                                                                                                            <div class="wfKnD">
+                                                                                                                <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem3m _1fragem5f _1fragem2s">
+                                                                                                                    <div class="_7ozb2u2 _7ozb2u1 _1fragem3c _1fragem55 _1fragemlt _1fragem2s _10vrn9p1 _10vrn9p0 _10vrn9p4 _7ozb2u4 _7ozb2u3 _1fragemnn">
+                                                                                                                        <div class="cektnc0 _1fragemlt cektnc5">
+                                                                                                                            <label id="TextField841-label" for="TextField841" class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9"><span class="cektnca"><span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">Full Name</span></span></label>
+                                                                                                                            <div class="_7ozb2u6 _7ozb2u5 _1fragemlt _1fragem2s _1fragemnx _1fragemsy _1fragemst _1fragemt8 _1fragemtb _7ozb2uc _7ozb2ua _1fragemnn _1fragemth _7ozb2ul _7ozb2uh"><input id="TextField841" name="customer_name"  ng-model="form.customer_name" placeholder="Họ tên" required type="text" aria-required="true" aria-labelledby="TextField841-label" value autocomplete="shipping address-line1" class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2u11 _7ozb2u1h _7ozb2ur"/></div>
+                                                                                                                            <span class="invalid-feedback d-block" role="alert">
+                                                                        <strong><% errors.customer_name[0] %></strong>
+                                                                  </span>
                                                                                                                         </div>
-
-                                                                                                                    </div>
-
-                                                                                                                    <div class="invalid-feedback d-block error_" role="alert" ng-if="errors && errors['payer.address.country_code']">
-                                                                                                                                <span >
-                                                                                                                                    <% errors['payer.address.country_code'][0] %>
-                                                                                                                                </span>
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
-
-
-
-
-                                                                                                        <div
-                                                                                                            class="_1mrl40q0 _1fragemlt _1fragem3w _1fragem5p _1fragem2s _1fragemmd _1fragemm9 _16s97g7f _16s97g7p _16s97g71j _16s97g71t"
-                                                                                                            style="--_16s97g7a: minmax(0, 1fr); --_16s97g7k: minmax(auto, max-content); --_16s97g71e: minmax(0, 1fr); --_16s97g71o: minmax(auto, max-content);"
-                                                                                                        >
-                                                                                                            <div class="_7ozb2u2 _7ozb2u1 _1fragem3c _1fragem55 _1fragemlt _1fragem2s _10vrn9p1 _10vrn9p0 _10vrn9p4 _7ozb2u4 _7ozb2u3 _1fragemnn">
-                                                                                                                <div class="cektnc0 _1fragemlt cektnc5">
-                                                                                                                    <label id="TextField0-label" for="TextField0" class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9">
-                                                                                                                        <span class="cektnca"><span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">First name (optional)</span></span>
-                                                                                                                    </label>
-                                                                                                                    <div class="_7ozb2u6 _7ozb2u5 _1fragemlt _1fragem2s _1fragemnx _1fragemsy _1fragemst _1fragemt8 _1fragemtb _7ozb2uc _7ozb2ua _1fragemnn _1fragemth _7ozb2ul _7ozb2uh">
-                                                                                                                        <input
-                                                                                                                            id="TextField0"
-                                                                                                                            name="firstName"
-                                                                                                                            placeholder="First name (optional)"
-                                                                                                                            type="text"
-                                                                                                                            ng-model="form.first_name"
-                                                                                                                            aria-required="false"
-                                                                                                                            aria-labelledby="TextField0-label"
-                                                                                                                            autocomplete="shipping given-name"
-                                                                                                                            class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2u11 _7ozb2u1h _7ozb2ur"
-                                                                                                                        />
-                                                                                                                    </div>
-                                                                                                                    <div class="invalid-feedback d-block error_" role="alert" ng-if="errors && errors['payer.name.given_name']">
-                                                                                                                                <span >
-                                                                                                                                    <% errors['payer.name.given_name'][0] %>
-                                                                                                                                </span>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <div class="_7ozb2u2 _7ozb2u1 _1fragem3c _1fragem55 _1fragemlt _1fragem2s _10vrn9p1 _10vrn9p0 _10vrn9p4 _7ozb2u4 _7ozb2u3 _1fragemnn">
-                                                                                                                <div class="cektnc0 _1fragemlt cektnc5">
-                                                                                                                    <label id="TextField1-label" for="TextField1" class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9">
-                                                                                                                        <span class="cektnca"><span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">Last name</span></span>
-                                                                                                                    </label>
-                                                                                                                    <div class="_7ozb2u6 _7ozb2u5 _1fragemlt _1fragem2s _1fragemnx _1fragemsy _1fragemst _1fragemt8 _1fragemtb _7ozb2uc _7ozb2ua _1fragemnn _1fragemth _7ozb2ul _7ozb2uh">
-                                                                                                                        <input
-                                                                                                                            id="TextField1"
-                                                                                                                            name="lastName"
-                                                                                                                            placeholder="Last name"
-                                                                                                                            required=""
-                                                                                                                            type="text"
-                                                                                                                            ng-model="form.last_name"
-                                                                                                                            aria-required="true"
-                                                                                                                            aria-labelledby="TextField1-label"
-                                                                                                                            autocomplete="shipping family-name"
-                                                                                                                            class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2u11 _7ozb2u1h _7ozb2ur"
-                                                                                                                        />
-                                                                                                                    </div>
-                                                                                                                    <div class="invalid-feedback d-block error_" role="alert" ng-if="errors && errors['payer.name.surname']">
-                                                                                                                                <span >
-                                                                                                                                    <% errors['payer.name.surname'][0] %>
-                                                                                                                                </span>
-                                                                                                                    </div>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-
                                                                                                         <div style="--_16s97g7a:minmax(0, 1fr);--_16s97g7k:minmax(auto, max-content);--_16s97g71e:minmax(0, 1fr);--_16s97g71o:minmax(auto, max-content);" class="_1mrl40q0 _1fragemlt _1fragem3w _1fragem5p _1fragem2s _1fragemmd _1fragemm9 _16s97g7f _16s97g7p _16s97g71j _16s97g71t">
                                                                                                             <div class="_7ozb2u2 _7ozb2u1 _1fragem3c _1fragem55 _1fragemlt _1fragem2s _10vrn9p1 _10vrn9p0 _10vrn9p4 _7ozb2u4 _7ozb2u3 _1fragemnn">
                                                                                                                 <div class="cektnc0 _1fragemlt cektnc5">
                                                                                                                     <label id="TextField842-label" for="TextField842" class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9"><span class="cektnca"><span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">Shipping Address</span></span></label>
                                                                                                                     <div class="_7ozb2u6 _7ozb2u5 _1fragemlt _1fragem2s _1fragemnx _1fragemsy _1fragemst _1fragemt8 _1fragemtb _7ozb2uc _7ozb2ua _1fragemnn _1fragemth _7ozb2ul _7ozb2uh">
-                                                                                                                        <input id="TextField842" name="address2" ng-model="form.customer_address" placeholder="Shipping Address" type="text" aria-required="false" aria-labelledby="TextField842-label" value autocomplete="shipping address-line2" class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2u11 _7ozb2u1h _7ozb2ur"/></div>
+                                                                                                                        <input id="TextField842" name="address2" ng-model="form.customer_address" placeholder="Địa chỉ giao hàng" type="text" aria-required="false" aria-labelledby="TextField842-label" value autocomplete="shipping address-line2" class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2u11 _7ozb2u1h _7ozb2ur"/></div>
                                                                                                                     <span class="invalid-feedback d-block" role="alert">
-                                                                                                                         <strong><% errors.customer_address[0] %></strong>
-                                                                                                                    </span>
-                                                                                                                </div>
-                                                                                                                <div class="invalid-feedback d-block error_" role="alert" ng-if="errors && errors['payer.address.address_line_1']">
-                                                                                                                                <span >
-                                                                                                                                    <% errors['payer.address.address_line_1'][0] %>
-                                                                                                                                </span>
+                                                                        <strong><% errors.customer_address[0] %></strong>
+                                                                  </span>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
-
-
-                                                                                                        <div
-                                                                                                            class="_1mrl40q0 _1fragemlt _1fragem3w _1fragem5p _1fragem2s _1fragemmd _1fragemm9 _16s97g7f _16s97g7p _16s97g71j _16s97g71t"
-                                                                                                            style="--_16s97g7a: minmax(0, 1fr); --_16s97g7k: minmax(auto, max-content); --_16s97g71e: minmax(0, 1fr); --_16s97g71o: minmax(auto, max-content);"
-                                                                                                        >
+                                                                                                        <div style="--_16s97g7a:minmax(0, 1fr);--_16s97g7k:minmax(auto, max-content);--_16s97g71e:minmax(0, 1fr);--_16s97g71o:minmax(auto, max-content);" class="_1mrl40q0 _1fragemlt _1fragem3w _1fragem5p _1fragem2s _1fragemmd _1fragemm9 _16s97g7f _16s97g7p _16s97g71j _16s97g71t">
                                                                                                             <div class="_7ozb2u2 _7ozb2u1 _1fragem3c _1fragem55 _1fragemlt _1fragem2s _10vrn9p1 _10vrn9p0 _10vrn9p4 _7ozb2u4 _7ozb2u3 _1fragemnn">
                                                                                                                 <div class="cektnc0 _1fragemlt cektnc5">
-                                                                                                                    <label id="TextField6-label" for="TextField6" class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9">
-                                                                                                                        <span class="cektnca"><span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">City</span></span>
-                                                                                                                    </label>
+                                                                                                                    <label id="TextField842-label" for="TextField842" class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9"><span class="cektnca"><span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">Phone Number</span></span></label>
+                                                                                                                    <div class="_7ozb2u6 _7ozb2u5 _1fragemlt _1fragem2s _1fragemnx _1fragemsy _1fragemst _1fragemt8 _1fragemtb _7ozb2uc _7ozb2ua _1fragemnn _1fragemth _7ozb2ul _7ozb2uh"><input id="TextField842" name="phone_number" ng-model="form.customer_phone" placeholder="Số điện thoại" type="text" aria-required="false" aria-labelledby="TextField842-label" value autocomplete="shipping address-line2" class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2u11 _7ozb2u1h _7ozb2ur"/></div>
+                                                                                                                    <span class="invalid-feedback d-block" role="alert">
+                                                                        <strong><% errors.customer_phone[0] %></strong>
+                                                                  </span>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div style="--_16s97g7a:minmax(0, 1fr);--_16s97g7k:minmax(auto, max-content);--_16s97g71e:minmax(0, 1fr);--_16s97g71o:minmax(auto, max-content);" class="_1mrl40q0 _1fragemlt _1fragem3w _1fragem5p _1fragem2s _1fragemmd _1fragemm9 _16s97g7f _16s97g7p _16s97g71j _16s97g71t">
+                                                                                                            <div class="_7ozb2u2 _7ozb2u1 _1fragem3c _1fragem55 _1fragemlt _1fragem2s _10vrn9p1 _10vrn9p0 _10vrn9p4 _7ozb2u4 _7ozb2u3 _1fragemnn">
+                                                                                                                <div class="cektnc0 _1fragemlt cektnc5">
+                                                                                                                    <label id="TextField842-label" for="TextField842" class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9"><span class="cektnca"><span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">Email</span></span></label>
                                                                                                                     <div class="_7ozb2u6 _7ozb2u5 _1fragemlt _1fragem2s _1fragemnx _1fragemsy _1fragemst _1fragemt8 _1fragemtb _7ozb2uc _7ozb2ua _1fragemnn _1fragemth _7ozb2ul _7ozb2uh">
-                                                                                                                        <input
-                                                                                                                            id="TextField6"
-                                                                                                                            name="city"
-                                                                                                                            placeholder="City"
-                                                                                                                            required=""
-                                                                                                                            type="text"
-                                                                                                                            aria-required="true"
-                                                                                                                            ng-model="form.customer_city"
-                                                                                                                            aria-labelledby="TextField6-label"
-                                                                                                                            autocomplete="shipping address-level2"
-                                                                                                                            class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2u11 _7ozb2u1h _7ozb2ur"
-                                                                                                                        />
-                                                                                                                    </div>
-                                                                                                                    <span class="invalid-feedback d-block" role="alert">
-                                                                                                                        <strong><% errors.customer_city[0] %></strong>
-                                                                                                                     </span>
-                                                                                                                </div>
-                                                                                                                <div class="invalid-feedback d-block error_" role="alert" ng-if="errors && errors['payer.address.admin_area_2']">
-                                                                                                                                <span >
-                                                                                                                                    <% errors['payer.address.admin_area_2'][0] %>
-                                                                                                                                </span>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                            <div class="hDo51">
-                                                                                                                <div class="_7ozb2u2 _7ozb2u1 _1fragem3c _1fragem55 _1fragemlt _1fragem2s _10vrn9p1 _10vrn9p0 _10vrn9p4 _7ozb2u4 _7ozb2u3 _1fragemnn">
-                                                                                                                    <div class="cektnc0 _1fragemlt cektnc5">
-                                                                                                                        <label id="TextField7-label" for="TextField7" class="cektnc3 cektnc1 _1fragemlj _1fragemsj _1fragemtc _1fragemsy _1fragemst _1fragemt8 _1fragemt9">
-                                                                                                                            <span class="cektnca"><span class="rermvf1 rermvf0 _1fragemk0 _1fragemka _1fragem1y">Postal code (optional)</span></span>
-                                                                                                                        </label>
-                                                                                                                        <div class="_7ozb2u6 _7ozb2u5 _1fragemlt _1fragem2s _1fragemnx _1fragemsy _1fragemst _1fragemt8 _1fragemtb _7ozb2uc _7ozb2ua _1fragemnn _1fragemth _7ozb2ul _7ozb2uh">
-                                                                                                                            <input
-                                                                                                                                id="TextField7"
-                                                                                                                                name="postalCode"
-                                                                                                                                placeholder="Postal code (optional)"
-                                                                                                                                required=""
-                                                                                                                                type="text"
-                                                                                                                                inputmode="text"
-                                                                                                                                aria-required="true"
-                                                                                                                                ng-model="form.postal_code"
-                                                                                                                                aria-labelledby="TextField7-label"
-                                                                                                                                autocomplete="shipping postal-code"
-                                                                                                                                autocapitalize="characters"
-                                                                                                                                class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2u11 _7ozb2u1h _7ozb2ur"
-                                                                                                                            />
-                                                                                                                        </div>
-                                                                                                                    </div>
+                                                                                                                        <input id="TextField842" name="email"
+                                                                                                                               ng-model="form.customer_email"
+                                                                                                                               placeholder="Email" type="text"
+                                                                                                                               aria-required="false" aria-labelledby="TextField842-label" value autocomplete="shipping address-line2" class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2u11 _7ozb2u1h _7ozb2ur"/></div>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
-
-
-                                                                                                        <div style="--_16s97g7a:minmax(0, 1fr);--_16s97g7k:minmax(auto, max-content);--_16s97g71e:minmax(0, 1fr);--_16s97g71o:minmax(auto, max-content);"
-                                                                                                            class="_1mrl40q0 _1fragemlt _1fragem3w _1fragem5p _1fragem2s _1fragemmd _1fragemm9 _16s97g7f _16s97g7p _16s97g71j _16s97g71t"
-                                                                                                        >
-                                                                                                            <div class="_7ozb2u2 _7ozb2u1 _1fragem3c _1fragem55 _1fragemlt _1fragem2s _10vrn9p1 _10vrn9p0 _10vrn9p4 _7ozb2u4 _7ozb2u3 _1fragemnn">
-                                                                                                                <div class="cektnc0 _1fragemlt cektnc5">
-
-                                                                                                                    <div
-                                                                                                                        id="TextFieldPhone-label"
-                                                                                                                        for="TextFieldPhone"
-                                                                                                                        class="_7ozb2u1f _7ozb2u1e _1fragemlt _1fragemtc _1fragemmu _1fragemnu _7ozb2u1g">
-                                                                                                                    </div>
-
-
-                                                                                                                    <div
-                                                                                                                        class="_7ozb2u6 _7ozb2u5 _1fragemlt _1fragem2s _1fragemnx _1fragemsy _1fragemst _1fragemt8 _1fragemtb _7ozb2uc _7ozb2ua _1fragemnn _1fragemth _7ozb2ul _7ozb2uh"
-                                                                                                                    >
-                                                                                                                        <!-- plugin sẽ chèn <div class="iti iti--allow-dropdown"> quanh input này -->
-                                                                                                                        <input
-                                                                                                                            id="TextFieldPhone"
-                                                                                                                            name="phone_number"
-                                                                                                                            ng-model="form.customer_phone"
-                                                                                                                            placeholder="Phone"
-                                                                                                                            type="tel"
-                                                                                                                            aria-required="true"
-                                                                                                                            aria-labelledby="TextFieldPhone-label"
-                                                                                                                            autocomplete="tel"
-                                                                                                                            class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2uv _7ozb2uu _1fragempd _1fragempp _7ozb2u10 _7ozb2u1h _7ozb2ur"
-                                                                                                                        />
-                                                                                                                    </div>
-
-                                                                                                                    <div class="invalid-feedback d-block error_" role="alert" ng-if="errors && errors['payer.phone.phone_number.national_number']">
-                                                                                                                                <span >
-                                                                                                                                    <% errors['payer.phone.phone_number.national_number'][0] %>
-                                                                                                                                </span>
-                                                                                                                    </div>
-
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-
 
                                                                                                         <div style="--_16s97g7a:minmax(0, 1fr);--_16s97g7k:minmax(auto, max-content);--_16s97g71e:minmax(0, 1fr);--_16s97g71o:minmax(auto, max-content);" class="_1mrl40q0 _1fragemlt _1fragem3w _1fragem5p _1fragem2s _1fragemmd _1fragemm9 _16s97g7f _16s97g7p _16s97g71j _16s97g71t">
                                                                                                         </div>
@@ -1229,7 +986,45 @@
                                                                                         <div class="_1fragem1y _1fragemlt"><div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem4g _1fragem69 _1fragem2s"><div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem3w _1fragem5p _1fragem2s"></div><div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem46 _1fragem5z _1fragem2s">
                                                                                                     <div><div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem3w _1fragem5p _1fragem2s">
                                                                                                             <div>
+                                                                                                                <button  id="checkout-pay-button" type="button" ng-click="submitOrder()" class="_1m2hr9ge _1m2hr9gd _1fragemt9 _1fragemlt _1fragemnw _1fragem2i _1fragemsn _1fragemt2 _1fragemt4 _1fragemst _1m2hr9g18 _1m2hr9g15 _1fragemss _1fragemsh _1m2hr9g1t _1m2hr9g1r _1m2hr9g11  _1m2hr9g1q _1m2hr9g14 _1m2hr9g13 _1fragems1 _1m2hr9g2c _1m2hr9g2b  _1fragemso"><span class="_1m2hr9gr _1m2hr9gq _1fragemsj _1fragemsy _1fragemss _1fragemt5 _1m2hr9gn _1m2hr9gl _1fragem28 _1fragem6t _1fragemsl">
+                                                                                                                        <span class="_19gi7yt0 _19gi7yti _19gi7yth _1fragemo9 _19gi7yt19 _19gi7yt1t">Submit Order</span>
+                                                                                                                    </span>
+                                                                                                                </button>
 
+                                                                                                                <style>
+                                                                                                                    .separator {
+                                                                                                                        display: inline-block;
+                                                                                                                        position: relative;
+                                                                                                                        padding: 0 1rem;
+                                                                                                                        color: #6c757d;
+                                                                                                                        font-weight: 500;
+                                                                                                                        font-size: 1.2rem;
+                                                                                                                    }
+
+                                                                                                                    .separator::before,
+                                                                                                                    .separator::after {
+                                                                                                                        content: "";
+                                                                                                                        position: absolute;
+                                                                                                                        top: 50%;
+                                                                                                                        width: 30px;
+                                                                                                                        height: 1px;
+                                                                                                                        background: #dee2e6;
+                                                                                                                    }
+
+                                                                                                                    .separator::before {
+                                                                                                                        left: 0;
+                                                                                                                        transform: translateX(-100%);
+                                                                                                                    }
+
+                                                                                                                    .separator::after {
+                                                                                                                        right: 0;
+                                                                                                                        transform: translateX(100%);
+                                                                                                                    }
+                                                                                                                </style>
+
+                                                                                                                <div style="text-align: center">
+                                                                                                                    <span class="mx-3 separator">Or pay via</span>
+                                                                                                                </div>
 
 
                                                                                                                 <div id="paypal-button-container" style="margin-top: 1rem;"></div>
@@ -1320,7 +1115,7 @@
 
                                                                                     <div class="_1ip0g651 _1ip0g650 _1fragemlt _1fragem4v _1fragem6o _1fragem2s">
                                                                                         <p class="_1tx8jg70 _1fragemlt _1tx8jg7a _1tx8jg79 _1fragemo7 _1tx8jg71b _1tx8jg71q">
-                                                                                           {{ $item->attributes->size }} - {{ $item->attributes->color }}
+                                                                                            {{ $item->attributes->size }} - {{ $item->attributes->color }}
                                                                                         </p>
                                                                                     </div>
                                                                                 </div>
@@ -1396,7 +1191,7 @@
     <meta name="serialized-initial-url" content="&quot;https://mymonsteraudio.com/checkouts/cn/Z2NwLWFzaWEtc291dGhlYXN0MTowMUpRS0owNkQ4QzZOWkFWUjNKSDRXSkM2UA?company_location_id=&amp;locale=en-VN&quot;"/>
 
 
-{{--    // paypal--}}
+    {{--    // paypal--}}
     <script>
         window.PAYPAL_CLIENT_ID = "{{ config('paypal')[config('paypal.mode')]['client_id'] }}";
     </script>
@@ -1453,20 +1248,8 @@
     })();
 </script>
 @include('site.partials.angular_mix')
-
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.3.1/build/js/intlTelInput.min.js">
-</script>
-<!-- Utils (bắt buộc cho format & validation) -->
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.3.1/build/js/utils.min.js">
-</script>
 <script>
-    window.countriesList = [
-            @foreach($allCountries as $code => $name)
-        { code: '{{ $code }}', name: '{{ addslashes($name) }}' }@if(! $loop->last),@endif
-        @endforeach
-    ];
+
 </script>
 <script>
     Object.defineProperty(window, Symbol.for('Shopify.checkout.htmlAvailable'), {
@@ -1494,13 +1277,9 @@
                     $http.post('/api/paypal/capture-order', { orderID })
             };
         }]);
-
-
     app.controller('checkout', [
         '$rootScope', '$scope', '$interval', 'cartItemSync', 'paypalService',
         function ($rootScope, $scope, $interval, cartItemSync, paypalService) {
-
-            $scope.countriesList = window.countriesList;
             $scope.items = @json($cartCollection);
 
             // click button đặt hàng
@@ -1568,68 +1347,7 @@
             // Đồng bộ định kỳ mỗi 5s (nếu có thay đổi từ các controller khác)
             $interval(syncCart, 5000);
 
-            // angular.element(document).ready(function() {
-            //     paypal.Buttons({
-            //         createOrder: function(data, actions) {
-            //             const itemsArray = Object.values($scope.cartItems).map(item => ({
-            //                 name: item.name,
-            //                 sku: item.attributes.variant_id,
-            //                 description: `color: ${item.attributes.color}, size: ${item.attributes.size}`,
-            //                 unit_amount: {
-            //                     currency_code: 'VND',
-            //                     value: item.price.toString()
-            //                 },
-            //                 quantity: item.quantity.toString()
-            //             }));
-            //
-            //             const payload = {
-            //                 amount: $scope.amount.toString(),
-            //                 currency: 'VND',
-            //                 description: 'Thanh toán giỏ hàng',
-            //                 items: itemsArray
-            //             };
-            //             console.log('Payload tạo order:', payload);
-            //
-            //             // 2) gọi server
-            //             return paypalService.createOrder(payload)
-            //                 .then(res => {
-            //                     console.log('Server trả về orderID:', res.data.orderID);
-            //                     return res.data.orderID;
-            //                 });
-            //         },
-            //
-            //
-            //         // V2: capture ngay trên server
-            //         onApprove: function(data) {
-            //             return paypalService.captureOrder(data.orderID)
-            //                 .then(res => {
-            //                     console.log('Thanh toán thành công:', res.data);
-            //                     alert('Thanh toán thành công!');
-            //
-            //                     window.location.href = "/dat-hang-thanh-cong.html/";
-            //                 });
-            //         },
-            //         onError: function(err) {
-            //             console.error('Lỗi PayPal:', err);
-            //             alert('Thanh toán thất bại.');
-            //         }
-            //     }).render('#paypal-button-container');
-            // });
-
-            $scope.errors = {};
-
             angular.element(document).ready(function() {
-                $scope.form = {
-                    customer_email: '',
-                    selectedCountry: {},
-                    first_name: '',
-                    last_name: '',
-                    customer_address: '',
-                    customer_city: '',
-                    postal_code: '',
-                    customer_phone: ''
-                };
-
                 paypal.Buttons({
                     createOrder: function(data, actions) {
                         const itemsArray = Object.values($scope.cartItems).map(item => ({
@@ -1637,96 +1355,43 @@
                             sku: item.attributes.variant_id,
                             description: `color: ${item.attributes.color}, size: ${item.attributes.size}`,
                             unit_amount: {
-                                currency_code: 'USD',           // => USD
-                                value: item.price.toFixed(2)    // format 2 decimal places
+                                currency_code: 'VND',
+                                value: item.price.toString()
                             },
                             quantity: item.quantity.toString()
                         }));
 
-                        const f = $scope.form;
-
                         const payload = {
-                            intent: 'CAPTURE',
-                            payer: {
-                                email_address: f.customer_email,
-                                name: {
-                                    given_name: f.first_name,
-                                    surname: f.last_name
-                                },
-                                address: {
-                                    address_line_1: f.customer_address,
-                                    admin_area_2:   f.customer_city,
-                                    postal_code:    f.postal_code,
-                                    country_code:   f.selectedCountry.code
-                                },
-                                phone: {
-                                    phone_number: {
-                                        national_number: f.customer_phone
-                                    }
-                                }
-                            },
-                            purchase_units: [{
-                                amount: {
-                                    currency_code: 'USD',           // => USD
-                                    value:           $scope.amount.toFixed(2),
-                                    breakdown: {
-                                        item_total: {
-                                            currency_code: 'USD',       // => USD
-                                            value:          $scope.amount.toFixed(2)
-                                        }
-                                    }
-                                },
-                                items: itemsArray,
-                                shipping: {
-                                    name: {
-                                        full_name: `${f.first_name} ${f.last_name}`
-                                    },
-                                    address: {
-                                        address_line_1: f.customer_address,
-                                        admin_area_2:   f.customer_city,
-                                        postal_code:    f.postal_code,
-                                        country_code:   f.selectedCountry.code,
-                                        country_name:   f.selectedCountry.name
-                                    }
-                                }
-                            }],
-                            metadata: {
-                                selectedCountry: f.selectedCountry
-                            }
+                            amount: $scope.amount.toString(),
+                            currency: 'VND',
+                            description: 'Thanh toán giỏ hàng',
+                            items: itemsArray
                         };
+                        console.log('Payload tạo order:', payload);
 
-                        // return paypalService.createOrder(payload)
-                        //     .then(res => res.data.orderID);
-
+                        // 2) gọi server
                         return paypalService.createOrder(payload)
                             .then(res => {
-                                if (!res.data.success) {
-                                    $scope.errors = res.data.errors;
-                                    console.log($scope.errors)
-                                    return Promise.reject(res.data.message);
-                                }
+                                console.log('Server trả về orderID:', res.data.orderID);
                                 return res.data.orderID;
-                            })
-                            .catch(err => {
-                                console.error('Tạo order lỗi:', err);
-                                return Promise.reject(err);
                             });
                     },
 
+
+                    // V2: capture ngay trên server
                     onApprove: function(data) {
                         return paypalService.captureOrder(data.orderID)
                             .then(res => {
-                                console.log('Response data:', res);
+                                console.log('Thanh toán thành công:', res.data);
                                 alert('Thanh toán thành công!');
-                                window.location.href = "/order-completed.html/";
+
+                                window.location.href = "/dat-hang-thanh-cong.html/";
                             });
                     },
-
                     onError: function(err) {
                         console.error('Lỗi PayPal:', err);
                         alert('Thanh toán thất bại.');
                     }
-
                 }).render('#paypal-button-container');
             });
 
@@ -1736,33 +1401,6 @@
 
 
 
-</script>
-
-
-<script>
-    // Đợi DOM load xong
-
-
-    document.addEventListener('DOMContentLoaded', function(){
-        var input = document.querySelector('#TextFieldPhone');
-        window.intlTelInput(input, {
-            initialCountry: "us",
-            separateDialCode: true,
-            dropdownContainer: document.body,
-            utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.3.1/build/js/utils.min.js'
-        });
-    });
-
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const input = document.querySelector('#phone');
-        window.intlTelInput(input, {
-            initialCountry: 'vn',
-            separateDialCode: true,
-            dropdownContainer: document.body,
-            utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.3.1/build/js/utils.min.js'
-        });
-    });
 </script>
 </body>
 </html>

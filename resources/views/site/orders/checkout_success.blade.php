@@ -2084,7 +2084,7 @@
                 </svg>
             </div>
             <div class="order-summary-toggle-total-recap">
-                <span class="total-recap-final-price">{{formatCurrency($order->total_after_discount)}}₫</span>
+                <span class="total-recap-final-price">{{formatCurrency($order->total_after_discount)}}$</span>
             </div>
             </div>
         </div>
@@ -2141,7 +2141,7 @@
                                     </td>
                                     <td class="product-quantity visually-hidden">{{$detail->qty}}</td>
                                     <td class="product-price">
-                                    <span class="order-summary-emphasis">{{formatCurrency($detail->price)}}₫</span>
+                                    <span class="order-summary-emphasis">{{formatCurrency($detail->price)}}$</span>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -2158,12 +2158,12 @@
                             </thead>
                             <tbody>
                                 <tr class="total-line total-line-subtotal">
-                                    <td class="total-line-name">Tạm tính</td>
+                                    <td class="total-line-name">Subtotal</td>
                                     <td class="total-line-price">
                                     <span class="order-summary-emphasis">
                                    {{number_format($order->details->sum(function ($item) {
                                                                                     return $item->price * $item->qty;
-                                                                            }))}} đ
+                                                                            }))}} $
                                     </span>
                                     </td>
                                 </tr>
@@ -2172,14 +2172,14 @@
                             <tfoot class="total-line-table-footer">
                                 <tr class="total-line">
                                     <td class="total-line-name payment-due-label">
-                                    <span class="payment-due-label-total">Tổng cộng</span>
+                                    <span class="payment-due-label-total">Total</span>
                                     </td>
                                     <td class="total-line-name payment-due">
-                                    <span class="payment-due-currency">VND</span>
+                                    <span class="payment-due-currency">USD</span>
                                     <span class="payment-due-price">
                                  {{number_format($order->details->sum(function ($item) {
                                                                                     return $item->price * $item->qty;
-                                                                            }))}} đ
+                                                                            }))}} $
                                     </span>
                                     <span class="checkout_version" display:none data_checkout_version="0">
                                     </span>
@@ -2255,7 +2255,7 @@
                                     </p>
                                     <h3>Payment method</h3>
                                     <p>
-                                        Cash on delivery - COD
+                                        Pay with PayPal
                                     </p>
                                     </div>
                                 </div>

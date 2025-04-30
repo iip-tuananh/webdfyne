@@ -29,6 +29,7 @@
         "spatie/laravel-permission": "^3.0",
         "tymon/jwt-auth": "^1.0",
         "vanthao03596/laravel-hanhchinhvn": "^1.1",
+        "webpatser/laravel-countries": "^1.5",
         "yajra/laravel-datatables-oracle": "^9.9"
     },
     "require-dev": {

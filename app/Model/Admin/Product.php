@@ -78,6 +78,10 @@ class Product extends BaseModel
         return $this->hasMany(ProductVariant::class, 'product_id');
     }
 
+    public function variantDefault() {
+        return $this->hasOne(ProductVariant::class, 'product_id')->where('is_default', 1);
+    }
+
     public function sizes()
     {
         return $this->belongsToMany(Size::class, 'product_sizes', 'product_id', 'size_id');
@@ -96,6 +100,51 @@ class Product extends BaseModel
     {
         return $this->morphOne(File::class, 'model')->where('custom_field', 'image');
     }
+
+    public function suggestions()
+    {
+        return $this->belongsToMany(Product::class, 'product_suggestions', 'product_id', 'suggested_product_id')->withPivot('type');
+    }
+
+    public function completeYourLook()
+    {
+        return $this->belongsToMany(
+            Product::class,
+            'product_suggestions',
+            'product_id',
+            'suggested_product_id'
+        )
+            ->withPivot('type')
+            ->wherePivot('type','complete_your_look')
+            ->withTimestamps();
+    }
+
+    public function upsells()
+    {
+        return $this->belongsToMany(
+            Product::class,
+            'product_suggestions',
+            'product_id',
+            'suggested_product_id'
+        )
+            ->withPivot('type')
+            ->wherePivot('type','upsell')
+            ->withTimestamps();
+    }
+
+    public function crossSells()
+    {
+        return $this->belongsToMany(
+            Product::class,
+            'product_suggestions',
+            'product_id',
+            'suggested_product_id'
+        )
+            ->withPivot('type')
+            ->wherePivot('type','cross_sell')
+            ->withTimestamps();
+    }
+
 
     public function image_back()
     {
@@ -167,8 +216,7 @@ class Product extends BaseModel
     {
         $result = self::with([
             'category',
-            'image',
-            'image_back',
+            'variantDefault.image',
             'galleries' => function ($q) {
                 $q->select(['id', 'product_id', 'sort'])
                     ->with(['image'])

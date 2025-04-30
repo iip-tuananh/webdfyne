@@ -602,6 +602,38 @@
                                             </div>
                                         </div>
 
+
+
+                                        @if($productsSuggest->count())
+                                            <div class="product-block">
+                                                <div class="related-products-wrapper">
+
+
+                                                    <h4>Complete your look</h4>
+                                                    <div class="related-product-list">
+                                                        @foreach($productsSuggest as $pSuggest)
+                                                            <a href="{{ route('front.show-product-detail', $pSuggest->variantDefault->slug) }}">
+                                                                <div class="related-product">
+                                                                    <div class="related-product-image">
+                                                                        <img src="{{ $pSuggest->variantDefault ? $pSuggest->variantDefault->image->path : '' }}">
+                                                                    </div>
+                                                                    <div class="related-product-name">{{$pSuggest->name}}</div>
+                                                                    <div class="related-product-colour">
+                                                                        <h4 style="letter-spacing:0.3em;font-size:0.8em;margin-top:3px;opacity:0.65;margin-bottom:-3px;">
+                                                                            {{ $pSuggest->variantDefault ? $pSuggest->variantDefault->color->name : '' }}
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        @endforeach
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        @endif
+
                                     </div>
 
                                 </div>

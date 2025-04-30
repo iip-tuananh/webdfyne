@@ -7,9 +7,11 @@ use App\Model\Admin\OrderDetail;
 use App\Model\Admin\ProductVariant;
 use App\Services\PayPalOrderService;
 use App\Services\PayPalService;
+use Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Validator;
 
 
 class PayPalController extends Controller
@@ -24,10 +26,79 @@ class PayPalController extends Controller
     // POST /api/paypal/create-order
     public function createOrder(Request $req)
     {
-        $data = $req->toArray();
-        $orderID = $this->orderService->createOrder($data);
+        DB::beginTransaction();
+        try {
+            $data = $req->toArray();
+//        $orderID = $this->orderService->createOrder($data);
+            $rule  =  [
+                'payer.email_address'                => 'required|email',
+                'payer.name.given_name'              => 'required|string',
+                'payer.name.surname'                 => 'required|string',
+                'payer.address.address_line_1'       => 'required|string',
+                'payer.address.admin_area_2'         => 'required|string',
+                'payer.address.postal_code'          => 'required|string',
+                'payer.address.country_code'         => 'required|size:2',
+                'payer.phone.phone_number.national_number' => 'required|string',
+            ];
 
-        return response()->json(['orderID' => $orderID]);
+            $validate = Validator::make(
+                $req->all(),
+                $rule
+            );
+
+            $json = new \stdClass();
+
+            if ($validate->fails()) {
+                $json->success = false;
+                $json->errors = $validate->errors();
+                $json->message = "Thao tác thất bại!";
+                return Response::json($json);
+            }
+
+
+            // 2. Gọi service tạo order
+            $orderID = $this->orderService->createOrder([
+                'items' => $data['purchase_units'][0]['items'],
+                'payer' => $data['payer'],
+            ]);
+
+            // lưu lại order
+            $payer = $data['payer'];
+
+            $fullName = trim($payer['name']['given_name'] . ' ' . $payer['name']['surname']);
+            $phone = $payer['phone']['phone_number']['national_number'] ?? null;
+            $email = $payer['email_address'];
+            $addr = $payer['address'];
+
+            // địa chỉ chi tiết
+            $street      = $addr['address_line_1'];
+
+            // thành phố
+            $city        = $addr['admin_area_2'];
+            $postal      = $addr['postal_code'];
+            $country     = $addr['country_code'];
+            $fullAddress = trim(
+                "{$street}"
+                . ", {$city},  {$postal}, {$country}"
+            );
+
+            Order::query()->create([
+                'customer_name' => $fullName,
+                'customer_phone' => $phone,
+                'customer_email' => $email,
+                'customer_address' => $fullAddress,
+                'postal_code' => $postal,
+                'country_code' => $country,
+                'code' => $orderID,
+                'status' => 10,
+            ]);
+            DB::commit();
+            return response()->json(['success' => true, 'orderID' => $orderID]);
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::error($exception);
+        }
+
     }
 
     // POST /api/paypal/capture-order
@@ -39,23 +110,8 @@ class PayPalController extends Controller
             $capture = $this->orderService->captureOrder($orderID);
 
             $captureId  = optional($capture->purchase_units[0]->payments->captures[0])->id ?? null;
+            // thông tin người mua
             $payer    = $capture->payer;
-            $fullName = trim($payer->name->given_name . ' ' . $payer->name->surname);
-            $phone    = $payer->phone->phone_number->national_number ?? null;
-
-            $ship        = $capture->purchase_units[0]->shipping;
-            $addr        = $ship->address;
-            $street      = $addr->address_line_1;
-            $street2     = $addr->address_line_2 ?? '';
-            $city        = $addr->admin_area_2;
-            $state       = $addr->admin_area_1;
-            $postal      = $addr->postal_code;
-            $country     = $addr->country_code;
-            $fullAddress = trim(
-                "{$street}"
-                . ($street2 ? ', ' . $street2 : '')
-                . ", {$city}, {$state} {$postal}, {$country}"
-            );
 
             $captureData = $capture
                 ->purchase_units[0]
@@ -67,23 +123,14 @@ class PayPalController extends Controller
             }
 
             $usdValue    = (float) $captureData->amount->value;
-            $usdCurrency = $captureData->amount->currency_code;
 
-            $rate = config('services.exchange_rate_vnd_usd', 24000);
+            $order = Order::query()->where('code', $capture->id)->first();
+            $order->total_after_discount = $usdValue;
+            $order->total_before_discount = $usdValue;
+            $order->capture_id = $captureId;
+            $order->status = 20;
 
-            $vndValue = (int) round($usdValue * $rate, 0);
-
-            $order = Order::query()->create([
-                'customer_name' => $fullName,
-                'customer_phone' => $phone,
-                'customer_email' => $payer->email_address,
-                'customer_address' => $fullAddress,
-                'code' => $capture->id,
-                'capture_id' => $captureId,
-                'status' => 20,
-                'total_after_discount' => $vndValue,
-                'total_before_discount' => $vndValue,
-            ]);
+            $order->save();
 
             $itemsData = $capture->purchase_units[0]->items;
 
@@ -114,7 +161,7 @@ class PayPalController extends Controller
                 $detail->color = $color;
                 $detail->size = $size;
                 $detail->qty = $item->quantity;
-                $detail->price = (int) round( $item->unit_amount->value * $rate, 0);
+                $detail->price = (int) round( $item->unit_amount->value, 0);
                 $detail->save();
             }
 

@@ -11,7 +11,7 @@ Route::group(['namespace' => 'Front'], function () {
     Route::get('/thanh-toan.html','CartController@checkout')->name('cart.checkout');
     Route::post('/checkout','CartController@checkoutSubmit')->name('cart.submit.order');
     Route::get('/contact.html','FrontController@contact')->name('front.contact');
-    Route::get('/dat-hang-thanh-cong.html','CartController@checkoutSuccess')->name('cart.checkout.success');
+    Route::get('/order-completed.html','CartController@checkoutSuccess')->name('cart.checkout.success');
 
     Route::get('/search.html','FrontController@search')->name('front.search');
     Route::get('/support.html','FrontController@support')->name('front.support');

@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="form-label">Địa chỉ: <% form.customer_address %> </label>
+                                <label class="form-label">Địa chỉ giao hàng: <% form.customer_address %> </label>
                             </div>
                         </div>
                         <div class="col-md-6">
