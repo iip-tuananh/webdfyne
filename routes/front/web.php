@@ -8,7 +8,7 @@ Route::group(['namespace' => 'Front'], function () {
     Route::post('/products/{productId}/variant-sizes/{variantSizeId}/add-product-to-cart','CartController@addItem')->name('cart.add.item');
     Route::get('/remove-product-to-cart','CartController@removeItem')->name('cart.remove.item');
     Route::post('/update-cart','CartController@updateItem')->name('cart.update.item');
-    Route::get('/thanh-toan.html','CartController@checkout')->name('cart.checkout');
+    Route::get('/payment.html','CartController@checkout')->name('cart.checkout');
     Route::post('/checkout','CartController@checkoutSubmit')->name('cart.submit.order');
     Route::get('/contact.html','FrontController@contact')->name('front.contact');
     Route::get('/order-completed.html','CartController@checkoutSuccess')->name('cart.checkout.success');

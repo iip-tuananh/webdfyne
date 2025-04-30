@@ -594,6 +594,9 @@ class Product extends BaseModel
 
         ProductCategorySpecial::query()->where('product_id', $this->id)->delete();
         ProductCollection::query()->where('product_id', $this->id)->delete();
+        ProductSuggest::query()->where('product_id', $this->id)
+            ->orWhere('suggested_product_id', $this->id)
+            ->delete();
 
         $this->delete();
     }

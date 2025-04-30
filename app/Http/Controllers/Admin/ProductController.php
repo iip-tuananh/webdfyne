@@ -11,6 +11,7 @@ use App\Model\Admin\Product;
 use App\Model\Admin\ProductCategorySpecial;
 use App\Model\Admin\ProductCollection;
 use App\Model\Admin\ProductSize;
+use App\Model\Admin\ProductSuggest;
 use App\Model\Admin\ProductVideo;
 use App\Model\Admin\Tag;
 use Cassandra\Exception\ProtocolException;
@@ -257,6 +258,9 @@ class ProductController extends Controller
 
             ProductCategorySpecial::query()->where('product_id', $object->id)->delete();
             ProductCollection::query()->where('product_id', $object->id)->delete();
+            ProductSuggest::query()->where('product_id', $object->id)
+                ->orWhere('suggested_product_id', $object->id)
+                ->delete();
 
 			$object->delete();
 

@@ -285,56 +285,102 @@
                                             border-color: #000;      /* viền đen toàn diện */
                                         }
                                     </style>
-                                    <div class="swiper gallery-top">
+
+{{--                                    <div class="swiper gallery-top">--}}
+{{--                                        <div class="swiper-wrapper">--}}
+{{--                                            @foreach($productVariant->galleries ?? collect() as $gallery)--}}
+{{--                                                @php--}}
+{{--                                                    $sizes = [360,540,720,900,1080];--}}
+{{--                                                    $srcset = collect($sizes)--}}
+{{--                                                      ->map(function($size) use($gallery){--}}
+{{--                                                        return "{$gallery->image->path}?width={$size} {$size}w";--}}
+{{--                                                      })->implode(', ');--}}
+{{--                                                @endphp--}}
+{{--                                                <div class="swiper-slide">--}}
+{{--                                                    <div class="swiper-zoom-container">--}}
+{{--                                                        <img--}}
+{{--                                                            src="{{ $gallery->image->path }}?width=1080"--}}
+{{--                                                            srcset="{{ $srcset }}"--}}
+{{--                                                            sizes="(min-width:769px)50vw,100vw"--}}
+{{--                                                            alt="Ảnh SP"--}}
+{{--                                                            loading="eager"--}}
+{{--                                                        >--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            @endforeach--}}
+{{--                                        </div>--}}
+{{--                                        <div class="swiper-button-next"></div>--}}
+{{--                                        <div class="swiper-button-prev"></div>--}}
+{{--                                    </div>--}}
+
+
+{{--                                    --}}{{-- Thumbnail swiper --}}
+{{--                                    <div class="swiper gallery-thumbs">--}}
+{{--                                        <div class="swiper-wrapper">--}}
+{{--                                            @foreach($productVariant->galleries ?? collect() as $gallery)--}}
+{{--                                                @php--}}
+{{--                                                    $sizes2 = [120,360,540,720];--}}
+{{--                                                    $srcset2 = collect($sizes2)--}}
+{{--                                                      ->map(function($s) use($gallery){--}}
+{{--                                                        return "{$gallery->image->path}?width={$s} {$s}w";--}}
+{{--                                                      })->implode(', ');--}}
+{{--                                                @endphp--}}
+{{--                                                <div class="swiper-slide">--}}
+{{--                                                    <img--}}
+{{--                                                        src="{{ $gallery->image->path }}?width=360"--}}
+{{--                                                        srcset="{{ $srcset2 }}"--}}
+{{--                                                        sizes="80px"--}}
+{{--                                                        alt="Thumb"--}}
+{{--                                                        loading="eager"--}}
+{{--                                                    >--}}
+{{--                                                </div>--}}
+{{--                                            @endforeach--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+
+
+
+
+
+                                    <div class="swiper gallery-top" ng-if="galleries.length">
                                         <div class="swiper-wrapper">
-                                            @foreach($productVariant->galleries ?? collect() as $gallery)
-                                                @php
-                                                    $sizes = [360,540,720,900,1080];
-                                                    $srcset = collect($sizes)
-                                                      ->map(function($size) use($gallery){
-                                                        return "{$gallery->image->path}?width={$size} {$size}w";
-                                                      })->implode(', ');
-                                                @endphp
-                                                <div class="swiper-slide">
-                                                    <div class="swiper-zoom-container">
-                                                        <img
-                                                            src="{{ $gallery->image->path }}?width=1080"
-                                                            srcset="{{ $srcset }}"
-                                                            sizes="(min-width:769px)50vw,100vw"
-                                                            alt="Ảnh SP"
-                                                            loading="eager"
-                                                        >
-                                                    </div>
+                                            <div class="swiper-slide" ng-repeat="gallery in galleries">
+                                                <div class="swiper-zoom-container">
+                                                    <img
+                                                        ng-src="<%gallery.image.path%>?width=1080"
+                                                        srcset="<% getSrcset(gallery, [360,540,720,900,1080]) %>"
+                                                        sizes="(min-width:769px)50vw,100vw"
+                                                        alt="Ảnh SP"
+                                                        loading="eager"
+                                                    >
                                                 </div>
-                                            @endforeach
+                                            </div>
                                         </div>
                                         <div class="swiper-button-next"></div>
                                         <div class="swiper-button-prev"></div>
                                     </div>
 
-                                    {{-- Thumbnail swiper --}}
-                                    <div class="swiper gallery-thumbs">
+                                    <!-- Swiper thumbnail -->
+                                    <div class="swiper gallery-thumbs" ng-if="galleries.length">
                                         <div class="swiper-wrapper">
-                                            @foreach($productVariant->galleries ?? collect() as $gallery)
-                                                @php
-                                                    $sizes2 = [120,360,540,720];
-                                                    $srcset2 = collect($sizes2)
-                                                      ->map(function($s) use($gallery){
-                                                        return "{$gallery->image->path}?width={$s} {$s}w";
-                                                      })->implode(', ');
-                                                @endphp
-                                                <div class="swiper-slide">
-                                                    <img
-                                                        src="{{ $gallery->image->path }}?width=360"
-                                                        srcset="{{ $srcset2 }}"
-                                                        sizes="80px"
-                                                        alt="Thumb"
-                                                        loading="eager"
-                                                    >
-                                                </div>
-                                            @endforeach
+                                            <div class="swiper-slide" ng-repeat="gallery in galleries">
+                                                <img
+                                                    ng-src="<%gallery.image.path%>?width=360"
+                                                    srcset="<% getSrcset(gallery, [120,360,540,720]) %>"
+                                                    sizes="80px"
+                                                    alt="Thumb"
+                                                    loading="eager"
+                                                >
+                                            </div>
                                         </div>
                                     </div>
+
+
+
+
+
+
+
                                 </div>
 
                                 <script type="application/json" id="ModelJson-template--18121751003229__main">
@@ -434,22 +480,41 @@
                                                                         </div>
                                                                         <ul class="swatch-view swatch-view-image " role="radiogroup" style="transform: translateX(0px); display: flex;">
 
-                                                                            @foreach($product->variants as $variant)
-                                                                               <a href="{{ route('front.show-product-detail', $variant->slug) }}">
-                                                                                   <li class="swatch-view-item" orig-value=">{{ $variant->color->name }}" aria-label=">{{ $variant->color->name }}" role="radio" aria-checked="{{ $variant->id == $productVariant->id ? 'true' : 'false' }}" tabindex="0" style="width: 66px; margin-right: 8px;">
-                                                                                       <div class="swatch-image swatch-group-selector {{ $variant->id == $productVariant->id ? 'swatch-selected' : '' }} " type="image" data-value="Berry" orig-value="Berry"
-                                                                                            swatch-url="{{ route('front.show-product-detail', $variant->slug) }}"
-                                                                                            swatch-option="group4966814" current-product="true">
-                                                                                           <div style="width:66px;height:99px;
+{{--                                                                            @foreach($product->variants as $variant)--}}
+{{--                                                                               <a href="{{ route('front.show-product-detail', $variant->slug) }}">--}}
+{{--                                                                                   <li class="swatch-view-item" orig-value=">{{ $variant->color->name }}" aria-label=">{{ $variant->color->name }}" role="radio" aria-checked="{{ $variant->id == $productVariant->id ? 'true' : 'false' }}" tabindex="0" style="width: 66px; margin-right: 8px;">--}}
+{{--                                                                                       <div class="swatch-image swatch-group-selector {{ $variant->id == $productVariant->id ? 'swatch-selected' : '' }} " type="image" data-value="Berry" orig-value="Berry"--}}
+{{--                                                                                            swatch-url="{{ route('front.show-product-detail', $variant->slug) }}"--}}
+{{--                                                                                            swatch-option="group4966814" current-product="true">--}}
+{{--                                                                                           <div style="width:66px;height:99px;--}}
+{{--                                                                                        background-image:url('{{ @$variant->image->path ?? '' }}');"--}}
+{{--                                                                                                class="star-set-image" swatch-inside="true"><i class="hidden"></i></div>--}}
+{{--                                                                                           <div class="swatch-img-text-adjacent" swatch-inside="true">--}}
+{{--                                                                                               <p swatch-inside="true">{{ $variant->color->name }}</p>--}}
+{{--                                                                                           </div>--}}
+{{--                                                                                       </div>--}}
+{{--                                                                                   </li>--}}
+{{--                                                                               </a>--}}
+{{--                                                                            @endforeach--}}
+
+
+
+                                                                                @foreach($product->variants as $variant)
+                                                                                    <a href="javascript:void(0)" ng-click="chooseVariant({{$variant}})">
+                                                                                        <li class="swatch-view-item" orig-value=">{{ $variant->color->name }}" aria-label=">{{ $variant->color->name }}" role="radio" aria-checked="{{ $variant->id == $productVariant->id ? 'true' : 'false' }}" tabindex="0" style="width: 66px; margin-right: 8px;">
+                                                                                            <div class="swatch-image swatch-group-selector <% '{{$variant->id}}' == selectedVariant.id ? 'swatch-selected' : '' %> " type="image" data-value="Berry" orig-value="Berry"
+                                                                                                 swatch-url="{{ route('front.show-product-detail', $variant->slug) }}"
+                                                                                                 swatch-option="group4966814" current-product="true">
+                                                                                                <div style="width:66px;height:99px;
                                                                                         background-image:url('{{ @$variant->image->path ?? '' }}');"
-                                                                                                class="star-set-image" swatch-inside="true"><i class="hidden"></i></div>
-                                                                                           <div class="swatch-img-text-adjacent" swatch-inside="true">
-                                                                                               <p swatch-inside="true">{{ $variant->color->name }}</p>
-                                                                                           </div>
-                                                                                       </div>
-                                                                                   </li>
-                                                                               </a>
-                                                                            @endforeach
+                                                                                                     class="star-set-image" swatch-inside="true"><i class="hidden"></i></div>
+                                                                                                <div class="swatch-img-text-adjacent" swatch-inside="true">
+                                                                                                    <p swatch-inside="true">{{ $variant->color->name }}</p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </li>
+                                                                                    </a>
+                                                                                @endforeach
                                                                         </ul>
                                                                         <div class="swatch-navigation-wrapper" navigation="right">
                                                                             <div class="swatch-navigation swatch-navigation-right" data-navigation="right" role="presentation" tabindex="0">
@@ -483,23 +548,46 @@
                                                           id="ProductSelect-template--18121751003229__main-7589307777117-option-0">
                                                     <legend class="hide">Size</legend>
 
-                                                    @foreach($productVariant->sizesStock as $key => $sizeStock)
-                                                        <div
-                                                            class="variant-input"
-                                                            data-index="option{{$key}}"
-                                                            data-value="{{ $sizeStock->size->name }}">
-                                                            <input type="radio"
-                                                                   value="{{ $sizeStock->size->name }}"
-                                                                   data-index="option{{$key}}"
-                                                                   name="Size"
-                                                                   ng-click="chooseSize({{ $sizeStock }})"
-                                                                   ng-checked="sizeVariantSelected && sizeVariantSelected.size.name === '{{ $sizeStock->size->name }}'"
-                                                                   class="{{ $sizeStock->stock == 0 ? 'disabled' : '' }}"
-                                                                   id="ProductSelect-template--18121751003229__main-7589307777117-option-size-{{ $sizeStock->size->name }}"><label
-                                                                for="ProductSelect-template--18121751003229__main-7589307777117-option-size-{{ $sizeStock->size->name }}"
-                                                                class="variant__button-label {{ $sizeStock->stock == 0 ? 'disabled' : '' }}">{{ $sizeStock->size->name }}</label>
-                                                        </div>
-                                                    @endforeach
+{{--                                                    @foreach($productVariant->sizesStock as $key => $sizeStock)--}}
+{{--                                                        <div--}}
+{{--                                                            class="variant-input"--}}
+{{--                                                            data-index="option{{$key}}"--}}
+{{--                                                            data-value="{{ $sizeStock->size->name }}">--}}
+{{--                                                            <input type="radio"--}}
+{{--                                                                   value="{{ $sizeStock->size->name }}"--}}
+{{--                                                                   data-index="option{{$key}}"--}}
+{{--                                                                   name="Size"--}}
+{{--                                                                   ng-click="chooseSize({{ $sizeStock }})"--}}
+{{--                                                                   ng-checked="sizeVariantSelected && sizeVariantSelected.size.name === '{{ $sizeStock->size->name }}'"--}}
+{{--                                                                   class="{{ $sizeStock->stock == 0 ? 'disabled' : '' }}"--}}
+{{--                                                                   id="ProductSelect-template--18121751003229__main-7589307777117-option-size-{{ $sizeStock->size->name }}"><label--}}
+{{--                                                                for="ProductSelect-template--18121751003229__main-7589307777117-option-size-{{ $sizeStock->size->name }}"--}}
+{{--                                                                class="variant__button-label {{ $sizeStock->stock == 0 ? 'disabled' : '' }}">{{ $sizeStock->size->name }}</label>--}}
+{{--                                                        </div>--}}
+{{--                                                    @endforeach--}}
+
+                                                    <div class="variant-input"
+                                                         ng-repeat="(key, sizeStock) in selectedVariant.sizes_stock"
+                                                         data-index="option<%$index%>"
+                                                         data-value="<%sizeStock.size.name %>">
+                                                        <input type="radio"
+                                                               name="Size"
+                                                               value="<% sizeStock.size.name %>"
+                                                               data-index="option<%$index%>"
+                                                               id="ProductSelect-template--18121751003229__main-7589307777117-option-size-<% sizeStock.size.name %>"
+                                                               ng-click="chooseSize(sizeStock)"
+                                                               ng-checked="sizeVariantSelected && sizeVariantSelected.size.name === sizeStock.size.name"
+                                                               ng-class="{'disabled': sizeStock.stock == 0}">
+                                                        <label for="ProductSelect-template--18121751003229__main-7589307777117-option-size-<% sizeStock.size.name %>"
+                                                               class="variant__button-label"
+                                                               ng-class="{'disabled': sizeStock.stock == 0}">
+                                                            <% sizeStock.size.name %>
+                                                        </label>
+                                                    </div>
+
+
+
+
                                                 </fieldset>
                                             </div>
                                         </div>
@@ -1293,6 +1381,53 @@
                             $scope.showReviewForm = false;
                         }, 300);
                     };
+
+                    $scope.selectedVariant =  @json($productVariant);
+                    $scope.galleries = $scope.selectedVariant.galleries || [];
+                    $scope.getSrcset = function(gallery, sizes) {
+                        return sizes.map(function(w) {
+                            return gallery.image.path + '?width=' + w + ' ' + w + 'w';
+                        }).join(', ');
+                    };
+
+                    // 4. Khi click chọn variant
+                    $scope.chooseVariant = function(variant) {
+                        $scope.selectedVariant = variant;
+                        $scope.galleries = variant.galleries || [];
+                        $scope.sizeVariantSelected = {};
+                    };
+
+                    var initSwipers = function() {
+                        $scope.thumbSwiper = new Swiper('.gallery-thumbs', {
+                            spaceBetween: 10,
+                            slidesPerView: 4,
+                            watchSlidesVisibility: true,
+                            watchSlidesProgress: true
+                        });
+                        $scope.mainSwiper = new Swiper('.gallery-top', {
+                            spaceBetween: 10,
+                            thumbs: { swiper: $scope.thumbSwiper }
+                        });
+                    };
+
+                    // 6. Watch để làm mới Swiper
+                    $scope.$watch('galleries', function(newGals, oldGals) {
+                        if (!newGals) return;
+                        // Đợi DOM render xong
+                        $timeout(function() {
+                            // Nếu đã init trước đó thì destroy
+                            if ($scope.thumbSwiper) {
+                                $scope.thumbSwiper.destroy(true, true);
+                                $scope.mainSwiper.destroy(true, true);
+                            }
+                            initSwipers();
+                        }, 0);
+                    });
+
+                    // 7. Khởi tạo lần đầu
+                    $timeout(initSwipers, 0);
+
+
                 })
 
             </script>

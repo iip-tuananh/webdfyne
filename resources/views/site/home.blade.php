@@ -111,7 +111,7 @@
 {{--        </div>--}}
 
 
-
+        @if($cateSpecialForBanner)
             <div id="shopify-section-template--18159281537117__slideshow_NXh4cP-{{$cateSpecialForBanner->id}}" class="shopify-section index-section--hero">
                 <div data-section-id="template--18159281537117__slideshow_NXh4cP" data-section-type="slideshow-section">
                     <div class="slideshow-wrapper">
@@ -126,68 +126,70 @@
                                     padding-bottom: 179.98560115190784%;
                                 }
                             }</style>
-                        <div class="hero-natural--template--18159281537117__slideshow_NXh4cP hero-natural-mobile--template--18159281537117__slideshow_NXh4cP">
 
-                            <div id="Slideshow-template--18159281537117__slideshow_NXh4cP"
-                                 class="hero hero--natural hero--template--18159281537117__slideshow_NXh4cP hero--mobile--auto loading loading--delayed"
-                                 data-natural="true" data-mobile-natural="true" data-autoplay="false" data-speed="5000" data-dots="true" data-bars="true" data-slide-count="1">
-                                <div class="slideshow__slide slideshow__slide--image_qPAA7t" data-index="0" data-id="image_qPAA7t">
-                                    <style data-shopify="">.slideshow__slide--image_qPAA7t .hero__title {
-                                            font-size: 20.0px;
-                                        }
-                                        @media only screen and (min-width: 769px) {
-                                            .slideshow__slide--image_qPAA7t .hero__title {
-                                                font-size: 40px;
+                            <div class="hero-natural--template--18159281537117__slideshow_NXh4cP hero-natural-mobile--template--18159281537117__slideshow_NXh4cP">
+
+                                <div id="Slideshow-template--18159281537117__slideshow_NXh4cP"
+                                     class="hero hero--natural hero--template--18159281537117__slideshow_NXh4cP hero--mobile--auto loading loading--delayed"
+                                     data-natural="true" data-mobile-natural="true" data-autoplay="false" data-speed="5000" data-dots="true" data-bars="true" data-slide-count="1">
+                                    <div class="slideshow__slide slideshow__slide--image_qPAA7t" data-index="0" data-id="image_qPAA7t">
+                                        <style data-shopify="">.slideshow__slide--image_qPAA7t .hero__title {
+                                                font-size: 20.0px;
                                             }
-                                        }
+                                            @media only screen and (min-width: 769px) {
+                                                .slideshow__slide--image_qPAA7t .hero__title {
+                                                    font-size: 40px;
+                                                }
+                                            }
 
 
-                                    </style>
+                                        </style>
 
-                                    @php
-                                        $sizes = [352, 832, 1200, 1920, 2778];
+                                        @php
+                                            $sizes = [352, 832, 1200, 1920, 2778];
 
-                                        $srcset = collect($sizes)->map(function($size) use ($cateSpecialForBanner) {
-                                            return (@$cateSpecialForBanner->image->path ?? '' ). "?width={$size} {$size}w";
-                                        })->implode(', ');
-                                    @endphp
+                                            $srcset = collect($sizes)->map(function($size) use ($cateSpecialForBanner) {
+                                                return (@$cateSpecialForBanner->image->path ?? '' ). "?width={$size} {$size}w";
+                                            })->implode(', ');
+                                        @endphp
 
-                                    <div class="hero__image-wrapper">
-                                        <image-element data-aos="image-fade-in" data-aos-offset="150" class="aos-init">
-                                            <img src="{{@$cateSpecialForBanner->image->path ?? ''}}?width=2400"
-                                                 alt="" srcset="{{$srcset}}"
-                                                 width="2400" height="1333.44" loading="lazy" class="small--hide hero__image hero__image--image_qPAA7t image-element" sizes="100vw">
-                                        </image-element>
+                                        <div class="hero__image-wrapper">
+                                            <image-element data-aos="image-fade-in" data-aos-offset="150" class="aos-init">
+                                                <img src="{{@$cateSpecialForBanner->image->path ?? ''}}?width=2400"
+                                                     alt="" srcset="{{$srcset}}"
+                                                     width="2400" height="1333.44" loading="lazy" class="small--hide hero__image hero__image--image_qPAA7t image-element" sizes="100vw">
+                                            </image-element>
 
 
-                                        <image-element data-aos="image-fade-in" data-aos-offset="150" class="aos-init">
-                                            <img src="{{@$cateSpecialForBanner->image->path ?? ''}}?width=2778" alt="" srcset="{{$srcset}}"
-                                                 width="2778" height="5000.0" loading="lazy"
-                                                 class="medium-up--hide hero__image hero__image--image_qPAA7t image-element"
-                                                 sizes="100vw">
-                                        </image-element>
-                                    </div>
+                                            <image-element data-aos="image-fade-in" data-aos-offset="150" class="aos-init">
+                                                <img src="{{@$cateSpecialForBanner->image->path ?? ''}}?width=2778" alt="" srcset="{{$srcset}}"
+                                                     width="2778" height="5000.0" loading="lazy"
+                                                     class="medium-up--hide hero__image hero__image--image_qPAA7t image-element"
+                                                     sizes="100vw">
+                                            </image-element>
+                                        </div>
 
-                                    <a href="{{route('front.getProductListFeatured', $cateSpecialForBanner->slug)}}" class="hero__slide-link" aria-hidden="true"></a>
-                                    <div class="hero__text-wrap">
-                                        <div class="page-width">
-                                            <div class="hero__text-content vertical-bottom horizontal-center">
-                                                <div class="hero__text-shadow"><div class="hero__link">
-                                                        <a href="{{route('front.getProductListFeatured', $cateSpecialForBanner->slug)}}" class="btn btn--inverse">
-                                                            {{ $cateSpecialForBanner->name }}
-                                                        </a></div>
+                                        <a href="{{route('front.getProductListFeatured', $cateSpecialForBanner->slug)}}" class="hero__slide-link" aria-hidden="true"></a>
+                                        <div class="hero__text-wrap">
+                                            <div class="page-width">
+                                                <div class="hero__text-content vertical-bottom horizontal-center">
+                                                    <div class="hero__text-shadow"><div class="hero__link">
+                                                            <a href="{{route('front.getProductListFeatured', $cateSpecialForBanner->slug)}}" class="btn btn--inverse">
+                                                                {{ $cateSpecialForBanner->name }}
+                                                            </a></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
-
+        @endif
 
         @foreach($categoriesSpecial as $categorySpecial)
 

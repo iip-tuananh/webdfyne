@@ -210,9 +210,14 @@ class FrontController extends Controller
                     ->orderBy('sort', 'ASC');
             }, ])
             ->where('slug', $slug)->first();
+
         $productVariant->sizesStock = $productVariant->sizesStock
-            ->sortBy(function ($stock) use ($orderMap) {
-                return $orderMap[$stock->size->name] ?? PHP_INT_MAX;
+            ->map(function($stock) {
+                $stock->size_name = $stock->size->name;
+                return $stock;
+            })
+            ->sortBy(function($stock) use ($orderMap) {
+                return $orderMap[$stock->size_name] ?? PHP_INT_MAX;
             })
             ->values();
 
@@ -226,7 +231,7 @@ class FrontController extends Controller
                     $q->where('status', Review::STATUS_APPROVED);
                 },
                 'variants' => function ($q) {
-                    $q->with(['image', 'color', 'sizesStock', 'galleries' => function ($q) {
+                    $q->with(['image', 'color', 'sizesStock.size', 'galleries' => function ($q) {
                         $q->select(['id', 'variant_id', 'sort'])
                             ->with(['image'])
                             ->orderBy('sort', 'ASC');

@@ -862,7 +862,7 @@
                                         <span><a href="{{ route('front.home-page') }}" class="s2kwpi1 s2kwpi0 _1fragemlt _1fragemsy _1fragemt4 _1fragemss s2kwpi3 s2kwpi7 s2kwpi5 _1fragemso"><span class="pJt3c"><span class="n8k95w1 n8k95w0 _1fragemlt n8k95w2">
                                                         {{ $config->web_title }}</span></span></a></span>
                                         <span>
-                      <a aria-label="Cart" id="cart-link" href="https://mymonsteraudio.com/cart?logged_in=true" class="s2kwpi1 s2kwpi0 _1fragemlt _1fragemsy _1fragemt4 _1fragemss s2kwpi2 s2kwpi6 s2kwpi4 _1fragemsp">
+                      <a aria-label="Cart" id="cart-link" href="#" class="s2kwpi1 s2kwpi0 _1fragemlt _1fragemsy _1fragemt4 _1fragemss s2kwpi2 s2kwpi6 s2kwpi4 _1fragemsp">
                         <span class="a8x1wu2 a8x1wu1 _1fragemor _1fragem1t _1fragemkp _1fragemkf a8x1wug a8x1wuj a8x1wuh _1fragem1y a8x1wup a8x1wul a8x1wut">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" focusable="false" aria-hidden="true" class="a8x1wuv a8x1wuu _1fragem1y _1fragemor _1fragemkp _1fragemkf _1fragemny">
                             <path d="m2.007 10.156.387-4.983a1 1 0 0 1 .997-.923h7.218a1 1 0 0 1 .997.923l.387 4.983c.11 1.403-1.16 2.594-2.764 2.594H4.771c-1.605 0-2.873-1.19-2.764-2.594"></path>
