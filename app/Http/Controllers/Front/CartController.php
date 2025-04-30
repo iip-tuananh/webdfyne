@@ -65,12 +65,20 @@ class CartController extends Controller
 
     public function updateItem(Request $request)
     {
-        \Cart::update($request->product_id, array(
-            'quantity' => array(
-                'relative' => false,
-                'value' => $request->qty
-            ),
-        ));
+        $productId = $request->product_id;
+        $qty       = (int) $request->qty;
+
+        if ($qty <= 0) {
+            \Cart::remove($productId);
+        } else {
+            \Cart::update($productId, [
+                'quantity' => [
+                    'relative' => false,
+                    'value'    => $qty
+                ],
+            ]);
+        }
+
 
         return \Response::json(['success' => true, 'items' => \Cart::getContent(), 'total' => \Cart::getTotal(),
             'count' => \Cart::getContent()->sum('quantity')]);

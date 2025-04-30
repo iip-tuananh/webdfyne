@@ -103,7 +103,7 @@
                                                                 class="collapsible-trigger collapsible-trigger-btn collapsible--auto-height is-open tag-list__header"
                                                                 aria-controls="SidebarDrawer-2-filter-colour"
                                                                 data-collapsible-id="filter-colour">
-                                                                Màu sắc
+                                                                Colors
                                                                 <span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
                                                                     <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16"><path d="m1.57 1.59 12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"/></svg>
                                                             </span>
@@ -187,7 +187,7 @@
                                                                 class="collapsible-trigger collapsible-trigger-btn collapsible--auto-height is-open tag-list__header"
                                                                 aria-controls="SidebarDrawer-4-filter-price"
                                                                 data-collapsible-id="filter-price">
-                                                                Khoảng giá
+                                                                Price Range
                                                                 <span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
   <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16"><path d="m1.57 1.59 12.76 12.77L27.1 1.59"
                                                                                                                                     stroke-width="2" stroke="#000" fill="none"/></svg>
@@ -237,7 +237,7 @@
                                                                 class="collapsible-trigger collapsible-trigger-btn collapsible--auto-height is-open tag-list__header"
                                                                 aria-controls="SidebarDrawer-5-filter-availability"
                                                                 data-collapsible-id="filter-availability">
-                                                                Tình trạng
+                                                                In Stock
                                                                 <span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
   <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16"><path d="m1.57 1.59 12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"/></svg>
 </span>
@@ -261,7 +261,7 @@
                                                                                 />
                                                                                 <span class="tag__checkbox"></span>
                                                                                 <span>
-                                                                                    <span class="tag__text">Trong kho</span>
+                                                                                    <span class="tag__text">In stock</span>
                                                                                 </span>
                                                                             </label>
                                                                         </li>
@@ -278,7 +278,7 @@
                                                                                 />
                                                                                 <span class="tag__checkbox"></span>
                                                                                 <span>
-                                                                                    <span class="tag__text">Hết hàng</span>
+                                                                                    <span class="tag__text">Out of Stock</span>
                                                                                 </span>
                                                                             </label>
                                                                         </li>
@@ -293,7 +293,7 @@
                                                     <button type="button"
                                                             class="button button--primary drawer__search-btn"
                                                             ng-click="filterProduct()">
-                                                        Tìm kiếm
+                                                        Filter
                                                     </button>
                                                 </div>
                                             </div>
@@ -323,13 +323,13 @@
                                                     <div class="collection-filter__sort-container"><label for="SortBy" class="hidden-label">Sắp xếp</label>
                                                         <select ng-model="sortOption"
                                                                 ng-change="sortOptionChanged()" >
-                                                            <option value="">Mặc định</option>
-                                                            <option value="name_asc">Tên (A-Z)</option>
-                                                            <option value="name_desc">Tên (Z-A)</option>
-                                                            <option value="price_asc">Giá tăng dần</option>
-                                                            <option value="price_desc">Giá giảm dần</option>
-                                                            <option value="date_asc">Ngày cũ đến mới</option>
-                                                            <option value="date_desc">Ngày mới đến cũ</option>
+                                                            <option value="">Default</option>
+                                                            <option value="name_asc">Name (A–Z)</option>
+                                                            <option value="name_desc">Name (Z–A)</option>
+                                                            <option value="price_asc">Price: Low to High</option>
+                                                            <option value="price_desc">Price: High to Low</option>
+                                                            <option value="date_asc">Date: Oldest to Newest</option>
+                                                            <option value="date_desc">Date: Newest to Oldest</option>
                                                         </select>
                                                     </div>
                                                 </div>

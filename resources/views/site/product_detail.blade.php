@@ -567,7 +567,7 @@
 {{--                                                    @endforeach--}}
 
                                                     <div class="variant-input"
-                                                         ng-repeat="(key, sizeStock) in selectedVariant.sizes_stock"
+                                                         ng-repeat="(key, sizeStock) in selectedVariant.sizesStock"
                                                          data-index="option<%$index%>"
                                                          data-value="<%sizeStock.size.name %>">
                                                         <input type="radio"
@@ -585,9 +585,6 @@
                                                         </label>
                                                     </div>
 
-
-
-
                                                 </fieldset>
                                             </div>
                                         </div>
@@ -597,7 +594,7 @@
                                                 <button type="button" name="add" class="btn btn--full add-to-cart"
                                                         ng-if="sizeVariantSelected.stock == 0"
                                                         disabled="disabled">
-                                                       <span data-add-to-cart-text data-default-text="Add to cart">Hết hàng</span>
+                                                       <span data-add-to-cart-text data-default-text="Add to cart">Sold out</span>
                                                 </button>
 
                                                 <a href="#" class="js-drawer-open-cart" aria-controls="CartDrawer">
@@ -910,8 +907,8 @@
                                             </div>
 
                                             <div class="jdgm-form__fieldset jdgm-form__fieldset-actions" ng-if="! checkSendRating">
-                                                <a href="javascript:void(0)" role="button" class="jdgm-btn jdgm-btn--border jdgm-cancel-rev "  ng-click="closeReviewForm($event)">Đóng</a>
-                                                <input type="button" class="jdgm-btn jdgm-btn--solid jdgm-submit-rev " value="Gửi đánh giá" ng-click="submitReview()">
+                                                <a href="javascript:void(0)" role="button" class="jdgm-btn jdgm-btn--border jdgm-cancel-rev "  ng-click="closeReviewForm($event)">Close</a>
+                                                <input type="button" class="jdgm-btn jdgm-btn--solid jdgm-submit-rev " value="Send" ng-click="submitReview()">
                                             </div>
                                         </form>
                                     </div>
@@ -1139,38 +1136,6 @@
             <script src="https://cdn.tutorialjinni.com/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
             <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
             <script>
-                // jQuery(function(){
-                //     jQuery('#load-more').on('click', function(e){
-                //         e.preventDefault();
-                //         let $btn  = jQuery(this);
-                //         let page  = $btn.data('page');
-                //         let url   = $btn.data('url') + '?page=' + page;
-                //
-                //         $btn.prop('disabled', true).text('Loading…');
-                //
-                //         jQuery.get(url, function(html){
-                //             // append HTML trả về (chính là các <div class="jdgm-rev-widg__reviews">…)
-                //             jQuery('#review-container').append(html);
-                //
-                //             // tăng page, bật lại button
-                //             page++;
-                //             $btn.data('page', page).prop('disabled', false).text('Load More');
-                //
-                //             // nếu không còn trang nào nữa thì ẩn nút
-                //             // bạn có thể check từ header pagination JSON, nhưng đơn giản:
-                //             // nếu html rỗng thì ẩn
-                //             if (!html.trim()) {
-                //                 $btn.closest('.jdgm-paginate').remove();
-                //             }
-                //         })
-                //             .fail(function(){
-                //                 alert('Không tải được, thử lại sau.');
-                //                 $btn.prop('disabled', false).text('Load More');
-                //             });
-                //     });
-                // });
-
-
                 jQuery(function(){
                     var $btn     = jQuery('#load-more'),
                         $select  = jQuery('.jdgm-sort'),
@@ -1306,7 +1271,7 @@
                                 }
                             },
                             error: function () {
-                                jQuery.toast('Thao tác thất bại !')
+                                jQuery.toast('Operation failed !')
                             },
                             complete: function () {
                                 $scope.$applyAsync();
@@ -1333,11 +1298,11 @@
                                     $scope.checkSendRating = true;
                                 } else {
                                     $scope.errors = response.errors;
-                                    toastr.error(response.message);
+                                    toastr.warning('Operation failed');
                                 }
                             },
                             error: function () {
-                                toastr.error('Thao tác thất bại !')
+                                toastr.error('Operation failed')
                             },
                             complete: function () {
                                 $scope.$applyAsync();

@@ -29,8 +29,16 @@ class PayPalController extends Controller
         DB::beginTransaction();
         try {
             $data = $req->toArray();
-//        $orderID = $this->orderService->createOrder($data);
             $rule  =  [
+                'purchase_units'                                 => 'required|array|min:1',
+                'purchase_units.0.items'                        => 'required|array|min:1',
+                'purchase_units.0.items.*.name'                  => 'required|string',
+                'purchase_units.0.items.*.unit_amount.value'     => 'required|numeric|min:0.01',
+                'purchase_units.0.items.*.unit_amount.currency_code' => 'required|string|size:3',
+                'purchase_units.0.items.*.quantity'              => 'required|integer|min:1',
+                'purchase_units.0.items.*.sku'                   => 'required',
+                'purchase_units.0.items.*.description'           => 'required|string',
+
                 'payer.email_address'                => 'required|email',
                 'payer.name.given_name'              => 'required|string',
                 'payer.name.surname'                 => 'required|string',

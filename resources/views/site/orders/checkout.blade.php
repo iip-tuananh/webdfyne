@@ -1364,14 +1364,14 @@
                                                     <div role="rowgroup" class="nfgb6p1 nfgb6p0 _1fragem2s nfgb6p3">
                                                         <div role="row" class="_1qy6ue60 _1qy6ue69 _1qy6ue61 _1qy6ue67 _1qy6ue65 _1fragem3h _1fragem5a _1fragem2s">
                                                             <div role="rowheader" class="_1qy6ue6b"><span class="_19gi7yt0 _19gi7yt19 _19gi7yt1t">Subtotal</span></div>
-                                                            <div role="cell" class="_1qy6ue6c"><span class="_19gi7yt0 _19gi7yt19 _19gi7yt1t notranslate">{{number_format($total)}} đ</span></div>
+                                                            <div role="cell" class="_1qy6ue6c"><span class="_19gi7yt0 _19gi7yt19 _19gi7yt1t notranslate">{{number_format($total)}} $</span></div>
                                                         </div>
 
                                                         <div role="row" class="_1x41w3p1 _1x41w3p0 _1fragem2s _1fragemmn _1x41w3p2">
                                                             <div role="rowheader" class="_1x41w3p6"><strong class="_19gi7yt0 _19gi7ytk _19gi7ytj _1fragemoa _19gi7yt19 _19gi7yt1x">Total</strong></div>
                                                             <div role="cell" class="_1x41w3p7">
                                                                 <div class="_5uqybw0 _1fragemlt _1fragem28 _1fragem78">
-                                                                    <div class="_5uqybw1 _1fragem28 _1fragemku _1fragemo5 _1fragem3h _1fragem5a _1fragemmm _1fragem78"><abbr class="_1qifbzv1 _1qifbzv0 _1fragemso"><span class="_19gi7yt0 _19gi7yte _19gi7ytd _1fragemo7 _19gi7yt1a _19gi7yt1t notranslate"></span></abbr><strong class="_19gi7yt0 _19gi7ytk _19gi7ytj _1fragemoa _19gi7yt19 _19gi7yt1x notranslate">{{number_format($total)}} đ</strong></div>
+                                                                    <div class="_5uqybw1 _1fragem28 _1fragemku _1fragemo5 _1fragem3h _1fragem5a _1fragemmm _1fragem78"><abbr class="_1qifbzv1 _1qifbzv0 _1fragemso"><span class="_19gi7yt0 _19gi7yte _19gi7ytd _1fragemo7 _19gi7yt1a _19gi7yt1t notranslate"></span></abbr><strong class="_19gi7yt0 _19gi7ytk _19gi7ytj _1fragemoa _19gi7yt19 _19gi7yt1x notranslate">{{number_format($total)}} $</strong></div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1458,10 +1458,10 @@
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.3.1/build/js/intlTelInput.min.js">
 </script>
-<!-- Utils (bắt buộc cho format & validation) -->
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/25.3.1/build/js/utils.min.js">
-</script>
+
+<script src="https://cdn.tutorialjinni.com/jquery-toast-plugin/1.3.2/jquery.toast.js"></script>
+<script src="https://cdn.tutorialjinni.com/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+
 <script>
     window.countriesList = [
             @foreach($allCountries as $code => $name)
@@ -1569,54 +1569,6 @@
             // Đồng bộ định kỳ mỗi 5s (nếu có thay đổi từ các controller khác)
             $interval(syncCart, 5000);
 
-            // angular.element(document).ready(function() {
-            //     paypal.Buttons({
-            //         createOrder: function(data, actions) {
-            //             const itemsArray = Object.values($scope.cartItems).map(item => ({
-            //                 name: item.name,
-            //                 sku: item.attributes.variant_id,
-            //                 description: `color: ${item.attributes.color}, size: ${item.attributes.size}`,
-            //                 unit_amount: {
-            //                     currency_code: 'VND',
-            //                     value: item.price.toString()
-            //                 },
-            //                 quantity: item.quantity.toString()
-            //             }));
-            //
-            //             const payload = {
-            //                 amount: $scope.amount.toString(),
-            //                 currency: 'VND',
-            //                 description: 'Thanh toán giỏ hàng',
-            //                 items: itemsArray
-            //             };
-            //             console.log('Payload tạo order:', payload);
-            //
-            //             // 2) gọi server
-            //             return paypalService.createOrder(payload)
-            //                 .then(res => {
-            //                     console.log('Server trả về orderID:', res.data.orderID);
-            //                     return res.data.orderID;
-            //                 });
-            //         },
-            //
-            //
-            //         // V2: capture ngay trên server
-            //         onApprove: function(data) {
-            //             return paypalService.captureOrder(data.orderID)
-            //                 .then(res => {
-            //                     console.log('Thanh toán thành công:', res.data);
-            //                     alert('Thanh toán thành công!');
-            //
-            //                     window.location.href = "/dat-hang-thanh-cong.html/";
-            //                 });
-            //         },
-            //         onError: function(err) {
-            //             console.error('Lỗi PayPal:', err);
-            //             alert('Thanh toán thất bại.');
-            //         }
-            //     }).render('#paypal-button-container');
-            // });
-
             $scope.errors = {};
 
             angular.element(document).ready(function() {
@@ -1703,6 +1655,7 @@
                             .then(res => {
                                 if (!res.data.success) {
                                     $scope.errors = res.data.errors;
+                                    toastr.warning('Operation failed')
                                     console.log($scope.errors)
                                     return Promise.reject(res.data.message);
                                 }

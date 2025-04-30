@@ -212,12 +212,10 @@ class FrontController extends Controller
             ->where('slug', $slug)->first();
 
         $productVariant->sizesStock = $productVariant->sizesStock
-            ->map(function($stock) {
-                $stock->size_name = $stock->size->name;
-                return $stock;
-            })
             ->sortBy(function($stock) use ($orderMap) {
-                return $orderMap[$stock->size_name] ?? PHP_INT_MAX;
+                $name  = strtoupper(trim($stock->size->name));
+                $order = $orderMap[$name] ?? PHP_INT_MAX;
+                return $order;
             })
             ->values();
 
@@ -240,6 +238,14 @@ class FrontController extends Controller
             ])
             ->first();
 
+        $product->variants->each(function($variant) use ($orderMap) {
+            $variant->sizesStock = $variant->sizesStock
+                ->sortBy(function($stock) use ($orderMap) {
+                    $name = strtoupper(trim($stock->size->name));
+                    return $orderMap[$name] ?? PHP_INT_MAX;
+                })
+                ->values();
+        });
 
         $totalReviews = Review::where('product_id', $product->id)
             ->where('status', Review::STATUS_APPROVED)
@@ -486,15 +492,15 @@ class FrontController extends Controller
             $request->all(),
             $rule,
             [
-                'contact.first_name.required' => 'Vui lòng nhập họ tên',
-                'contact.last_name.required' => 'Vui lòng nhập họ tên',
-                'contact.email.required' => 'Vui lòng nhập email',
-                'contact.body.required' => 'Vui lòng nhập nội dung',
+                'contact.first_name.required' => 'Please enter your full name',
+                'contact.last_name.required'  => 'Please enter your full name',
+                'contact.email.required'      => 'Please enter your email address',
+                'contact.body.required'       => 'Please enter the message',
             ]
         );
 
         if ($validate->fails()) {
-            return $this->responseErrors('Gửi yêu cầu thất bại!', $validate->errors());
+            return $this->responseErrors('Operation failed', $validate->errors());
         }
 
         $contact = new Contact();
@@ -713,8 +719,15 @@ class FrontController extends Controller
             $request->all(),
             [
                 'order_number' => 'required',
+            ],
+            [
+                'order_number.required' => 'Please enter order_number',
             ]
         );
+
+        if ($validate->fails()) {
+            return $this->responseErrors('Operation failed', $validate->errors());
+        }
 
         if ($validate->fails()) {
             $json->success = false;

@@ -257,7 +257,8 @@
                                                        ng-model="item.quantity" value="<%item.quantity%>" ng-change="changeQty(item.quantity, item.id)"
                                                        class="js-qty__num"  min="0" pattern="[0-9]*"
                                                       >
-                                                <button type="button" class="js-qty__adjust js-qty__adjust--minus" aria-label="Reduce item quantity by one" ng-click="decrementQuantity(item); changeQty(item.quantity, item.id)">
+                                                <button type="button" class="js-qty__adjust js-qty__adjust--minus" aria-label="Reduce item quantity by one"
+                                                        ng-click="decrementQuantity(item); changeQty(item.quantity, item.id)" >
                                                     <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" viewBox="0 0 20 20">
                                                         <path fill="#444" d="M17.543 11.029H2.1A1.032 1.032 0 0 1 1.071 10c0-.566.463-1.029 1.029-1.029h15.443c.566 0 1.029.463 1.029 1.029 0 .566-.463 1.029-1.029 1.029z"></path></svg>
                                                     <span class="icon__fallback-text" aria-hidden="true">−</span>
@@ -310,7 +311,7 @@
                     <div class="cart__checkout-wrapper">
                         <a href="{{ route('cart.checkout') }}">
                             <button type="button" name="checkout" data-terms-required="false" class="btn cart__checkout">
-                                Checkout
+                                Check out
                             </button>
                         </a>
                     </div>
