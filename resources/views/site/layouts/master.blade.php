@@ -21,6 +21,12 @@
 @include('site.partials.angular_mix')
 
 <script>
+    var CSRF_TOKEN = "{{ csrf_token() }}";
+
+</script>
+<script>
+
+
     app.controller('headerPartial', function ($rootScope, $scope, cartItemSync, isLoading, $interval) {
         $scope.hasItemInCart = true;
         $scope.cart = cartItemSync;
@@ -87,7 +93,7 @@
                 type: 'POST',
                 url: "{{route('cart.update.item')}}",
                 headers: {
-                    'X-CSRF-TOKEN': "{{csrf_token()}}"
+                    'X-CSRF-TOKEN': CSRF_TOKEN
                 },
                 data: {
                     product_id: product_id,

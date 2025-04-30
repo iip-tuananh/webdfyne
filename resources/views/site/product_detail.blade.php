@@ -1285,8 +1285,11 @@
                         jQuery.ajax({
                             type: 'POST',
                             url: url,
+                            {{--headers: {--}}
+                            {{--    'X-CSRF-TOKEN': "{{csrf_token()}}"--}}
+                            {{--},--}}
                             headers: {
-                                'X-CSRF-TOKEN': "{{csrf_token()}}"
+                                'X-CSRF-TOKEN': CSRF_TOKEN
                             },
                             data: {
                                 'qty': 1
@@ -1320,7 +1323,7 @@
                             type: 'POST',
                             url: '{{ route('front.submitRating') }}',
                             headers: {
-                                'X-CSRF-TOKEN': "{{csrf_token()}}"
+                                'X-CSRF-TOKEN': CSRF_TOKEN
                             },
                             data: {
                                 formReview: $scope.formReview
