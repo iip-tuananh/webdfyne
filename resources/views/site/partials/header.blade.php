@@ -276,7 +276,7 @@
                                         </div>
                                         <div class="cart__item-price-col text-right">
                                           <span class="cart__price">
-                                            <span class="money"><% (item.price * item.quantity) | number %> ₫</span>
+                                            <span class="money"><% (item.price * item.quantity) | number %> $</span>
                                           </span>
                                         </div>
                                     </div>
@@ -296,7 +296,7 @@
 
                     <div class="cart__item-sub cart__item-row">
                         <div class="ajaxcart__subtotal">Total</div>
-                        <div data-subtotal><span class=money><% cart.total | number%> đ</span></div>
+                        <div data-subtotal><span class=money><% cart.total | number%> $</span></div>
                     </div>
 
                     <div class="cart__item-row text-center">
