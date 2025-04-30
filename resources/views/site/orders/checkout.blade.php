@@ -1200,6 +1200,7 @@
                                                                                                                             aria-required="true"
                                                                                                                             aria-labelledby="TextFieldPhone-label"
                                                                                                                             autocomplete="tel"
+                                                                                                                            style="padding-top: 14px"
                                                                                                                             class="_7ozb2uq _7ozb2up _1fragemlt _1fragemtc _1fragemor _1fragemsi _7ozb2ut _7ozb2us _1fragemsy _1fragemst _1fragemt8 _7ozb2uv _7ozb2uu _1fragempd _1fragempp _7ozb2u10 _7ozb2u1h _7ozb2ur"
                                                                                                                         />
                                                                                                                     </div>
@@ -1717,14 +1718,14 @@
                         return paypalService.captureOrder(data.orderID)
                             .then(res => {
                                 console.log('Response data:', res);
-                                alert('Thanh toán thành công!');
+                                // alert('Payment successful!');
                                 window.location.href = "/order-completed.html/";
                             });
                     },
 
                     onError: function(err) {
                         console.error('Lỗi PayPal:', err);
-                        alert('Thanh toán thất bại.');
+                        // alert('Payment failed.');
                     }
 
                 }).render('#paypal-button-container');

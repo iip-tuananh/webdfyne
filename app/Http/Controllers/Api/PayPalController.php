@@ -38,19 +38,35 @@ class PayPalController extends Controller
                 'payer.address.admin_area_2'         => 'required|string',
                 'payer.address.postal_code'          => 'required|string',
                 'payer.address.country_code'         => 'required|size:2',
-                'payer.phone.phone_number.national_number' => 'required|string',
+                'payer.phone.phone_number.national_number' => [
+                    'required',
+                    'string',
+                    'regex:/^[0-9]+$/',
+                ],
             ];
 
-            $validate = Validator::make(
-                $req->all(),
-                $rule
-            );
+            $messages = [
+                'payer.email_address.required'                      => 'The email address is required.',
+                'payer.email_address.email'                         => 'The email address must be a valid email format.',
+                'payer.name.given_name.required'                    => 'First name is required.',
+                'payer.name.surname.required'                       => 'Last name is required.',
+                'payer.address.address_line_1.required'             => 'Street address is required.',
+                'payer.address.admin_area_2.required'               => 'City/Province is required.',
+                'payer.address.postal_code.required'                => 'Postal code is required.',
+                'payer.address.country_code.required'               => 'Country code is required.',
+                'payer.address.country_code.size'                   => 'Country code must be exactly 2 characters.',
+                'payer.phone.phone_number.national_number.required' => 'Phone number is required.',
+                'payer.phone.phone_number.national_number.regex'    => 'Phone number may only contain digits.',
+            ];
+
+
+            $validator = Validator::make($req->all(), $rule, $messages);
 
             $json = new \stdClass();
 
-            if ($validate->fails()) {
+            if ($validator->fails()) {
                 $json->success = false;
-                $json->errors = $validate->errors();
+                $json->errors = $validator->errors();
                 $json->message = "Thao tác thất bại!";
                 return Response::json($json);
             }
